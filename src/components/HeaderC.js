@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Box, Flex, Text, Button, Stack, Spacer } from "@chakra-ui/react";
 
 import Logo from "./Logo";
-import WalletNC from "./WalletNC";
+import WalletC from "./WalletC";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -15,7 +15,7 @@ const NavBar = (props) => {
         w="100px"
         color={["gray.700", "gray.700", "primary.500", "primary.500"]}
       />
-      <WalletNC />
+      <WalletC />
       <Spacer />
       {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
       <MenuLinks isOpen={isOpen} />
@@ -90,7 +90,7 @@ const MenuLinks = ({ isOpen }) => {
               bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
             }}
           >
-            Login with Metamask
+            Logged IN
           </Button>
         </MenuItem>
       </Stack>

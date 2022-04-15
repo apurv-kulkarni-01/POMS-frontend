@@ -5,13 +5,16 @@
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { Flex, VStack, Heading, Switch } from "@chakra-ui/react";
 
-import Home from "./pages/Home"
 import React from "react";
+import Home from "./pages/Home"
+import HomeWalletC from "./pages/HomeWalletC"
 
 
 function App(){
     return(
-        <Home />
+        // <Home />
+        <HomeWalletC />
+        
     )
 }
 
