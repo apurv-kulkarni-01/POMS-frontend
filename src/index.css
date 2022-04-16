@@ -69,3 +69,19 @@ code {
 border-radius: 4px;
 margin: auto;
 }
+
+.historyTable {
+  position: absolute;
+  width: 709px;
+  /* height: 272px; */
+  left: 67px;
+  top: 280px;
+  font-family: "Inter", "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
