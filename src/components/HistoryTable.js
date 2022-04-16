@@ -1,6 +1,12 @@
+// Using this component
+// <HistoryTable />
+//pagination is disabled
+
+import theme from "../theme";
+
 import DataTable from "react-data-table-component";
 import "../index.css";
-import {  Link } from "@chakra-ui/react";
+import {  Link, ChakraProvider } from "@chakra-ui/react";
 import "../data/historyData";
 import historyData from "../data/historyData";
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -30,7 +36,8 @@ export default function HistoryTable() {
             {truncate(row.transactionHash)}<ExternalLinkIcon mx='2px'/>
           </Link>
         </>
-      )
+      ),
+      right:true,
     }
   ];
   function truncate(str) {
@@ -67,6 +74,7 @@ export default function HistoryTable() {
 };
 
   return (
+    <ChakraProvider theme={theme}>
     <div className="historyTable">
       <DataTable
         // title="Movies"
@@ -80,5 +88,6 @@ export default function HistoryTable() {
         customStyles={customStyles}
       />
     </div>
+    </ChakraProvider>
   );
 }

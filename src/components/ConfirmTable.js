@@ -1,38 +1,28 @@
 // Using this component
-// <RequestTable columnHeader={['1','2','3']}/>
-//for Admin page use <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/>
-//for Product Request page use <RequestTable columnHeader={['Username','Product Code','Action']}/>
+// <ConfirmTable />
 //pagination is disabled
 
 import DataTable from "react-data-table-component";
 import requestData from "../data/requestData";
-import {  Button, ButtonGroup,ChakraProvider } from '@chakra-ui/react'
+import {  Button, ChakraProvider } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
 import theme from "../theme";
 
-export default function RequestTable(props) {
+export default function ConfirmTable() {
     const columns = [
       {
-        name: props.columnHeader[0],
-        selector: (row) => row.walletAddress,
+        name: 'Product Code',
+        selector: (row) => row.productId,
         width: "370px",
         // sortable: true
       },
+      
       {
-        name: props.columnHeader[1],
-        selector: (row) => row.productId,
-        width: "460px",      
-        // sortable: true
-      },
-      {
-        name: props.columnHeader[2],
+        name: 'Action',
         button: true,
-        cell: (row) => (
-          <ButtonGroup variant='outline' spacing='3'>
-            <Button fontSize='16px' fontWeight="semibold" colorScheme='accept' variant="solid">Accept</Button>
-            <Button fontSize='16px' fontWeight="semibold" colorScheme="red" variant='outline' onClick={() => rejectRequest(row)}>Reject</Button>
-          </ButtonGroup>
+        cell: (row) => (         
+            <Button fontSize='16px' fontWeight="semibold" colorScheme="accept" variant='solid' onClick={() => acceptProduct(row)}>Confirm</Button>
         ),
         width: "auto",
           }
@@ -67,8 +57,8 @@ export default function RequestTable(props) {
       },
   };
   
-    function rejectRequest(row) {
-      console.log("delete " + row._id);
+    function acceptProduct(row) {
+      console.log("confirm " + row._id);
       const result = requestDataCopy.filter((movie) => {
         return movie._id !== row._id;
       });
@@ -78,12 +68,12 @@ export default function RequestTable(props) {
     const [requestDataCopy, setMovieCopy] = useState(requestData);
   
     return (
-      <ChakraProvider theme={theme}>
-      <div className="requestDataTable">
+        <ChakraProvider theme={theme}>
+      <div className="confirmDataTable">
         <DataTable
           columns={columns}
           data={requestDataCopy}
-          // pagination 
+        //   pagination
           noHeader
           fixedHeader
           fixedHeaderScrollHeight={"286px"}
