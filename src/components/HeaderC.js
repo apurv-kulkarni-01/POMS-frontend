@@ -1,8 +1,11 @@
 import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, Spacer } from "@chakra-ui/react";
+import { Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
+  MenuButton,
+  MenuList } from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import WalletC from "./WalletC";
+import {ChevronDownIcon} from '@chakra-ui/icons';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -17,7 +20,7 @@ const NavBar = (props) => {
       />
       <WalletC />
       <Spacer />
-      {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
+      <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>
   );
@@ -76,22 +79,24 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        {/* <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/how">How It works </MenuItem>
-        <MenuItem to="/faetures">Features </MenuItem>
-        <MenuItem to="/pricing">Pricing </MenuItem> */}
-        <MenuItem to="/signup" isLast>
-          <Button
-            size="sm"
-            rounded="md"
-            color={["primary.500", "primary.500", "white", "white"]}
-            bg={["gray.700", "gray.700", "primary.500", "primary.500"]}
-            _hover={{
-              bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-            }}
-          >
-            Logged IN
-          </Button>
+        <MenuItem to="/account" isLast>
+        <Stack direction="row" >
+          <Text>0x130..2a1</Text>
+          <Avatar size='sm'>
+            <AvatarBadge boxSize='1.25em' bg='green.500'/>
+          </Avatar>
+          {/* <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Download</MenuItem>
+              <MenuItem>Create a Copy</MenuItem>
+              <MenuItem>Mark as Draft</MenuItem>
+              <MenuItem>Delete</MenuItem>
+              <MenuItem>Attend a Workshop</MenuItem>
+            </MenuList>
+          </Menu> */}
+        </Stack>
         </MenuItem>
       </Stack>
     </Box>

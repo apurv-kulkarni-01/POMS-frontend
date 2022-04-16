@@ -10,6 +10,8 @@ import {
   Icon,
   VStack,
   Flex,
+  // FormControl,
+  // Input
 } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
 
@@ -20,19 +22,29 @@ export default function LogoCenter(props) {
         <Icon as={GrReactjs} w={250} h={250} />
       </Box>
       <Box>
-        <Flex ml={45}>
+        <Flex ml={45} >
           <Editable
-            defaultValue="Search"
+            defaultValue="Track product using Code"
             w={500}
-            // h={35}
+            h={35}
             border="1px"
             borderColor="gray.300"
             borderRadius="md"
+            
           >
-            <EditablePreview />
+            <EditablePreview pl={2} />
             <EditableInput />
           </Editable>
-          <Button leftIcon={<BiSearch />} variant="solid">
+            {/* <FormControl isInvalid={isError}>
+
+              <Input
+                id='search'
+                type='text'
+                value={input}
+                onChange={handleInputChange}
+              />
+            </FormControl> */}
+          <Button leftIcon={<BiSearch />} variant="solid" h={35}>
             Search
           </Button>
         </Flex>
