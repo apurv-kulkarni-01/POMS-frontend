@@ -84,7 +84,7 @@ export default function Cardelem(props) {
   }
   else{
     return <div style={{position:"absolute", top:"235px"}}>
-    <Card className={classes.card} elevation={20} sx={{maxWidth: 255, height: "163px", border: 2
+    <Card className={classes.card} elevation={5} sx={{maxWidth: 255, height: "163px", border: 2
  }} >
       <CardActionArea>
         <CardContent align="center">

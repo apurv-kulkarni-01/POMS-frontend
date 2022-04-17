@@ -44,8 +44,7 @@ console.log("the data is ", data);
   };
   return (
   <>
-  <div style={{position:"absolute",top:"214px",left:"971px"}}>
-  <Card sx={{ maxWidth: 265, height: "265px",borderRadius:15
+            <Card sx={{ marginLeft:"971px", mt:"214px", maxWidth: 265, height: "265px",borderRadius:15
  }}>
  <CardMedia
           component="img"
@@ -57,7 +56,7 @@ console.log("the data is ", data);
         />
  </Card>
 
-<Card elevation={0} sx={{mt:"6px", maxWidth: 280, height: "220px"
+<Card elevation={0} sx={{marginLeft:"971px", mt:"6px", maxWidth: 280, height: "220px"
  }} >
               <CardActionArea>
        
@@ -117,8 +116,6 @@ console.log("the data is ", data);
              
             </Stack>        </CardActions>
             </Card>
-  </div>
-            
 
  </>
   );
