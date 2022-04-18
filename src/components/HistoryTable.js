@@ -84,7 +84,7 @@ export default function HistoryTable() {
         defaultSortFieldID={1}
         pagination
         fixedHeader
-        fixedHeaderScrollHeight={"272px"}
+        fixedHeaderScrollHeight={"365px"}
         customStyles={customStyles}
       />
     </div>

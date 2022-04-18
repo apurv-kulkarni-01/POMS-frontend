@@ -31,19 +31,21 @@ export default function Carousal() {
   }, []);
 
   return (
-    <ChakraProvider theme={extendTheme(theme)}>
+    <ChakraProvider >
       <Container
         py={8}
-        px={0}
-        top={1}
+        px={0} pos="absolute"
+        top='235px'
+        left='131px'
         maxW={{
-          base: "100%",
+          base: "90%",
           sm: "35rem",
           md: "43.75rem",
           lg: "57.5rem",
           xl: "75rem",
           xxl: "87.5rem"
         }}
+        w='90%'
       >
         <ChakraCarousel Width={200} sliderWidth={5} gap={40} >
           {data.slice(5, 15).map((post, index) => (

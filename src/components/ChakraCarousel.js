@@ -74,7 +74,7 @@ const ChakraCarousel = ({ children, gap }) => {
     if (isGreaterThanXL) {
       setItemWidth(255);
       setMultiplier(0.35);
-      setConstraint(3);
+      setConstraint(2);
     }
   }, [isBetweenBaseAndMd, isBetweenMdAndXl, isGreaterThanXL, sliderWidth, gap]);
 
@@ -200,7 +200,7 @@ const Slider = ({
           variant="link"
           minW={0}
         >
-          <ChevronLeftIcon boxSize={9} />
+          <ChevronLeftIcon boxSize={9} color='black'/>
         </Button>
 
         <Progress
@@ -226,7 +226,7 @@ const Slider = ({
           zIndex={2}
           minW={0}
         >
-          <ChevronRightIcon boxSize={9} />
+          <ChevronRightIcon boxSize={9} color='black'/>
         </Button>
       </Flex>
     </>

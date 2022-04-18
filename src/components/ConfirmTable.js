@@ -7,7 +7,7 @@ import requestData from "../data/requestData";
 import {  Button, ChakraProvider } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
-import theme from "../theme";
+import theme from "../theme/index";
 
 export default function ConfirmTable() {
     const columns = [
