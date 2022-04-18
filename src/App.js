@@ -5,6 +5,7 @@
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { Flex, VStack, Heading, Switch } from "@chakra-ui/react";
 
+import { Modal } from "@chakra-ui/react";
 import React from "react";
 import Home from "./pages/Home"
 import HomeWalletC from "./pages/HomeWalletC"
