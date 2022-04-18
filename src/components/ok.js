@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { capsFirst } from "./utils";
-import ReactDOM from "react-dom";
-import theme from "./theme";
 import { Link } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import { Icon, AddIcon } from "@chakra-ui/react";
-
+import {ArrowForwardIcon,AddIcon} from '@chakra-ui/icons'
 import {
   ChakraProvider,
-  extendTheme,
-  Container,
   Heading,
-  Button,
   VStack,
-  HStack,
   Text,
-  Flex,
-  Tag
-} from "@chakra-ui/react";
-
-import ChakraCarousel from "./ChakraCarousel";
+  Flex} from "@chakra-ui/react";
+import theme from '../theme/index'
 
 export default function Cardelem(props) {
   const [data, setData] = useState([]);
@@ -31,9 +21,9 @@ export default function Cardelem(props) {
   }, []);
   if (props.name == "0") {
     return (
-      <ChakraProvider theme={extendTheme(theme)}>
+      <ChakraProvider theme={theme}>
         <Flex
-          mt="100px"
+          // mt="100px"
           height="163px"
           width="180px"
           boxShadow="rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
@@ -45,20 +35,24 @@ export default function Cardelem(props) {
           rounded={5}
           flex={1}
           p={5}
+          border='1px' 
+          borderColor='#2D3748'
         >
-          <Box
+          <Box as='button'
             textAlign="center"
             m="4px"
             border="2px dashed grey"
             h="100%"
             w="95%"
             p={4}
-            color="Green"
+            color="black"
           >
+            <AddIcon d='block' m='auto'/>
             <Heading
               fontSize={{ base: "xl", md: "2xl" }}
               textAlign="center"
-              fontFamily="Cursive"
+              fontWeight='semibold'
+              // fontFamily="Cursive"
               w="full"
               marginTop="200"
               mb={2}
@@ -73,9 +67,9 @@ export default function Cardelem(props) {
     );
   } else {
     return (
-      <ChakraProvider theme={extendTheme(theme)}>
+      <ChakraProvider theme={theme}>
         <Flex
-          mt="100px"
+          // mt="100px"
           height="163px"
           boxShadow="rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
           justifyContent="space-between"
@@ -86,12 +80,15 @@ export default function Cardelem(props) {
           rounded={5}
           flex={1}
           p={5}
+          border='1px' 
+          borderColor='#2D3748'
         >
           <VStack mb={6}>
             <Heading
               fontSize="15px"
-              textAlign="center"
-              fontFamily="Cursive"
+              fontWeight='normal'
+              textAlign="left"
+              // fontFamily="Cursive"
               w="full"
               mb={2}
               display="inline"
@@ -100,7 +97,7 @@ export default function Cardelem(props) {
               {capsFirst("Product Code: ")}
               <Heading
                 fontSize="16px"
-                fontFamily="Cursive"
+                // fontFamily="Cursive"
                 fontWeight="bold"
                 w="full"
                 display="inline"
@@ -112,17 +109,17 @@ export default function Cardelem(props) {
 
             <Text
               fontSize="12px"
-              fontFamily="Cursive"
-              textAlign="center"
+              // fontFamily="Cursive"
+              // textAlign="center"
               w="full"
             >
               {"Current Owner: "}
               <Text
-                fontSize="12px"
+                fontSize="13px"
                 display="inline"
-                fontWeight="bold"
-                fontFamily="Cursive"
-                textAlign="center"
+                fontWeight="semibold"
+                // fontFamily="Cursive"
+                // textAlign="center"
                 w="full"
               >
                 {"Abhhishek Jha "}
@@ -130,15 +127,18 @@ export default function Cardelem(props) {
             </Text>
           </VStack>
 
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" alignContent='center' mt='20px' >
             <Link
-              ml="130px"
-              fontSize="15px"
-              fontFamily="Cursive"
-              fontWeight="bold"
-              color="green"
+              ml="140px"
+              // textAlign='right'
+              // align='right'
+              fontSize="12px"
+              // fontFamily="Cursive"
+              fontWeight="semibold"
+              color="accept.500"
             >
               Chakra UI
+<ArrowForwardIcon  color='accept.500' />
             </Link>
           </Flex>
         </Flex>
