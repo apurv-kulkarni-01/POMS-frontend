@@ -1,22 +1,23 @@
-import React from 'react'
-import Header from "../components/Header";
-import Carousal from "../components/carousal";
-import RequestTable from '../components/RequestTable'
-import ConfirmTable from '../components/ConfirmTable'
-import HistoryTable from '../components/HistoryTable'
-import ProductCard from '../components/Product_Card'
+import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
+import React from "react";
+import HeaderC from "../components/HeaderC"
+import LogoCenter from "../components/LogoCenter";
+import ManufacturerModal from "../components/ManufacturerModal";
+import CustomerModal from "../components/CustomerModal";
+import theme from "../theme";
 
 const Home = () => {
-  return (
-    <>
-    <Header/>
-    {/* <Carousal/> */}
-    {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
-    {/* <ConfirmTable /> */}
-    <ProductCard/>
-    <HistoryTable/>
-      </>  
-  );
-};
+    return(
+        <ChakraProvider theme={theme}>
+            <HeaderC />
+            <LogoCenter />
+            <Text fontSize='xl' as='b' ml={600}>Select Option to Continue Further</Text>
+            <Flex ml={500} >
+                <ManufacturerModal />
+                <CustomerModal />
+            </Flex>
+        </ChakraProvider>
+    )
+}
 
 export default Home
