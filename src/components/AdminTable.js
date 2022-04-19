@@ -1,11 +1,11 @@
 // Using this component
 // <RequestTable columnHeader={['1','2','3']}/>
-//for Product Request page only use <RequestTable columnHeader={['Username','Product Code','Action']}/>
-//pagination is disabled
+//for Admin page only use <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/>
+//pagination is enabled
 
 import DataTable from "react-data-table-component";
 import requestData from "../data/requestData";
-import {  Button, ButtonGroup,ChakraProvider } from '@chakra-ui/react'
+import {  Button, ButtonGroup,ChakraProvider,Text } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
 import theme from "../theme";
@@ -66,9 +66,17 @@ export default function RequestTable(props) {
           },
       },
   };
+  const h1Style = {
+    position: 'absolute',
+    left: '154px',
+    top: '130px',
+    fontWeight: 'bold',
+    fontSize: '36px',
+    lineHeight: '48px',
+  }
   
     function rejectRequest(row) {
-      // console.log("delete " + row._id);
+    //   console.log("delete " + row._id);
       const result = requestDataCopy.filter((movie) => {
         return movie._id !== row._id;
       });
@@ -79,14 +87,17 @@ export default function RequestTable(props) {
   
     return (
       <ChakraProvider theme={theme}>
-      <div className="requestDataTable">
+  <Text style={h1Style} color='darkGray' >
+        Incoming Manufacturer Request
+      </Text>
+      <div className="adminDataTable">
         <DataTable
           columns={columns}
           data={requestDataCopy}
-          // pagination 
+          pagination 
           noHeader
           fixedHeader
-          fixedHeaderScrollHeight={"286px"}
+          fixedHeaderScrollHeight={"486px"}
           customStyles={customStyles}
         />
       </div>
