@@ -30,7 +30,10 @@ const theme = extendTheme({
             700: '#6B0000',
             800: '#006D78',
             900: '#1E5A6B',
-        }
+        },
+        darkGray:'#293C54',
+        tableCell:'#2D3748',
+        tableHeader:'#4A5568'
     }
 }
 )

@@ -6,7 +6,7 @@ import theme from "../theme";
 
 import DataTable from "react-data-table-component";
 import "../index.css";
-import {  Link, ChakraProvider } from "@chakra-ui/react";
+import { Link, ChakraProvider, Text } from "@chakra-ui/react";
 import "../data/historyData";
 import historyData from "../data/historyData";
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -31,13 +31,13 @@ export default function HistoryTable() {
           <Link
             href={"https://etherscan.io/tx/" + row.transactionHash}
             isExternal
-            
+
           >
-            {truncate(row.transactionHash)}<ExternalLinkIcon mx='2px'/>
+            {truncate(row.transactionHash)}<ExternalLinkIcon mx='2px' />
           </Link>
         </>
       ),
-      right:true,
+      right: true,
     }
   ];
   function truncate(str) {
@@ -46,48 +46,60 @@ export default function HistoryTable() {
 
   const customStyles = {
     rows: {
-        style: {
-            minHeight: '54px', // override the row height
-            fontWeight: 'medium',
-            fontSize:'14px',
-        },
+      style: {
+        minHeight: '54px', // override the row height
+        fontWeight: 'medium',
+        fontSize: '14px',
+      },
     },
-    headRows:{
-      style:{
-        fontSize:'13px',
+    headRows: {
+      style: {
+        fontSize: '13px',
       },
     },
     headCells: {
-        style: {
-            padding: '10px', // override the cell padding for head cells
-            fontSize:'13px',
-            fontWeight:'bold',
-        },
+      style: {
+        padding: '10px', // override the cell padding for head cells
+        fontSize: '13px',
+        fontWeight: 'bold',
+        color: '#4A5568',
+      },
     },
     cells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for data cells
-            paddingRight: '8px',
-            
-        },
+      style: {
+        paddingLeft: '8px', // override the cell padding for data cells
+        paddingRight: '8px',
+        color: '#2D3748',
+      },
     },
-};
-
+  };
+  const h1Style = {
+    position: 'absolute',
+    left: '70px',
+    top: '190px',
+    fontWeight: 'bold',
+    fontSize: '36px',
+    lineHeight: '48px',
+  }
   return (
     <ChakraProvider theme={theme}>
-    <div className="historyTable">
-      <DataTable
-        // title="Movies"
-        noHeader
-        columns={columns}
-        data={historyData}
-        defaultSortFieldID={1}
-        pagination
-        fixedHeader
-        fixedHeaderScrollHeight={"365px"}
-        customStyles={customStyles}
-      />
-    </div>
+      <Text style={h1Style} color='darkGray' >
+        Product Ownership History
+      </Text>
+      {/* <h1 style={h1Style} ></h1> */}
+      <div className="historyTable">
+        <DataTable
+          // title="Movies"
+          noHeader
+          columns={columns}
+          data={historyData}
+          defaultSortFieldID={1}
+          pagination
+          fixedHeader
+          fixedHeaderScrollHeight={"365px"}
+          customStyles={customStyles}
+        />
+      </div>
     </ChakraProvider>
   );
 }
