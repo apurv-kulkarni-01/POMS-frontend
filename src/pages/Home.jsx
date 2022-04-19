@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import HeaderC from "../components/HeaderC"
 import LogoCenter from "../components/LogoCenter";
@@ -11,11 +11,14 @@ const Home = () => {
         <ChakraProvider theme={theme}>
             <HeaderC />
             <LogoCenter />
+            <Box my={25}>
             <Text fontSize='xl' as='b' ml={600}>Select Option to Continue Further</Text>
-            <Flex ml={500} >
+            
+            <HStack spacing='75px' ml={445} mt={2}>
                 <ManufacturerModal />
                 <CustomerModal />
-            </Flex>
+            </HStack>
+            </Box>
         </ChakraProvider>
     )
 }
