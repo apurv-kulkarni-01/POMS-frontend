@@ -7,13 +7,13 @@
 
 import { Modal } from "@chakra-ui/react";
 import React from "react";
-import Home from "./pages/Home";
+import UserDashboard from "./pages/UserDashboard";
 // import NavBar from "./components/Header";
 
 
 function App(){
     return(
-        <Home />
+        <UserDashboard />
     )
 }
 

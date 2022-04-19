@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderC from "../components/HeaderC";
+import Header from "../components/Header";
 import AssetsManufacturedCarousal from "../components/AssetsManufacturedCarousal";
 import RequestTable from '../components/RequestTable'
 import ConfirmTable from '../components/ConfirmTable'
@@ -9,12 +9,13 @@ import ProductCard from '../components/Product_Card'
 const Home = () => {
   return (
     <>
-    <HeaderC/>
+    <Header/>
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}
-    <ProductCard/>
-    <HistoryTable/>
+    <AssetsManufacturedCarousal/>
+    <RequestTable columnHeader={['Username','Product Code','Action']}/>
+    
       </>  
   );
 };

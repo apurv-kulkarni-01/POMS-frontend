@@ -5,7 +5,7 @@ import theme from "../theme/index";
 import { Link } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Icon, AddIcon } from "@chakra-ui/react";
-import Abhishek from "./ok";
+import AssetsOwned from "./AssetsOwned";
 import {
   ChakraProvider,
   extendTheme,
@@ -32,6 +32,17 @@ export default function Carousal() {
 
   return (
     <ChakraProvider >
+      <Heading
+        fontSize="32px"
+        // fontFamily="Cursive"
+        fontWeight="semibold"
+        pos="absolute"
+        top='179'
+        left='131px'
+      >
+        Assets Owned
+      </Heading>
+
       <Container
         py={8}
         px={0} pos="absolute"
@@ -49,7 +60,7 @@ export default function Carousal() {
       >
         <ChakraCarousel Width={200} sliderWidth={5} gap={40} >
           {data.slice(5, 15).map((post, index) => (
-            <Abhishek name={index} />
+            <AssetsOwned />
           ))}
         </ChakraCarousel>
       </Container>
