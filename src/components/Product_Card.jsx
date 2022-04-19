@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function Carousal() {
+export default function ProductCard() {
   const classes = useStyles();
   const [data, setData] = useState([1, 2]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);

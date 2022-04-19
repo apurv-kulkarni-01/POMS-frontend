@@ -4,7 +4,7 @@ import Carousal from "../components/carousal";
 import RequestTable from '../components/RequestTable'
 import ConfirmTable from '../components/ConfirmTable'
 import HistoryTable from '../components/HistoryTable'
-import ProductCard from '../components/prodcard'
+import ProductCard from '../components/Product_Card'
 
 const Home = () => {
   return (
