@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { capsFirst } from "./utils";
 import ReactDOM from "react-dom";
-import theme from "./theme";
+import theme from "../theme/index";
 import { Link } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Icon, AddIcon } from "@chakra-ui/react";
