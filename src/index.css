@@ -13,7 +13,92 @@ code {
 }
 
 .App {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
   text-align: center;
-  
+}
+
+@font-face {
+  font-family: Inter;
+  src: local('Inter'), url(../fonts/Inter-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 700;
+  src: local('Inter'), url(../fonts/Inter-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 600;
+  src: local('Inter'), url(../fonts/Inter-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 300;
+  src: local('Inter'), url(../fonts/Inter-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 500;
+  src: local('Inter'), url(../fonts/Inter-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 900;
+  src: local('Inter'), url(../fonts/Inter-Black.ttf) format('truetype');
+}
+
+.requestDataTable {
+  /* font-family:"Inter", "Roboto", sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 21px;
+  text-rendering: optimizeLegibility;
+  width: 70%;
+  /* height: 70%; */
+  display: flex;
+  flex-direction: column;
+  border: 1.05147px solid #E2E8F0;
+  padding: 12.6176px;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: absolute;
+  /* width: 1131px; */
+  /* height: 286px; */
+  left: 131px;
+  top: 557px;
+}
+
+.historyTable {
+  position: absolute;
+  width: 709px;
+  left: 67px;
+  top: 280px;
+  font-family: "Inter", "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.confirmDataTable {
+  position: absolute;
+  width: 616px;
+  left: 131px;
+  top: 1002px;
+  border: 1.05147px solid #E2E8F0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12.6176px;
 }

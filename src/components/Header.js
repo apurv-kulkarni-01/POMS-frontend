@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, Spacer } from "@chakra-ui/react";
+import { Link, Box, Flex, Text, Button, Stack, Spacer, ChakraProvider } from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import WalletNC from "./WalletNC";
@@ -10,6 +10,7 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
+    <ChakraProvider>
     <NavBarContainer {...props}>
       <Logo
         w="100px"
@@ -20,6 +21,7 @@ const NavBar = (props) => {
       {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>
+    </ChakraProvider>
   );
 };
 
