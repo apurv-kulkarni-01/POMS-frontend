@@ -1,6 +1,7 @@
 import React from 'react'
-import HeaderC from '../components/HeaderC'
+import HeaderCSearch from '../components/HeaderCSearch'
 import AdminTable from '../components/AdminTable'
+import { ChakraProvider } from '@chakra-ui/react'
 
 
 const AdminDashboard = () => {
@@ -8,7 +9,10 @@ const AdminDashboard = () => {
 
     return (
         <div>
-            <HeaderC />
+            <ChakraProvider>
+                <HeaderCSearch />
+            </ChakraProvider>
+            
             <AdminTable columnHeader={['Company Name', 'Company Prefix', 'Action']} />
         </div>
     )
