@@ -9,13 +9,15 @@ import { Modal } from "@chakra-ui/react";
 import React from "react";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing"
+import UserSettings from "./pages/UserSettings"
 // import UserOption from "./components/UserOption";
 
 
 function App(){
     return(
-        <Home />
+        // <Home />
         // <Landing />
+        <UserSettings />
     )
 }
 
