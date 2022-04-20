@@ -85,7 +85,10 @@ const MenuLinks = ({ isOpen }) => {
           <Avatar size='sm'>
             <AvatarBadge boxSize='1.25em' bg='green.500'/>
           </Avatar>
-          {/* <Menu>
+        </Stack>
+        </MenuItem>
+        <MenuItem>
+        <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             </MenuButton>
             <MenuList>
@@ -95,8 +98,7 @@ const MenuLinks = ({ isOpen }) => {
               <MenuItem>Delete</MenuItem>
               <MenuItem>Attend a Workshop</MenuItem>
             </MenuList>
-          </Menu> */}
-        </Stack>
+          </Menu>
         </MenuItem>
       </Stack>
     </Box>

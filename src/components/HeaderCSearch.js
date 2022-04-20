@@ -23,6 +23,7 @@ const NavBar = (props) => {
       <HStack spacing={100}>
         <WalletC />
         <SearchTop w="200px" />
+        <Text>Customer</Text>
       </HStack>
       <Spacer />    
       <MenuToggle toggle={toggle} isOpen={isOpen} />
@@ -85,23 +86,22 @@ const MenuLinks = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
       >
         <MenuItem to="/account" isLast>
-        <Stack direction="row" >
-          <Text>0x130..2a1</Text>
-          <Avatar size='sm'>
-            <AvatarBadge boxSize='1.25em' bg='green.500'/>
-          </Avatar>
-          {/* <Menu>
+          <Stack direction="row" >
+            <Text>0x130..2a1</Text>
+            <Avatar size='sm'>
+              <AvatarBadge boxSize='1.25em' bg='green.500'/>
+            </Avatar>
+          </Stack>
+        </MenuItem>
+
+        <MenuItem>
+          <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             </MenuButton>
             <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
+              <MenuItem>Settings</MenuItem>
             </MenuList>
-          </Menu> */}
-        </Stack>
+          </Menu>
         </MenuItem>
       </Stack>
     </Box>

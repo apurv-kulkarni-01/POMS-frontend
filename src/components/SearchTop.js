@@ -1,6 +1,6 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
-import {Flex, Input, Button, Box, HStack} from "@chakra-ui/react"
+import {Input, Button, Box, HStack} from "@chakra-ui/react"
 
 export default function SearchTop(){
     return(
