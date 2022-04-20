@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from "../components/Header";
-import Carousal from "../components/carousal";
-import RequestTable from '../components/RequestTable'
-import ConfirmTable from '../components/ConfirmTable'
+// import Carousal from "../components/carousal";
+// import RequestTable from '../components/RequestTable'
+// import ConfirmTable from '../components/ConfirmTable'
 import HistoryTable from '../components/HistoryTable'
-import ProductCard from '../components/prodcard'
+import ProductCard from '../components/Product_Card'
 
-const Home = () => {
+const ProductHistoryNC = () => {
   return (
     <>
     <Header/>
@@ -19,4 +19,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default ProductHistoryNC
