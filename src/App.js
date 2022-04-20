@@ -10,12 +10,13 @@ import React from "react";
 import Landing from "./pages/Landing"
 import UserSettings from "./pages/UserSettings"
 import ProductHistory from "./pages/ProductHistory"
+import Admin from "./pages/AdminDashboard"
 // import UserOption from "./components/UserOption";
 
 
 function App(){
     return(
-        <ProductHistory />
+        <Admin />
         // <Landing />
         // <UserSettings />
     )
