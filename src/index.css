@@ -102,3 +102,24 @@ code {
   align-items: flex-start;
   padding: 12.6176px;
 }
+
+.adminDataTable{
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 21px;
+  text-rendering: optimizeLegibility;
+  width: 70%;
+  /* height: 70%; */
+  display: flex;
+  flex-direction: column;
+  border: 1.05147px solid #E2E8F0;
+  padding: 12.6176px;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: absolute;
+  /* width: 1131px; */
+  /* height: 286px; */
+  left: 154px;
+  top: 200px;
+}

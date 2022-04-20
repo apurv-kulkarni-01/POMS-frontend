@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
   MenuButton,
-  MenuList } from "@chakra-ui/react";
+  MenuList, 
+  HStack} from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import WalletC from "./WalletC";
+import SearchTop from "./SearchTop"
 import {ChevronDownIcon} from '@chakra-ui/icons';
 
 const NavBar = (props) => {
@@ -18,8 +20,11 @@ const NavBar = (props) => {
         w="100px"
         color={["gray.700", "gray.700", "primary.500", "primary.500"]}
       />
-      <WalletC />
-      <Spacer />
+      <HStack spacing={100}>
+        <WalletC />
+        <SearchTop w="200px" />
+      </HStack>
+      <Spacer />    
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>

@@ -9,11 +9,18 @@ import { Modal } from "@chakra-ui/react";
 import React from "react";
 import UserDashboard from "./pages/UserDashboard";
 // import NavBar from "./components/Header";
+import Landing from "./pages/Landing"
+import UserSettings from "./pages/UserSettings"
+import ProductHistory from "./pages/ProductHistory"
+import Admin from "./pages/AdminDashboard"
+// import UserOption from "./components/UserOption";
 
 
 function App(){
     return(
         <UserDashboard />
+        // <Landing />
+        // <UserSettings />
     )
 }
 
