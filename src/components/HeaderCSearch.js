@@ -1,13 +1,15 @@
 import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
-  MenuButton,
-  MenuList, 
-  HStack} from "@chakra-ui/react";
+import {
+  Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
+  MenuButton, IconButton,
+  MenuList,
+  HStack
+} from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import WalletC from "./WalletC";
 import SearchTop from "./SearchTop"
-import {ChevronDownIcon} from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -23,9 +25,9 @@ const NavBar = (props) => {
       <HStack spacing={100}>
         <WalletC />
         <SearchTop w="200px" />
-        <Text>Customer</Text>
+        <MenuItem>Customer</MenuItem>
       </HStack>
-      <Spacer />    
+      <Spacer />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>
@@ -85,24 +87,25 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/account" isLast>
-          <Stack direction="row" >
-            <Text>0x130..2a1</Text>
-            <Avatar size='sm'>
-              <AvatarBadge boxSize='1.25em' bg='green.500'/>
-            </Avatar>
-          </Stack>
-        </MenuItem>
+        {/* <MenuItem isLast>
+         
+        </MenuItem> */}
 
-        <MenuItem>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Settings</MenuItem>
-            </MenuList>
-          </Menu>
-        </MenuItem>
+        {/* <MenuItem> */}
+        <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <Stack direction="row" alignItems='center' >
+              <Text >0x130..2a1</Text>
+              <Avatar size='sm'>
+                <AvatarBadge boxSize='1.25em' bg='green.500' />
+              </Avatar>
+            </Stack>
+          </MenuButton>
+          <MenuList bg='gray.200' px={2} >
+            <MenuItem>Settings</MenuItem>
+          </MenuList>
+        </Menu>
+        {/* </MenuItem> */}
       </Stack>
     </Box>
   );
