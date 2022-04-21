@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
     <ChakraProvider>
-    <Header/>
+    <HeaderCSearch/>
     </ChakraProvider>
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}

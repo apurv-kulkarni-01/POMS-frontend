@@ -12,15 +12,28 @@ import UserDashboard from "./pages/UserDashboard";
 import Landing from "./pages/Landing"
 import UserSettings from "./pages/UserSettings"
 import ProductHistory from "./pages/ProductHistory"
-import Admin from "./pages/AdminDashboard"
+import ProductHistoryNC from "./pages/ProductHistoryNC"
+import Home from "./pages/Home"
+import HomeWalletC from "./pages/HomeWalletC"
+import AdminDashboard from "./pages/AdminDashboard";
+import ManufacturerDashboard from "./pages/ManufacturerDashboard";
 // import UserOption from "./components/UserOption";
 
 
-function App(){
-    return(
-        <UserDashboard />
-        // <Landing />
-        // <UserSettings />
+function App() {
+    return (
+
+        <>
+        {/* <Landing /> */}
+        <Home/>
+        {/* <HomeWalletC/> */}
+        {/* <AdminDashboard/> */}
+        {/* <ManufacturerDashboard/> */}
+        {/* <UserDashboard /> */}
+        {/* <ProductHistory/> */}
+        {/* <ProductHistoryNC/> */}
+        {/* <UserSettings /> */}
+        </>
     )
 }
 

@@ -1,11 +1,13 @@
 import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
+import {
+  Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
   MenuButton,
-  MenuList } from "@chakra-ui/react";
+  MenuList
+} from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import WalletC from "./WalletC";
-import {ChevronDownIcon} from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -79,27 +81,24 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/account" isLast>
-        <Stack direction="row" >
-          <Text>0x130..2a1</Text>
-          <Avatar size='sm'>
-            <AvatarBadge boxSize='1.25em' bg='green.500'/>
-          </Avatar>
-        </Stack>
-        </MenuItem>
-        <MenuItem>
-        <Menu>
+        {/* <MenuItem to="/account" isLast>
+
+        </MenuItem> */}
+        {/* <MenuItem> */}
+          <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              <Stack direction="row" alignItems='center'>
+                <Text>0x130..2a1</Text>
+                <Avatar size='sm'>
+                  <AvatarBadge boxSize='1.25em' bg='green.500' />
+                </Avatar>
+              </Stack>
             </MenuButton>
-            <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
+            <MenuList bg='gray.200' px={2} >
+              <MenuItem>Settings</MenuItem>
             </MenuList>
           </Menu>
-        </MenuItem>
+        {/* </MenuItem> */}
       </Stack>
     </Box>
   );

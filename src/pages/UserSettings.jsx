@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderC from "../components/HeaderC";
+import HeaderCSearch from "../components/HeaderCSearch";
 import {ChakraProvider, Box, HStack, VStack, FormControl, FormLabel, Input, Button} from '@chakra-ui/react';
 import Typography from "@mui/material/Typography";
 import theme from '../theme/index'
@@ -8,7 +8,7 @@ const Usersettings = () => {
   return (
     <>
     <ChakraProvider>
-        <HeaderC />
+        <HeaderCSearch />
     </ChakraProvider>
     <center>
     <Typography
