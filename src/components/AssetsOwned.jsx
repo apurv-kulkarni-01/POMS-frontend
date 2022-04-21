@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { capsFirst } from "./utils";
 import { Link } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import {ArrowForwardIcon,AddIcon} from '@chakra-ui/icons'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 import {
   ChakraProvider,
   Heading,
   VStack,
   Text,
-  Flex} from "@chakra-ui/react";
+  Flex
+} from "@chakra-ui/react";
 
 import {
-    useDisclosure, Button, ButtonGroup,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    FormControl, FormLabel, Input
+  useDisclosure
 } from "@chakra-ui/react";
 
 import theme from '../theme/index'
@@ -33,7 +25,7 @@ export default function Cardelem() {
       .then((res) => res.json())
       .then((res) => setData(res));
   }, []);
-  
+
   return (
     <ChakraProvider theme={theme}>
       <Flex
@@ -48,7 +40,7 @@ export default function Cardelem() {
         rounded={5}
         flex={1}
         p={5}
-        border='1px' 
+        border='1px'
         borderColor='#2D3748'
       >
         <VStack mb={6}>
@@ -106,7 +98,7 @@ export default function Cardelem() {
             color="accept.500"
           >
             Chakra UI
-<ArrowForwardIcon  color='accept.500' />
+            <ArrowForwardIcon color='accept.500' />
           </Link>
         </Flex>
       </Flex>

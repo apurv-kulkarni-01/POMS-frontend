@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { capsFirst } from "./utils";
-import ReactDOM from "react-dom";
-import theme from "../theme/index";
-import { Link } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { Icon, AddIcon } from "@chakra-ui/react";
 import AssetsManufactured from "./AssetsManufactured";
 import {
   ChakraProvider,
-  extendTheme,
   Container,
-  Heading,
-  Button,
-  VStack,
-  HStack,
-  Text,
-  Flex,
-  Tag
+  Heading
 } from "@chakra-ui/react";
 
 import ChakraCarousel from "./ChakraCarousel";

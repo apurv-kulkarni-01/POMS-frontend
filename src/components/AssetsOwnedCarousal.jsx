@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { capsFirst } from "./utils";
-import ReactDOM from "react-dom";
 import theme from "../theme/index";
-import { Link } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { Icon, AddIcon } from "@chakra-ui/react";
 import AssetsOwned from "./AssetsOwned";
+
 import {
   ChakraProvider,
-  extendTheme,
   Container,
-  Heading,
-  Button,
-  VStack,
-  HStack,
-  Text,
-  Flex,
-  Tag
+  Heading
 } from "@chakra-ui/react";
 
 import ChakraCarousel from "./ChakraCarousel";
@@ -31,13 +20,14 @@ export default function Carousal() {
   }, []);
 
   return (
-    <ChakraProvider >
+    <ChakraProvider theme={theme}>
       <Heading
         fontSize="32px"
         // fontFamily="Cursive"
         fontWeight="semibold"
         pos="absolute"
         top='179'
+        color='darkGray'
         left='131px'
       >
         Assets Owned

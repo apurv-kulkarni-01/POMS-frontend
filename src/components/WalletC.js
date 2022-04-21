@@ -7,4 +7,4 @@ export default function WalletNC(props) {
             <Radio colorScheme='green' defaultChecked size='sm'>Wallet Connected</Radio>
         </Box>
     );
-  }
+}

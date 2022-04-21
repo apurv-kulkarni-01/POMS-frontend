@@ -21,7 +21,7 @@ export default function LogoCenter(props) {
       </Box>
       <Box >
         <Flex ml={450} mr={450}>
-            <Input id="search" placeholder="Track product using Code" />
+          <Input id="search" placeholder="Track product using Code" />
           <Button background="gray.700" color="white" leftIcon={<BiSearch />} variant="solid">
             Search
           </Button>

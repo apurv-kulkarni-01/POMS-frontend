@@ -200,7 +200,7 @@ const Slider = ({
           variant="link"
           minW={0}
         >
-          <ChevronLeftIcon boxSize={9} color='black'/>
+          <ChevronLeftIcon boxSize={9} color='black' />
         </Button>
 
         <Progress
@@ -226,7 +226,7 @@ const Slider = ({
           zIndex={2}
           minW={0}
         >
-          <ChevronRightIcon boxSize={9} color='black'/>
+          <ChevronRightIcon boxSize={9} color='black' />
         </Button>
       </Flex>
     </>

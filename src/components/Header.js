@@ -11,16 +11,16 @@ const NavBar = (props) => {
 
   return (
     <ChakraProvider>
-    <NavBarContainer {...props}>
-      <Logo
-        w="100px"
-        color={["gray.700", "gray.700", "primary.500", "primary.500"]}
-      />
-      <WalletNC />
-      <Spacer />
-      {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
-      <MenuLinks isOpen={isOpen} />
-    </NavBarContainer>
+      <NavBarContainer {...props}>
+        <Logo
+          w="100px"
+          color={["gray.700", "gray.700", "primary.500", "primary.500"]}
+        />
+        <WalletNC />
+        <Spacer />
+        {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
+        <MenuLinks isOpen={isOpen} />
+      </NavBarContainer>
     </ChakraProvider>
   );
 };

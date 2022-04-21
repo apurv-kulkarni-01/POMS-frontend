@@ -15,8 +15,8 @@ const Input = styled('input')({
 });
 const useStyles = makeStyles({
   card: {
-    position:"absolute",
-    top:"214px"
+    position: "absolute",
+    top: "214px"
   }
 });
 
@@ -24,18 +24,18 @@ const useStyles = makeStyles({
 export default function ProductCard() {
   const classes = useStyles();
   const [data, setData] = useState([1, 2]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [activeCharacter, setActiveCharacter] = useState();
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [activeCharacter, setActiveCharacter] = useState();
 
   console.log("the data is ", data);
 
-  const handleDialogOpen = (character) => {
-    setIsDialogOpen(true);
-    setActiveCharacter(character);
-  };
+  // const handleDialogOpen = (character) => {
+  //   setIsDialogOpen(true);
+  //   setActiveCharacter(character);
+  // };
   return (
     <>
-      
+
       <Card className={classes.card} sx={{
         marginLeft: "971px", maxWidth: 265, height: "265px", borderRadius: 15
       }}>
@@ -50,7 +50,7 @@ export default function ProductCard() {
       </Card>
 
       <Card elevation={0} sx={{
-        marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top:"487px"
+        marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top: "487px"
       }} >
         <CardActionArea>
 

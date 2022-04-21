@@ -1,27 +1,27 @@
-import { Text, Stack, VStack, Box, Button,IconButton, FormControl, FormLabel, Input } from "@chakra-ui/react";
-import React, {useState} from "react";
+import { Text, Stack, VStack, Button, IconButton, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import {CloseIcon} from '@chakra-ui/icons';
+import { CloseIcon } from '@chakra-ui/icons';
 
 
 Modal.setAppElement('#root')
 export default function UserOption() {
     const [modal1IsOpen, setModal1IsOpen] = useState(false)
     const [modal2IsOpen, setModal2IsOpen] = useState(false)
-    return(
+    return (
         <VStack p={50}>
             <Text as="b" fontSize="xl">Select option to continue further</Text>
             <Stack direction="row" spacing='100px'>
-                <Button onClick={()=> setModal1IsOpen(true)}>
+                <Button onClick={() => setModal1IsOpen(true)}>
                     Enroll as Manufacturer
                 </Button>
-                <Button onClick={()=> setModal2IsOpen(true)}>
+                <Button onClick={() => setModal2IsOpen(true)}>
                     Enroll as Customer
 
                 </Button>
                 <Modal isOpen={modal1IsOpen} /*shouldCloseOnOverlayClick={true}*/ onRequestClose={() => setModal1IsOpen(false)}>
                     <VStack p={25}>
-                        <IconButton background="white" ml={1325} icon={<CloseIcon />} onClick={()=>setModal1IsOpen(false)}/> 
+                        <IconButton background="white" ml={1325} icon={<CloseIcon />} onClick={() => setModal1IsOpen(false)} />
                         <Text fontSize='xl' color="#2D3748" lineHeight={2}>Oops you are not a manufacturer</Text>
                         <Text fontSize='5xl' color="#2D3748" lineHeight={2}>Apply to be a Manufacturer</Text>
                         <FormControl isRequired pl={300} pr={300} lineHeight={3.5} color="#2D3748">
@@ -42,7 +42,7 @@ export default function UserOption() {
                 </Modal>
                 <Modal isOpen={modal2IsOpen} /*shouldCloseOnOverlayClick={true}*/ onRequestClose={() => setModal2IsOpen(false)}>
                     <VStack p={25}>
-                        <IconButton background="white" ml={1325} icon={<CloseIcon />} onClick={()=>setModal2IsOpen(false)}/>
+                        <IconButton background="white" ml={1325} icon={<CloseIcon />} onClick={() => setModal2IsOpen(false)} />
                         {/* <Text fontSize='xl' color="#2D3748" lineHeight={2}>Oops you are not a manufacturer</Text> */}
                         <Text fontSize='5xl' color="#2D3748" lineHeight={2}>Apply to be a Customer</Text>
                         <FormControl isRequired pl={300} pr={300} lineHeight={3.5} color="#2D3748">
@@ -58,10 +58,10 @@ export default function UserOption() {
                             >
                                 Apply
                             </Button>
-                            </FormControl>
+                        </FormControl>
                     </VStack>
                 </Modal>
-            
+
             </Stack>
         </VStack>
     );

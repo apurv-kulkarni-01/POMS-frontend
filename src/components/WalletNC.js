@@ -7,4 +7,4 @@ export default function WalletNC(props) {
             <Radio isInvalid isDisabled size='sm'>Wallet Not Connected</Radio>
         </Box>
     );
-  }
+}

@@ -1,8 +1,9 @@
 import React from "react";
 import {
-  Link, Box, Flex, Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
-  MenuButton, IconButton,
-  MenuList,
+  Link, Box,
+  Flex,
+  Text, Button, Stack, Spacer, Avatar, AvatarBadge, Menu,
+  MenuButton, MenuList,
   HStack
 } from "@chakra-ui/react";
 

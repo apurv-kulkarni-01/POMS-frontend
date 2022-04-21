@@ -17,7 +17,7 @@ const CustomerModal = () => {
         <Box p={4} >
             <Box as='button' onClick={onOpen} border='1px solid #2D3748' py={51} px={26} textAlign="left" w='255px' >
                 <Text fontSize='18px' fontWeight='normal' lineHeight='32px' textAlign="left" >Enroll as</Text>
-                <Text fontWeight='black' fontSize='28px' fontWeight='bold' lineHeight='32px' >Customer</Text>
+                <Text fontWeight='black' fontSize='28px' lineHeight='32px' >Customer</Text>
             </Box>
             <Modal isOpen={isOpen} onClose={onClose} size="3xl" >
                 <ModalOverlay bg='blackAlpha.600' />
@@ -33,24 +33,24 @@ const CustomerModal = () => {
                         <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='John Doe' />
                         <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Phone</FormLabel>
                         <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='93223 92322' />
-                    <ButtonGroup>
-                        <Button
-                            mt={10}
-                            colorScheme='green'
-                            // isLoading={props.isSubmitting}
-                            type='submit'
-                        >
-                            Apply
-                        </Button>
-                        <Button
-                        mt={10}
-                        variant='ghost'
-                        mr={3}
-                        onClick={onClose}
-                        colorScheme='red'
-                        >
-                            Cancel
-                        </Button>
+                        <ButtonGroup>
+                            <Button
+                                mt={10}
+                                colorScheme='green'
+                                // isLoading={props.isSubmitting}
+                                type='submit'
+                            >
+                                Apply
+                            </Button>
+                            <Button
+                                mt={10}
+                                variant='ghost'
+                                mr={3}
+                                onClick={onClose}
+                                colorScheme='red'
+                            >
+                                Cancel
+                            </Button>
                         </ButtonGroup>
                     </FormControl>
                     <ModalFooter>

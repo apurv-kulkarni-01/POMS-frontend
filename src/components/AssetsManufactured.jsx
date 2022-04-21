@@ -2,24 +2,25 @@ import React, { useState, useEffect } from "react";
 import { capsFirst } from "./utils";
 import { Link } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import {ArrowForwardIcon,AddIcon} from '@chakra-ui/icons'
+import { ArrowForwardIcon, AddIcon } from '@chakra-ui/icons'
 import {
   ChakraProvider,
   Heading,
   VStack,
   Text,
-  Flex} from "@chakra-ui/react";
+  Flex
+} from "@chakra-ui/react";
 
 import {
-    useDisclosure, Button, ButtonGroup,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    FormControl, FormLabel, Input
+  useDisclosure, Button, ButtonGroup,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl, FormLabel, Input
 } from "@chakra-ui/react";
 
 import theme from '../theme/index'
@@ -49,10 +50,10 @@ export default function Cardelem(props) {
           rounded={5}
           flex={1}
           p={5}
-          border='1px' 
+          border='1px'
           borderColor='#2D3748'
         >
-          <Box as='button' onClick={onOpen} 
+          <Box as='button' onClick={onOpen}
             textAlign="center"
             m="4px"
             border="2px dashed grey"
@@ -61,7 +62,7 @@ export default function Cardelem(props) {
             p={4}
             color="black"
           >
-            <AddIcon d='block' m='auto'/>
+            <AddIcon d='block' m='auto' />
             <Heading
               fontSize={{ base: "xl", md: "2xl" }}
               textAlign="center"
@@ -77,42 +78,42 @@ export default function Cardelem(props) {
             </Heading>
           </Box>
           <Modal isOpen={isOpen} onClose={onClose} size="3xl" >
-                <ModalOverlay bg='blackAlpha.600' />
-                <ModalContent bg="#E1E3E5" py={100}>
-                    {/* <ModalHeader textAlign="center" fontSize={12} fontWeight='thin' >Oops you are not a manufacturer</ModalHeader> */}
-                    <ModalHeader textAlign="center" fontWeight='bold' >Apply to be a Manufacturer</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
+            <ModalOverlay bg='blackAlpha.600' />
+            <ModalContent bg="#E1E3E5" py={100}>
+              {/* <ModalHeader textAlign="center" fontSize={12} fontWeight='thin' >Oops you are not a manufacturer</ModalHeader> */}
+              <ModalHeader textAlign="center" fontWeight='bold' >Apply to be a Manufacturer</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
 
-                    </ModalBody>
-                    <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
-                        <FormLabel htmlFor='company-name' fontWeight='medium' >Product Code</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='9867081348' />
-                    <ButtonGroup>
-                        <Button
-                            mt={10}
-                            colorScheme='green'
-                            // isLoading={props.isSubmitting}
-                            type='submit'
-                        >
-                            Apply
-                        </Button>
-                        <Button
-                        mt={10}
-                        variant='ghost'
-                        mr={3}
-                        onClick={onClose}
-                        colorScheme='red'
-                        >
-                            Cancel
-                        </Button>
-                        </ButtonGroup>
-                    </FormControl>
-                    <ModalFooter>
+              </ModalBody>
+              <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
+                <FormLabel htmlFor='company-name' fontWeight='medium' >Product Code</FormLabel>
+                <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='9867081348' />
+                <ButtonGroup>
+                  <Button
+                    mt={10}
+                    colorScheme='green'
+                    // isLoading={props.isSubmitting}
+                    type='submit'
+                  >
+                    Apply
+                  </Button>
+                  <Button
+                    mt={10}
+                    variant='ghost'
+                    mr={3}
+                    onClick={onClose}
+                    colorScheme='red'
+                  >
+                    Cancel
+                  </Button>
+                </ButtonGroup>
+              </FormControl>
+              <ModalFooter>
 
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Flex>
       </ChakraProvider>
     );
@@ -131,7 +132,7 @@ export default function Cardelem(props) {
           rounded={5}
           flex={1}
           p={5}
-          border='1px' 
+          border='1px'
           borderColor='#2D3748'
         >
           <VStack mb={6}>
@@ -189,7 +190,7 @@ export default function Cardelem(props) {
               color="accept.500"
             >
               Chakra UI
-<ArrowForwardIcon  color='accept.500' />
+              <ArrowForwardIcon color='accept.500' />
             </Link>
           </Flex>
         </Flex>
