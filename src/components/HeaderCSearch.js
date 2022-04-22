@@ -92,21 +92,13 @@ const MenuLinks = ({ isOpen }) => {
          
         </MenuItem> */}
 
-        {/* <MenuItem> */}
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            <Stack direction="row" alignItems='center' >
-              <Text >0x130..2a1</Text>
-              <Avatar size='sm'>
-                <AvatarBadge boxSize='1.25em' bg='green.500' />
-              </Avatar>
-            </Stack>
           </MenuButton>
-          <MenuList bg='gray.200' px={2} >
+          <MenuList>
             <MenuItem>Settings</MenuItem>
           </MenuList>
         </Menu>
-        {/* </MenuItem> */}
       </Stack>
     </Box>
   );

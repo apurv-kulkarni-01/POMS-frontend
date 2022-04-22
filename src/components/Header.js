@@ -1,13 +1,65 @@
-import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, Spacer, ChakraProvider } from "@chakra-ui/react";
-
+import React, { useState } from "react";
+import {
+  Link,
+  Box,
+  Flex,
+  Text,
+  Button,
+  Stack,
+  Spacer,
+  ChakraProvider,
+} from "@chakra-ui/react";
+import { ethers } from "ethers";
 import Logo from "./Logo";
 import WalletNC from "./WalletNC";
 
 const NavBar = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [data, setdata] = useState({
+    address: "",
+    Balance: null,
+  });
 
-  const toggle = () => setIsOpen(!isOpen);
+  const btnhandler = () => {
+    // Asking if metamask is already present or not
+    if (window.ethereum) {
+      // res[0] for fetching a first wallet
+      window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
+        // accountChangeHandler(res[0]);
+        console.log(res[0]);
+      });
+    } else {
+      alert("install metamask extension!!");
+    }
+  };
+
+  // const getbalance = (address) => {
+
+  //   // Requesting balance method
+  //   window.ethereum
+  //     .request({
+  //       method: "eth_getBalance",
+  //       params: [address, "latest"]
+  //     })
+  //     .then((balance) => {
+  //       // Setting balance
+  //       setdata({
+  //         Balance: ethers.utils.formatEther(balance),
+  //       });
+  //     });
+  // };
+
+  const accountChangeHandler = (account) => {
+    // Setting an address data
+    setdata({
+      address: account,
+    });
+
+    // Setting a balance
+    // getbalance(account);
+  };
+
+  // const [isOpen, setIsOpen] = React.useState(false);
+  // const toggle = () => setIsOpen(!isOpen);
 
   return (
     <ChakraProvider>
@@ -19,41 +71,41 @@ const NavBar = (props) => {
         <WalletNC />
         <Spacer />
         {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
-        <MenuLinks isOpen={isOpen} />
+        <MenuLinks onClick={btnhandler} />
       </NavBarContainer>
     </ChakraProvider>
   );
 };
 
-const CloseIcon = () => (
-  <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-    <title>Close</title>
-    <path
-      fill="black"
-      d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
-    />
-  </svg>
-);
+// const CloseIcon = () => (
+//   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+//     <title>Close</title>
+//     <path
+//       fill="black"
+//       d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
+//     />
+//   </svg>
+// );
 
-const MenuIcon = () => (
-  <svg
-    width="24px"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="black"
-  >
-    <title>Menu</title>
-    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-  </svg>
-);
+// const MenuIcon = () => (
+//   <svg
+//     width="24px"
+//     viewBox="0 0 20 20"
+//     xmlns="http://www.w3.org/2000/svg"
+//     fill="black"
+//   >
+//     <title>Menu</title>
+//     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+//   </svg>
+// );
 
-const MenuToggle = ({ toggle, isOpen }) => {
-  return (
-    <Box display={{ base: "block", md: "none" }} onClick={toggle}>
-      {isOpen ? <CloseIcon /> : <MenuIcon />}
-    </Box>
-  );
-};
+// const MenuToggle = ({ toggle, isOpen }) => {
+//   return (
+//     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
+//       {isOpen ? <CloseIcon /> : <MenuIcon />}
+//     </Box>
+//   );
+// };
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
@@ -65,38 +117,52 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const MenuLinks = ({ isOpen }) => {
+const MenuLinks = ({ onClick }) => {
   return (
-    <Box
-      display={{ base: isOpen ? "block" : "none", md: "block" }}
-      flexBasis={{ base: "100%", md: "auto" }}
+    <Button
+      size="sm"
+      rounded="md"
+      color={["primary.500", "primary.500", "white", "white"]}
+      bg={["gray.700", "gray.700", "primary.500", "primary.500"]}
+      _hover={{
+        bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
+      }}
+      onClick={onClick}
     >
-      <Stack
-        spacing={8}
-        align="center"
-        justify={["center", "space-between", "flex-end", "flex-end"]}
-        direction={["column", "row", "row", "row"]}
-        pt={[4, 4, 0, 0]}
-      >
-        {/* <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/how">How It works </MenuItem>
-        <MenuItem to="/faetures">Features </MenuItem>
-        <MenuItem to="/pricing">Pricing </MenuItem> */}
-        <MenuItem to="/signup" isLast>
-          <Button
-            size="sm"
-            rounded="md"
-            color={["primary.500", "primary.500", "white", "white"]}
-            bg={["gray.700", "gray.700", "primary.500", "primary.500"]}
-            _hover={{
-              bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-            }}
-          >
-            Login with Metamask
-          </Button>
-        </MenuItem>
-      </Stack>
-    </Box>
+      Login with Metamask
+    </Button>
+
+    // {/* <Box
+    //   display={{ base: isOpen ? "block" : "none", md: "block" }}
+    //   flexBasis={{ base: "100%", md: "auto" }}
+    // >
+    //   <Stack
+    //     spacing={8}
+    //     align="center"
+    //     justify={["center", "space-between", "flex-end", "flex-end"]}
+    //     direction={["column", "row", "row", "row"]}
+    //     pt={[4, 4, 0, 0]}
+    //   >
+    //     {/* <MenuItem to="/">Home</MenuItem>
+    //     <MenuItem to="/how">How It works </MenuItem>
+    //     <MenuItem to="/faetures">Features </MenuItem>
+    //     <MenuItem to="/pricing">Pricing </MenuItem> */}
+    //     {/* <MenuItem isLast> */}
+    //       <Button
+    //         size="sm"
+    //         rounded="md"
+    //         color={["primary.500", "primary.500", "white", "white"]}
+    //         bg={["gray.700", "gray.700", "primary.500", "primary.500"]}
+    //         _hover={{
+    //           bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
+    //         }}
+    //         onClick = {onClick}
+    //       >
+    //         Login with Metamask
+    //       </Button>
+    //     {/* </MenuItem> */}
+    //   </Stack>
+    // </Box> */}
   );
 };
 

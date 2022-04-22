@@ -13,7 +13,7 @@ import Landing from "./pages/Landing"
 import UserSettings from "./pages/UserSettings"
 import ProductHistory from "./pages/ProductHistory"
 import ProductHistoryNC from "./pages/ProductHistoryNC"
-import Home from "./pages/Home"
+// import Home from "./pages/Home"
 import HomeWalletC from "./pages/HomeWalletC"
 import AdminDashboard from "./pages/AdminDashboard";
 import ManufacturerDashboard from "./pages/ManufacturerDashboard";
@@ -24,8 +24,8 @@ function App() {
     return (
 
         <>
-        {/* <Landing /> */}
-        <Home/>
+        <Landing />
+        {/* <Home/> */}
         {/* <HomeWalletC/> */}
         {/* <AdminDashboard/> */}
         {/* <ManufacturerDashboard/> */}
