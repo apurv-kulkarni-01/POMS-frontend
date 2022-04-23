@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { capsFirst } from "./utils";
 import { Link } from "@chakra-ui/react";
 import { ArrowForwardIcon } from '@chakra-ui/icons'
+import {Link as RouterLink} from 'react-router-dom'
 import {
   ChakraProvider,
   Heading,
@@ -89,6 +90,8 @@ export default function Cardelem() {
 
         <Flex justifyContent="space-between" alignContent='center' mt='20px' >
           <Link
+           as={RouterLink}
+           to='/history'
             ml="140px"
             // textAlign='right'
             // align='right'
@@ -97,7 +100,7 @@ export default function Cardelem() {
             fontWeight="semibold"
             color="accept.500"
           >
-            Chakra UI
+           History
             <ArrowForwardIcon color='accept.500' />
           </Link>
         </Flex>

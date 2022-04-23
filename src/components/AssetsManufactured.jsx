@@ -10,7 +10,7 @@ import {
   Text,
   Flex
 } from "@chakra-ui/react";
-
+import {Link as RouterLink} from 'react-router-dom';
 import {
   useDisclosure, Button, ButtonGroup,
   Modal,
@@ -181,6 +181,8 @@ export default function Cardelem(props) {
 
           <Flex justifyContent="space-between" alignContent='center' mt='20px' >
             <Link
+            as={RouterLink}
+            to='/history'
               ml="140px"
               // textAlign='right'
               // align='right'
@@ -189,7 +191,7 @@ export default function Cardelem(props) {
               fontWeight="semibold"
               color="accept.500"
             >
-              Chakra UI
+              History
               <ArrowForwardIcon color='accept.500' />
             </Link>
           </Flex>
