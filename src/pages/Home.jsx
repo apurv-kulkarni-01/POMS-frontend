@@ -1,7 +1,7 @@
 
 import { Box, ChakraProvider, Flex, HStack, Text } from "@chakra-ui/react";
 import React from "react";
-import HeaderC from "../components/HeaderC"
+import HeaderCSearch from "../components/HeaderCSearch"
 import LogoCenter from "../components/LogoCenter";
 import ManufacturerModal from "../components/ManufacturerModal";
 import CustomerModal from "../components/CustomerModal";
@@ -10,7 +10,7 @@ import theme from "../theme";
 const Home = () => {
     return(
         <ChakraProvider theme={theme}>
-            <HeaderC />
+            <HeaderCSearch />
             <LogoCenter />
             <Box my={25}>
             <Text fontSize='xl' as='b' ml={600}>Select Option to Continue Further</Text>

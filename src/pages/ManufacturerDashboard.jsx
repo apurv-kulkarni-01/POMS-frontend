@@ -1,6 +1,7 @@
 import React from 'react'
 import HeaderCSearch from "../components/HeaderCSearch";
 import AssetsManufacturedCarousal from "../components/AssetsManufacturedCarousal";
+import theme from '../theme/index'
 import RequestTable from '../components/RequestTable'
 import ConfirmTable from '../components/ConfirmTable'
 import HistoryTable from '../components/HistoryTable'
@@ -10,7 +11,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 const Home = () => {
   return (
     <>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
     <HeaderCSearch/>
     </ChakraProvider>
     {/* <Carousal/> */}

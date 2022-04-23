@@ -7,13 +7,14 @@
 
 import { Modal } from "@chakra-ui/react";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import UserDashboard from "./pages/UserDashboard";
 // import NavBar from "./components/Header";
 import Landing from "./pages/Landing"
 import UserSettings from "./pages/UserSettings"
 import ProductHistory from "./pages/ProductHistory"
 import ProductHistoryNC from "./pages/ProductHistoryNC"
-// import Home from "./pages/Home"
+import Home from "./pages/Home"
 import HomeWalletC from "./pages/HomeWalletC"
 import AdminDashboard from "./pages/AdminDashboard";
 import ManufacturerDashboard from "./pages/ManufacturerDashboard";
@@ -23,17 +24,25 @@ import ManufacturerDashboard from "./pages/ManufacturerDashboard";
 function App() {
     return (
 
-        <>
-        <Landing />
-        {/* <Home/> */}
-        {/* <HomeWalletC/> */}
-        {/* <AdminDashboard/> */}
-        {/* <ManufacturerDashboard/> */}
-        {/* <UserDashboard /> */}
-        {/* <ProductHistory/> */}
-        {/* <ProductHistoryNC/> */}
-        {/* <UserSettings /> */}
-        </>
+        <Router>
+            <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/customer' element={<UserDashboard />} />
+            <Route path='/manufacturer' element={<ManufacturerDashboard />} />
+            <Route path='/settings' element={<UserSettings   />} />
+            {/* <Route path='/' element={<Landing />} /> */}
+
+                {/* <Home/> */}
+                {/* <HomeWalletC/> */}
+                {/* <AdminDashboard/> */}
+                {/* <ManufacturerDashboard/> */}
+                {/* <UserDashboard /> */}
+                {/* <ProductHistory/> */}
+                {/* <ProductHistoryNC/> */}
+                {/* <UserSettings /> */}
+            </Routes>
+        </Router>
     )
 }
 
