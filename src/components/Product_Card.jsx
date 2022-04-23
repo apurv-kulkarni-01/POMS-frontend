@@ -101,12 +101,12 @@ export default function ProductCard() {
         <CardActions marginLeft="2px" display="flex">
           <Stack direction="row" spacing={0} m={1} mt={1}>
 
-            <label htmlFor="contained-button-file" >
-              <Input accept="image/*" id="contained-button-file" multiple type="file" />
+            {/* <label htmlFor="contained-button-file" > */}
+              {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
               <Button color="success" variant="contained" component="span">
                 Request Product
               </Button>
-            </label>
+            {/* </label> */}
 
           </Stack>        </CardActions>
       </Card>
