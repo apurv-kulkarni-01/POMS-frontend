@@ -27,7 +27,7 @@ export default function ProductCard() {
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
   // const [activeCharacter, setActiveCharacter] = useState();
 
-  console.log("the data is ", data);
+  // console.log("the data is ", data);
 
   // const handleDialogOpen = (character) => {
   //   setIsDialogOpen(true);
@@ -104,7 +104,7 @@ export default function ProductCard() {
             <label htmlFor="contained-button-file" >
               <Input accept="image/*" id="contained-button-file" multiple type="file" />
               <Button color="success" variant="contained" component="span">
-                Add Product
+                Request Product
               </Button>
             </label>
 

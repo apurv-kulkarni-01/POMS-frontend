@@ -9,7 +9,7 @@ import ProductCard from '../components/Product_Card'
 const ProductHistoryNC = () => {
   return (
     <>
-    <Header/>
+    {/* <Header/> */}
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}

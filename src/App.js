@@ -22,7 +22,7 @@ import Header from "./components/Header";
 
 
 function App() {
-    const [data, setdata] = useState({
+    const [userdata, setUserdata] = useState({
         address: "",
         Balance: 0,
       });
@@ -30,13 +30,16 @@ const userType = 'customer';
     return (
         <>
             <Router>
-            <Header _setdata={setdata} _data={data} _userType={userType}/>  
+            <Header _setdata={setUserdata} _data={userdata} _userType={userType}/>  
                 <Routes>
-                    <Route path='/' element={data.address? <Navigate to='/home' /> : <Landing />} />
-                    <Route path='/home' element={data.address? <Home/> : <Landing />} />
+                    <Route path='/' element={userdata.address? <Navigate to='/home' /> : <Landing />} />
+                    <Route path='/home' element={userdata.address? <Home/> : <Landing />} />
                     <Route path='/customer' element={<UserDashboard />} />
                     <Route path='/manufacturer' element={<ManufacturerDashboard />} />
                     <Route path='/settings' element={<UserSettings />} />
+                    <Route path='/admin' element={<AdminDashboard />} />
+                    <Route path='/history' element={userdata.address? <ProductHistory/> : <ProductHistoryNC />} />
+
                     {/* <Route path='/' element={<Landing />} /> */}
 
                     {/* <Home/> */}

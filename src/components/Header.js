@@ -7,7 +7,7 @@ import {
   Stack,
   Spacer,
   ChakraProvider, Menu,
-  MenuButton, MenuList, Box, Avatar, AvatarBadge, HStack
+  MenuButton, MenuList, Box, Avatar, AvatarBadge, HStack, useToast
 } from "@chakra-ui/react";
 import SearchTop from "./SearchTop"
 import { Link as RouterLink } from "react-router-dom";
@@ -20,14 +20,15 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 const NavBar = (props) => {
   const data = props._data
   const setdata = props._setdata
-
+  const ethereum = window.ethereum
+  // const toast = useToast();
   const btnhandler = async () => {
     // Asking if metamask is already present or not
-    if (window.ethereum) {
+    if (ethereum) {
       // res[0] for fetching a first wallet
-      window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
+      ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         const address = res[0];
-        window.ethereum
+        ethereum
           .request({
             method: "eth_getBalance",
             params: [address, "latest"]
@@ -35,23 +36,39 @@ const NavBar = (props) => {
           .then((balance) => {
             setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
 
-          })
+          }).catch((e)=>console.log(e.message))
         // console.log(data);
+      }).catch((e) => {
+        console.log(e.message)
       });
     } else {
       alert("install metamask extension!!");
     }
   };
 
-  useEffect(
-    () => console.log('data value changed ', data),
-    [data]
-  )
+  // useEffect(
+  //   () => console.log('data value changed ', data),
+  //   [data]
+  // )
+
+  ethereum.on("accountsChanged", (res) => {
+    const address = res[0];
+    ethereum
+      .request({
+        method: "eth_getBalance",
+        params: [address, "latest"]
+      })
+      .then((balance) => {
+        setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+
+      })
+    // console.log(data);
+  });
 
 
   return (
     <ChakraProvider>
-      <NavBarContainer userAccountDetails={data.address} {...props}>
+      <NavBarContainer  {...props}>
         <Link as={RouterLink} to='/' >
           <Logo
             w="100px"
@@ -60,17 +77,17 @@ const NavBar = (props) => {
         </Link>
         {data.address ?
           <>
-           <HStack spacing={100}>
-        <WalletC />
-        <SearchTop w="200px" />
-        <MenuItem to={"/"+props._userType} >{props._userType.toUpperCase()}</MenuItem>
-      </HStack>
+            <HStack spacing={100}>
+              <WalletC />
+              <SearchTop w="200px" />
+              <MenuItem to={"/" + props._userType} >{props._userType.toUpperCase()}</MenuItem>
+            </HStack>
           </>
           : <WalletNC />}
         <Spacer />
         {
           data.address ?
-            <MenuLinks2 /> :
+            <MenuLinks2 userAddress={data.address} /> :
             <MenuLinks1 onClick={btnhandler} />
 
         }
@@ -79,7 +96,8 @@ const NavBar = (props) => {
   );
 };
 
-const MenuLinks2 = ({ isOpen }) => {
+const MenuLinks2 = ({ userAddress, isOpen }) => {
+  // console.log(userAddress);
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -99,7 +117,7 @@ const MenuLinks2 = ({ isOpen }) => {
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             <Stack direction="row" alignItems='center' >
-              <Text >0x130..2a1</Text>
+              <Text isTruncated w={20} >{userAddress}</Text>
               <Avatar size='sm'>
                 <AvatarBadge boxSize='1.25em' bg='green.500' />
               </Avatar>

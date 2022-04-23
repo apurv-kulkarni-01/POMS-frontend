@@ -11,9 +11,9 @@ const Home = () => {
   return (
 
     <>
-    <ChakraProvider>
+    {/* <ChakraProvider>
     <HeaderCSearch/>
-    </ChakraProvider>
+    </ChakraProvider> */}
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}

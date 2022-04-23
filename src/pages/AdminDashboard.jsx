@@ -9,9 +9,9 @@ const AdminDashboard = () => {
 
     return (
         <div>
-            <ChakraProvider>
+            {/* <ChakraProvider>
                 <HeaderCSearch />
-            </ChakraProvider>
+            </ChakraProvider> */}
             
             <AdminTable columnHeader={['Company Name', 'Company Prefix', 'Action']} />
         </div>

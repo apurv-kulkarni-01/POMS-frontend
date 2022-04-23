@@ -9,9 +9,9 @@ const ProductHistory = () => {
   
   return (
     <div>
-        <ChakraProvider>
+        {/* <ChakraProvider>
           <Header />
-        </ChakraProvider>
+        </ChakraProvider> */}
         <HistoryTable></HistoryTable>
         <ProductCard></ProductCard>
     </div>

@@ -11,9 +11,9 @@ import { ChakraProvider } from '@chakra-ui/react'
 const Home = () => {
   return (
     <>
-    <ChakraProvider theme={theme}>
+    {/* <ChakraProvider theme={theme}>
     <HeaderCSearch/>
-    </ChakraProvider>
+    </ChakraProvider> */}
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}
