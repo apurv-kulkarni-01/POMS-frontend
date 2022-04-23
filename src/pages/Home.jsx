@@ -10,7 +10,7 @@ import theme from "../theme";
 const Home = () => {
     return(
         <ChakraProvider theme={theme}>
-            <HeaderCSearch />
+            {/* <HeaderCSearch /> */}
             <LogoCenter />
             <Box my={25}>
             <Text fontSize='xl' as='b' ml={600}>Select Option to Continue Further</Text>

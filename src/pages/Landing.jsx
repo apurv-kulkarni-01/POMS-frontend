@@ -7,7 +7,7 @@ import LogoCenter from "../components/LogoCenter"
 const Landing = () => {
     return (
         <ChakraProvider>
-            <Header />
+            {/* <Header /> */}
             <LogoCenter />
         </ChakraProvider>
     )

@@ -6,7 +6,7 @@ import {
   MenuButton, MenuList,
   HStack
 } from "@chakra-ui/react";
-
+import { Link as RouterLink } from "react-router-dom";
 import Logo from "./Logo";
 import WalletC from "./WalletC";
 import SearchTop from "./SearchTop"
@@ -16,7 +16,7 @@ const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
+// console.log(props);
   return (
     <NavBarContainer {...props}>
       <Logo
@@ -26,48 +26,48 @@ const NavBar = (props) => {
       <HStack spacing={100}>
         <WalletC />
         <SearchTop w="200px" />
-        <MenuItem>Customer</MenuItem>
+        <MenuItem to={"/"+props.userType} >{props.userType}</MenuItem>
       </HStack>
       <Spacer />
-      <MenuToggle toggle={toggle} isOpen={isOpen} />
+      {/* <MenuToggle toggle={toggle} isOpen={isOpen} /> */}
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>
   );
 };
 
-const CloseIcon = () => (
-  <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-    <title>Close</title>
-    <path
-      fill="black"
-      d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
-    />
-  </svg>
-);
+// const CloseIcon = () => (
+//   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+//     <title>Close</title>
+//     <path
+//       fill="black"
+//       d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
+//     />
+//   </svg>
+// );
 
-const MenuIcon = () => (
-  <svg
-    width="24px"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="black"
-  >
-    <title>Menu</title>
-    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-  </svg>
-);
+// const MenuIcon = () => (
+//   <svg
+//     width="24px"
+//     viewBox="0 0 20 20"
+//     xmlns="http://www.w3.org/2000/svg"
+//     fill="black"
+//   >
+//     <title>Menu</title>
+//     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+//   </svg>
+// );
 
-const MenuToggle = ({ toggle, isOpen }) => {
-  return (
-    <Box display={{ base: "block", md: "none" }} onClick={toggle}>
-      {isOpen ? <CloseIcon /> : <MenuIcon />}
-    </Box>
-  );
-};
+// const MenuToggle = ({ toggle, isOpen }) => {
+//   return (
+//     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
+//       {isOpen ? <CloseIcon /> : <MenuIcon />}
+//     </Box>
+//   );
+// };
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
-    <Link href={to}>
+    <Link as={RouterLink}  to={to}>
       <Text display="block" {...rest}>
         {children}
       </Text>
@@ -102,7 +102,7 @@ const MenuLinks = ({ isOpen }) => {
             </Stack>
           </MenuButton>
           <MenuList bg='gray.200' px={2} >
-            <MenuItem >Settings</MenuItem>
+            <MenuItem to='/settings' >Settings</MenuItem>
           </MenuList>
         </Menu>
       </Stack>
@@ -111,6 +111,8 @@ const MenuLinks = ({ isOpen }) => {
 };
 
 const NavBarContainer = ({ children, ...props }) => {
+  // console.log("childrem");
+  // console.log(children);
   return (
     <Flex
       as="nav"

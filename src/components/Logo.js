@@ -7,9 +7,7 @@ export default function Logo(props) {
     <Box {...props}>
       <Flex>
         <Icon as={GrReactjs} w={6} h={6} />
-        <Text fontSize="lg" fontWeight="bold">
-          POMS
-        </Text>
+        <Text fontSize="lg" fontWeight="bold">POMS</Text>
       </Flex>
     </Box>
   );

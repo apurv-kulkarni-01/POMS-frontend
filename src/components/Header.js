@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Link,
   Flex,
@@ -6,76 +6,116 @@ import {
   Button,
   Stack,
   Spacer,
-  ChakraProvider,
+  ChakraProvider, Menu,
+  MenuButton, MenuList, Box, Avatar, AvatarBadge, HStack
 } from "@chakra-ui/react";
+import SearchTop from "./SearchTop"
+import { Link as RouterLink } from "react-router-dom";
 import { ethers } from "ethers";
 import Logo from "./Logo";
 import WalletNC from "./WalletNC";
+import WalletC from "./WalletC";
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const NavBar = (props) => {
-  const [data, setdata] = useState({
-    address: "",
-    Balance: null,
-  });
+  const data = props._data
+  const setdata = props._setdata
 
-  const btnhandler = () => {
+  const btnhandler = async () => {
     // Asking if metamask is already present or not
     if (window.ethereum) {
       // res[0] for fetching a first wallet
       window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
-        // accountChangeHandler(res[0]);
-        console.log(res[0]);
+        const address = res[0];
+        window.ethereum
+          .request({
+            method: "eth_getBalance",
+            params: [address, "latest"]
+          })
+          .then((balance) => {
+            setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+
+          })
+        // console.log(data);
       });
     } else {
       alert("install metamask extension!!");
     }
   };
 
-  // const getbalance = (address) => {
+  useEffect(
+    () => console.log('data value changed ', data),
+    [data]
+  )
 
-  //   // Requesting balance method
-  //   window.ethereum
-  //     .request({
-  //       method: "eth_getBalance",
-  //       params: [address, "latest"]
-  //     })
-  //     .then((balance) => {
-  //       // Setting balance
-  //       setdata({
-  //         Balance: ethers.utils.formatEther(balance),
-  //       });
-  //     });
-  // };
-
-  const accountChangeHandler = (account) => {
-    // Setting an address data
-    setdata({
-      address: account,
-    });
-
-    // Setting a balance
-    // getbalance(account);
-  };
 
   return (
     <ChakraProvider>
-      <NavBarContainer {...props}>
-        <Logo
-          w="100px"
-          color={["gray.700", "gray.700", "primary.500", "primary.500"]}
-        />
-        <WalletNC />
+      <NavBarContainer userAccountDetails={data.address} {...props}>
+        <Link as={RouterLink} to='/' >
+          <Logo
+            w="100px"
+            color={["gray.700", "gray.700", "primary.500", "primary.500"]}
+          />
+        </Link>
+        {data.address ?
+          <>
+           <HStack spacing={100}>
+        <WalletC />
+        <SearchTop w="200px" />
+        <MenuItem to={"/"+props._userType} >{props._userType.toUpperCase()}</MenuItem>
+      </HStack>
+          </>
+          : <WalletNC />}
         <Spacer />
-        <MenuLinks onClick={btnhandler} />
+        {
+          data.address ?
+            <MenuLinks2 /> :
+            <MenuLinks1 onClick={btnhandler} />
+
+        }
       </NavBarContainer>
     </ChakraProvider>
   );
 };
 
+const MenuLinks2 = ({ isOpen }) => {
+  return (
+    <Box
+      display={{ base: isOpen ? "block" : "none", md: "block" }}
+      flexBasis={{ base: "100%", md: "auto" }}
+    >
+      <Stack
+        spacing={8}
+        align="center"
+        justify={["center", "space-between", "flex-end", "flex-end"]}
+        direction={["column", "row", "row", "row"]}
+        pt={[4, 4, 0, 0]}
+      >
+        {/* <MenuItem isLast>
+             
+            </MenuItem> */}
 
+        <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <Stack direction="row" alignItems='center' >
+              <Text >0x130..2a1</Text>
+              <Avatar size='sm'>
+                <AvatarBadge boxSize='1.25em' bg='green.500' />
+              </Avatar>
+            </Stack>
+          </MenuButton>
+          <MenuList bg='gray.200' px={2} >
+            <MenuItem to='/settings' >Settings</MenuItem>
+          </MenuList>
+        </Menu>
+      </Stack>
+    </Box>
+  );
+};
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
-    <Link href={to}>
+    <Link as={RouterLink} to={to}>
       <Text display="block" {...rest}>
         {children}
       </Text>
@@ -83,7 +123,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const MenuLinks = ({ onClick }) => {
+const MenuLinks1 = ({ onClick }) => {
   return (
     <Button
       size="sm"
@@ -98,11 +138,12 @@ const MenuLinks = ({ onClick }) => {
       Login with Metamask
     </Button>
 
-    
+
   );
 };
 
 const NavBarContainer = ({ children, ...props }) => {
+  // console.log('logged in navbar: '+props.userAccountDetails);
   return (
     <Flex
       as="nav"

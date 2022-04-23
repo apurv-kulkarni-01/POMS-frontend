@@ -7,9 +7,9 @@ import theme from '../theme/index'
 const Usersettings = () => {
   return (
     <>
-    <ChakraProvider>
-        <HeaderCSearch />
-    </ChakraProvider>
+    {/* <ChakraProvider> */}
+        {/* <HeaderCSearch /> */}
+    {/* </ChakraProvider> */}
     <center>
     <Typography
         // fontFamily="Cursive"
