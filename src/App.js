@@ -33,8 +33,7 @@ const getUser = () => {
     axios.get("http://localhost:5000/api/customer/signIn/ff")
     .then((res) => {
         console.log(res.data.message);
-        const userType = res.data.message;
-        setUser(userType);
+        setUser(res.data.message);
     });
 };
 

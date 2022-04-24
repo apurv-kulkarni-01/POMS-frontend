@@ -4,13 +4,20 @@
 //pagination is disabled
 
 import DataTable from "react-data-table-component";
-import requestData from "../data/requestData";
 import { Button, ButtonGroup, ChakraProvider, Heading } from '@chakra-ui/react'
 import "../index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import theme from "../theme";
+import axios from 'axios';
 
 export default function RequestTable(props) {
+  // console.log("promise: ", requestData())
+  const [requestDataCopy, setMovieCopy] = useState(props._data);
+
+  
+
+  // console.log("ok", requestDataCopy)
+
   const columns = [
     {
       name: props.columnHeader[0],
@@ -75,7 +82,6 @@ export default function RequestTable(props) {
     setMovieCopy(result);
   }
 
-  const [requestDataCopy, setMovieCopy] = useState(requestData);
 
   return (
     <ChakraProvider theme={theme}>
