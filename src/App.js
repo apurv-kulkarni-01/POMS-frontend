@@ -30,7 +30,7 @@ function App() {
       
 const [userType, setUser] = useState("");
 const getUser = () => {
-    axios.get("http://localhost:5000/api/customer/signIn/arti")
+    axios.get("http://localhost:5000/api/customer/signIn/manufac")
     .then((res) => {
         console.log(res.data.message);
         setUser(res.data.message);
