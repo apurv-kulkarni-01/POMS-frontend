@@ -3,13 +3,13 @@
 //pagination is disabled
 
 import DataTable from "react-data-table-component";
-import requestData from "../data/requestData";
+// import requestData from "../data/requestData";
 import { Button, ChakraProvider, Heading } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
 import theme from "../theme/index";
 
-export default function ConfirmTable() {
+export default function ConfirmTable(props) {
   const columns = [
     {
       name: 'Product Code',
@@ -65,7 +65,7 @@ export default function ConfirmTable() {
     setMovieCopy(result);
   }
 
-  const [requestDataCopy, setMovieCopy] = useState(requestData);
+  const [requestDataCopy, setMovieCopy] = useState(props._data);
 
   return (
 
