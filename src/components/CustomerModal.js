@@ -10,19 +10,26 @@ import {
     FormControl, FormLabel, Input, Text
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
+import React,{useState} from "react";
 
 const CustomerModal = (props) => {
     const address = props.address
+    // const address ='adsadsa'
+const [Name, setName] = useState("")
+const [Phone, setPhone] = useState("")
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const createCustomerHandler = ()=> {axios.post("http://localhost:5000/api/customer/createCustomer", {
-        customerAddress: address,
-    })
-    .then(function(res){
-       console.log("inside customer modal handler");
-        console.log(res);
-    })}
+    const createCustomerHandler = () => {
+        axios.post("http://localhost:5000/api/customer/createCustomer", {
+            customerAddress: address,
+        })
+        .then(function (res) {
+            console.log("inside customer modal handler");
+            console.log(res);
+            onClose();
+        }).catch(e => console.log(e))
+    }
 
     return (
         <Box p={4} >
@@ -40,10 +47,11 @@ const CustomerModal = (props) => {
 
                     </ModalBody>
                     <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
-                        <FormLabel htmlFor='company-name' fontWeight='medium' >Name</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='John Doe' />
+                        <FormLabel htmlFor='company-name' fontWeight='medium'
+                        >Name</FormLabel>
+                        <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='John Doe'  onChange={e=>setName(e.currentTarget.value)}/>
                         <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Phone</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='93223 92322' />
+                        <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='93223 92322'  onChange={e=>setPhone(e.currentTarget.value)}/>
                         <ButtonGroup>
                             <Button
                                 mt={10}

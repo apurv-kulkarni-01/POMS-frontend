@@ -10,21 +10,27 @@ import {
     FormControl, FormLabel, Input, Text
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
+import React,{useState} from "react";
 
 
 const ManufacturerModal = (props) => {
     const address = props.address
+const [Name, setName] = useState('')
+const [Code, setCode] = useState('')
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const createManufacturer = () => {
         axios.post("http://localhost:5000/api/manufacturer/createManufacturer", {
             manufacturerAddress: address,
+            manufacturerEmail: "",
+            companyCode: Code.toString()
         })
-        .then(function (res) {
-            console.log('inside manfactuer modal');
-            console.log(res);
-        }).catch((e)=>console.log(e))
+            .then(function (res) {
+                console.log('inside manfactuer modal');
+                console.log(res);
+                onClose();
+            }).catch((e) => console.log(e))
     }
 
     return (
@@ -42,32 +48,37 @@ const ManufacturerModal = (props) => {
                     <ModalBody>
 
                     </ModalBody>
-                    <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
-                        <FormLabel htmlFor='company-name' fontWeight='medium' >Company name</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='Rolex Inc.' />
-                        <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Company prefix</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='546' />
-                        <ButtonGroup>
-                            <Button
-                                mt={10}
-                                colorScheme='green'
-                                // isLoading={props.isSubmitting}
-                                type='submit'
-                                onClick={createManufacturer}
-                            >
-                                Apply
-                            </Button>
-                            <Button
-                                mt={10}
-                                variant='ghost'
-                                mr={3}
-                                onClick={onClose}
-                                colorScheme='red'
-                            >
-                                Cancel
-                            </Button>
-                        </ButtonGroup>
-                    </FormControl>
+                    {/* <form onSubmit={manufacturerSubmitHandler}> */}
+                        <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748" >
+                            <FormLabel
+                                htmlFor='company-name'
+                                fontWeight='medium'
+                               >Company name</FormLabel>
+                            <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='Rolex Inc.'  onChange={event => setName(event.currentTarget.value)}/>
+                            <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium'  >Company prefix</FormLabel>
+                            <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='546' onChange={event => setCode(event.currentTarget.value)}/>
+                            <ButtonGroup>
+                                <Button
+                                    mt={10}
+                                    colorScheme='green'
+                                    // isLoading={props.isSubmitting}
+                                    type='submit'
+                                    onClick={()=>createManufacturer()}
+                                >
+                                    Apply
+                                </Button>
+                                <Button
+                                    mt={10}
+                                    variant='ghost'
+                                    mr={3}
+                                    onClick={onClose}
+                                    colorScheme='red'
+                                >
+                                    Cancel
+                                </Button>
+                            </ButtonGroup>
+                        </FormControl>
+                    {/* </form> */}
                     <ModalFooter>
 
                     </ModalFooter>
