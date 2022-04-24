@@ -6,7 +6,7 @@
 // import { Flex, VStack, Heading, Switch } from "@chakra-ui/react";
 
 import { Modal } from "@chakra-ui/react";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import UserDashboard from "./pages/UserDashboard";
 // import NavBar from "./components/Header";
@@ -19,6 +19,7 @@ import HomeWalletC from "./pages/HomeWalletC"
 import AdminDashboard from "./pages/AdminDashboard";
 import ManufacturerDashboard from "./pages/ManufacturerDashboard";
 import Header from "./components/Header";
+import axios from "axios";
 
 
 function App() {
@@ -26,7 +27,20 @@ function App() {
         address: "",
         Balance: 0,
       });
-const userType = 'customer';
+      
+const [userType, setUser] = useState([]);
+const getUser = () => {
+    axios.get("http://localhost:5000/api/customer/signIn/manufac")
+    .then((res) => {
+        console.log(res.data.message);
+        const userType = res.data.message;
+        setUser(userType);
+    });
+};
+
+useEffect(()=> getUser(),[])
+
+
     return (
         <>
             <Router>
