@@ -28,13 +28,12 @@ function App() {
         Balance: 0,
       });
       
-const [userType, setUser] = useState([]);
+const [userType, setUser] = useState("");
 const getUser = () => {
-    axios.get("http://localhost:5000/api/customer/signIn/manufac")
+    axios.get("http://localhost:5000/api/customer/signIn/arti")
     .then((res) => {
         console.log(res.data.message);
-        const userType = res.data.message;
-        setUser(userType);
+        setUser(res.data.message);
     });
 };
 
