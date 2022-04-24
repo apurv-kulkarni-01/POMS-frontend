@@ -1,0 +1,130 @@
+{
+    "address":"0xbe443df4eae2d89f6500840ff9d45265cd74dffe",
+    "abi": [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint16",
+                    "name": "_cp",
+                    "type": "uint16"
+                }
+            ],
+            "name": "checkAuthorship",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_manufacturerAddress",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint16",
+                    "name": "_companyPrefix",
+                    "type": "uint16"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_companyName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_validDurationInYear",
+                    "type": "uint256"
+                }
+            ],
+            "name": "enrollManufacturer",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint16",
+                    "name": "_companyPrefix",
+                    "type": "uint16"
+                }
+            ],
+            "name": "getManufacturerAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_addr",
+                    "type": "address"
+                }
+            ],
+            "name": "getManufacturerDetails",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint16",
+                            "name": "companyPrefix",
+                            "type": "uint16"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "companyName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "expireTime",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "bool",
+                            "name": "isManufacturer",
+                            "type": "bool"
+                        }
+                    ],
+                    "internalType": "struct ManufacturerInfo",
+                    "name": "",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "isValidManufacturer",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+}

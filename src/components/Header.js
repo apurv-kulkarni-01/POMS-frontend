@@ -36,7 +36,9 @@ const NavBar = (props) => {
           .then((balance) => {
             setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
 
-          }).catch((e)=>console.log(e.message))
+          }
+          
+          ).catch((e) => console.log(e.message))
         // console.log(data);
       }).catch((e) => {
         console.log(e.message)
@@ -64,7 +66,17 @@ const NavBar = (props) => {
       })
     // console.log(data);
   });
-
+  let dashboardLink =  props._userType.toLowerCase()
+  let dashboardText = props._userType.toUpperCase();
+  if (data.address.toUpperCase() == '0x215617803F8d8a4F46f8F59382972257135766A2'.toUpperCase()) {
+    dashboardText = 'ADMIN'
+    dashboardLink= 'admin'
+  }
+  else if (dashboardText != 'CUSTOMER' && dashboardText != 'MANUFACTURER') {
+    console.log(dashboardText);
+    dashboardText = ''
+    dashboardLink=''
+  }
 
   return (
     <ChakraProvider>
@@ -80,7 +92,7 @@ const NavBar = (props) => {
             <HStack spacing={100}>
               <WalletC />
               <SearchTop w="200px" />
-              <MenuItem to={"/" + props._userType} >{props._userType.toUpperCase()}</MenuItem>
+              <MenuItem to={"/" + dashboardLink} >{dashboardText}</MenuItem>
             </HStack>
           </>
           : <WalletNC />}
