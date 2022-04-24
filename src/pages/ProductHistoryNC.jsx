@@ -21,7 +21,7 @@ const ProductHistoryNC = () => {
       {/* <ConfirmTable /> */}
       {/* <h1>{productID}</h1> */}
       <ProductCard />
-      <HistoryTable />
+      <HistoryTable _productID={productID}/>
     </>
   );
 };

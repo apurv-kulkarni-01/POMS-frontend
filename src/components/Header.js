@@ -21,6 +21,8 @@ const NavBar = (props) => {
   const data = props._data
   const setdata = props._setdata
   const ethereum = window.ethereum
+  const pmContract = props._pmContract
+  const setPMContract = props._setPMContract
   // const toast = useToast();
   const btnhandler = async () => {
     // Asking if metamask is already present or not
@@ -28,17 +30,15 @@ const NavBar = (props) => {
       // res[0] for fetching a first wallet
       ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         const address = res[0];
-        ethereum
-          .request({
-            method: "eth_getBalance",
-            params: [address, "latest"]
-          })
-          .then((balance) => {
-            setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
-
-          }
-          
-          ).catch((e) => console.log(e.message))
+        ethereum.request({
+          method: "eth_getBalance",
+          params: [address, "latest"]
+        })
+        .then((balance) => {
+          setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+          // setPMContract(new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum")));
+          // console.log('this is contarac: '+pmContract);
+          }).catch((e) => console.log(e.message))
         // console.log(data);
       }).catch((e) => {
         console.log(e.message)
@@ -66,16 +66,16 @@ const NavBar = (props) => {
       })
     // console.log(data);
   });
-  let dashboardLink =  props._userType.toLowerCase()
+  let dashboardLink = props._userType.toLowerCase()
   let dashboardText = props._userType.toUpperCase();
   if (data.address.toUpperCase() == '0x215617803F8d8a4F46f8F59382972257135766A2'.toUpperCase()) {
     dashboardText = 'ADMIN'
-    dashboardLink= 'admin'
+    dashboardLink = 'admin'
   }
   else if (dashboardText != 'CUSTOMER' && dashboardText != 'MANUFACTURER') {
     console.log(dashboardText);
     dashboardText = ''
-    dashboardLink=''
+    dashboardLink = ''
   }
 
   return (

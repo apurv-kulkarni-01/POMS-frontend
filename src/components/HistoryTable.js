@@ -1,26 +1,40 @@
 // Using this component
 // <HistoryTable />
 //pagination is disabled
-
+import {useState, useEffect} from 'react'
 import theme from "../theme";
-
 import DataTable from "react-data-table-component";
 import "../index.css";
 import { Link, ChakraProvider, Text } from "@chakra-ui/react";
 import "../data/historyData";
-import historyData from "../data/historyData";
+// import historyData from "../data/historyData";
 import { ExternalLinkIcon } from '@chakra-ui/icons'
+import ProductHistoryBC from '../contracts/FetchProductHistory'
 
-export default function HistoryTable() {
+export default function HistoryTable({_productID}) {
+
+  const [pending, setPending] = useState(true);
+const [history, setHistory] = useState([]);
+  useEffect(
+    () => {
+      ProductHistoryBC(_productID).then((result)=>{
+        console.log(result)
+        setHistory(result);
+        setPending(false)
+      }).catch((e)=>console.log(e))
+    },
+    []
+  )
+
   const columns = [
     {
       name: "From",
-      selector: (row) => row.returnValues.from
+      selector: (row) => truncate(row.args.from)
       // sortable: true
     },
     {
       name: "To",
-      selector: (row) => row.returnValues.to
+      selector: (row) => truncate(row.args.to)
       // sortable: true
     },
     {
@@ -29,7 +43,7 @@ export default function HistoryTable() {
       cell: (row) => (
         <>
           <Link
-            href={"https://etherscan.io/tx/" + row.transactionHash}
+            href={"https://mumbai.polygonscan.com/tx/" + row.transactionHash}
             isExternal
 
           >
@@ -92,12 +106,13 @@ export default function HistoryTable() {
           // title="Movies"
           noHeader
           columns={columns}
-          data={historyData}
+          data={history}
           defaultSortFieldID={1}
           pagination
           fixedHeader
           fixedHeaderScrollHeight={"365px"}
           customStyles={customStyles}
+          progressPending={pending}
         />
       </div>
     </ChakraProvider>

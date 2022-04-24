@@ -1,0 +1,212 @@
+{
+    "address":"0xe988C4dd6E34fb732B80785b4334A225C14CB654",
+    "abi": [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "_mmAddr",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+          },
+          {
+            "anonymous": false,
+            "inputs": [
+              {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+              },
+              {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+              },
+              {
+                "indexed": true,
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "Transfer",
+            "type": "event"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "_phone",
+                "type": "string"
+              }
+            ],
+            "name": "createCustomer",
+            "outputs": [
+              {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+              }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint16",
+                "name": "_cp",
+                "type": "uint16"
+              }
+            ],
+            "name": "enrollProduct",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "getCurrentOwner",
+            "outputs": [
+              {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "_addr",
+                "type": "address"
+              }
+            ],
+            "name": "getCustomerDetails",
+            "outputs": [
+              {
+                "components": [
+                  {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "phone",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "uint32[]",
+                    "name": "productsOwned",
+                    "type": "uint32[]"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isCustomer",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct ProductManager.customerInfo",
+                "name": "",
+                "type": "tuple"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "getProductStatus",
+            "outputs": [
+              {
+                "internalType": "enum ProductManager.ProductStatus",
+                "name": "",
+                "type": "uint8"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "getRecipient",
+            "outputs": [
+              {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "receiveProduct",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+              },
+              {
+                "internalType": "uint32",
+                "name": "EPC",
+                "type": "uint32"
+              }
+            ],
+            "name": "shipProduct",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          }
+        ]
+}
