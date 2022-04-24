@@ -21,8 +21,8 @@ import ManufacturerDashboard from "./pages/ManufacturerDashboard";
 import Header from "./components/Header";
 import axios from "axios";
 
-
 function App() {
+
     const [userdata, setUserdata] = useState({
         address: "",
         Balance: 0,
@@ -47,12 +47,13 @@ useEffect(()=> getUser(),[])
             <Header _setdata={setUserdata} _data={userdata} _userType={userType}/>  
                 <Routes>
                     <Route path='/' element={userdata.address? <Navigate to='/home' /> : <Landing />} />
-                    <Route path='/home' element={userdata.address? <Home/> : <Landing />} />
+                    <Route path='/home' element={userdata.address? <Home _userType={userType} /> : <Landing />} />
                     <Route path='/customer' element={<UserDashboard />} />
                     <Route path='/manufacturer' element={<ManufacturerDashboard />} />
                     <Route path='/settings' element={<UserSettings />} />
                     <Route path='/admin' element={<AdminDashboard />} />
                     <Route path='/history' element={userdata.address? <ProductHistory/> : <ProductHistoryNC />} />
+                    <Route path='/history/:productID' element={userdata.address? <ProductHistory/> : <ProductHistoryNC />} />
 
                     {/* <Route path='/' element={<Landing />} /> */}
 
