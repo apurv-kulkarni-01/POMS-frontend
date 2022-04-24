@@ -28,9 +28,9 @@ function App() {
         Balance: 0,
       });
       
-const [userType, setUser] = useState([]);
+const [userType, setUser] = useState("");
 const getUser = () => {
-    axios.get("http://localhost:5000/api/customer/signIn/manufac")
+    axios.get("http://localhost:5000/api/customer/signIn/ff")
     .then((res) => {
         console.log(res.data.message);
         const userType = res.data.message;
@@ -47,7 +47,7 @@ useEffect(()=> getUser(),[])
             <Header _setdata={setUserdata} _data={userdata} _userType={userType}/>  
                 <Routes>
                     <Route path='/' element={userdata.address? <Navigate to='/home' /> : <Landing />} />
-                    <Route path='/home' element={userdata.address? <Home _userType={userType} /> : <Landing />} />
+                    <Route path='/home' element={userdata.address? <Home _userType={userType} _data={userdata.address} /> : <Landing />} />
                     <Route path='/customer' element={<UserDashboard />} />
                     <Route path='/manufacturer' element={<ManufacturerDashboard />} />
                     <Route path='/settings' element={<UserSettings />} />

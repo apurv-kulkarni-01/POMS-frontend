@@ -9,10 +9,20 @@ import {
     ModalCloseButton,
     FormControl, FormLabel, Input, Text
 } from "@chakra-ui/react";
+import axios from "axios";
 import React from "react";
 
-const CustomerModal = () => {
+const CustomerModal = (props) => {
+    const address = props.address
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    axios.post("http://localhost:5000/api/customer/createCustomer", {
+        customerAddress: address,
+    })
+    .then(function(res){
+        console.log(res);
+    })
+
     return (
         <Box p={4} >
             <Box as='button' onClick={onOpen} border='1px solid #2D3748' py={51} px={26} textAlign="left" w='255px' >

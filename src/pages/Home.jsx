@@ -7,21 +7,23 @@ import ManufacturerModal from "../components/ManufacturerModal";
 import CustomerModal from "../components/CustomerModal";
 import theme from "../theme";
 
-const Home = ({ _userType }) => {
+const Home = ({ props }) => {
+    const userType = props._userType
+    const address = props._data
     return (
         <ChakraProvider theme={theme}>
             {/* <HeaderCSearch /> */}
             <LogoCenter />
             {
-                _userType === 'manufacturer' || _userType === 'customer' ?
+                userType === 'manufacturer' || userType === 'customer' ?
                     <></> :
                     <Box my={25}>
                         <Text fontSize='xl' as='b' ml={600}>
                             Select Option to Continue Further
                         </Text>
                         <HStack spacing='75px' ml={445} mt={2}>
-                            <ManufacturerModal />
-                            <CustomerModal />
+                            <ManufacturerModal address={address}/>
+                            <CustomerModal address={address}/>
                         </HStack>
                     </Box>
             }
