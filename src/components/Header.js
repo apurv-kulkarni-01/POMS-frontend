@@ -16,13 +16,21 @@ import Logo from "./Logo";
 import WalletNC from "./WalletNC";
 import WalletC from "./WalletC";
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import axios from "axios";
 
 const NavBar = (props) => {
+
+  let dashboardLink = props._usertype.toLowerCase()
+  let dashboardText = props._usertype.toUpperCase();
+  const userType = props._usertype
   const data = props._data
   const setdata = props._setdata
   const ethereum = window.ethereum
   const pmContract = props._pmContract
   const setPMContract = props._setPMContract
+  const setUser = props._setuser
+
+
   // const toast = useToast();
   const btnhandler = async () => {
     // Asking if metamask is already present or not
@@ -36,6 +44,8 @@ const NavBar = (props) => {
         })
         .then((balance) => {
           setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+          
+          
           // setPMContract(new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum")));
           // console.log('this is contarac: '+pmContract);
           }).catch((e) => console.log(e.message))
@@ -48,10 +58,17 @@ const NavBar = (props) => {
     }
   };
 
-  // useEffect(
-  //   () => console.log('data value changed ', data),
-  //   [data]
-  // )
+  useEffect(
+    () => {
+      axios.get('http://localhost:5000/api/customer/signIn/'+data.address)
+      .then((res) => {
+          // console.log(res.data.message);
+          console.log("updated: ", data);
+          setUser(res.data.message);
+      });
+    },
+    [data]
+  )
 
   ethereum.on("accountsChanged", (res) => {
     const address = res[0];
@@ -66,8 +83,7 @@ const NavBar = (props) => {
       })
     // console.log(data);
   });
-  let dashboardLink = props._userType.toLowerCase()
-  let dashboardText = props._userType.toUpperCase();
+
   if (data.address.toUpperCase() == '0x215617803F8d8a4F46f8F59382972257135766A2'.toUpperCase()) {
     dashboardText = 'ADMIN'
     dashboardLink = 'admin'

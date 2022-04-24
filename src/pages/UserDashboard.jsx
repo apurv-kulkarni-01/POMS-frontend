@@ -13,8 +13,13 @@ const Home = () => {
   const [requestDataCopy, setMovieCopy] = useState([{  _id: "625978ba7a4ebaaac35d59c0",walletAddress: "8e9bdf54-0b5a-4157-9cae-1cfffaf8849c",productId: "-1"}]);
   const [confirmationDataCopy, setConfirmCopy] = useState([{  _id: "625978ba7a4ebaaac35d59c0",productId: "-1"}]);
 
-  useEffect(async () => {
-    let ans = await axios.get(`http://localhost:5000/api/customer/signIn/x`)
+  useEffect(
+    ()=>{
+      getCustomerDetails()
+    }, [])
+
+  const getCustomerDetails = ()=>{
+    axios.get(`http://localhost:5000/api/customer/signIn/x`)
     .then(res => {
       // console.log("res.data.data.incomingRequest ->", res.data.data.incomingRequest)
       setMovieCopy(res.data.data.incomingRequest);
@@ -22,7 +27,7 @@ const Home = () => {
     }).catch((e)=>{
       console.log(e);
     })
-  }, [])
+  }
   if ((!requestDataCopy[0] || requestDataCopy[0].productId != "-1") && (!confirmationDataCopy[0] || confirmationDataCopy[0].productId != "-1")){
   return (
 

@@ -7,15 +7,15 @@ import ManufacturerModal from "../components/ManufacturerModal";
 import CustomerModal from "../components/CustomerModal";
 import theme from "../theme";
 
-const Home = ({ props }) => {
-    const userType = props._userType
+const Home = (props ) => {
+    const userType = props._usertype
     const address = props._data
     return (
         <ChakraProvider theme={theme}>
             {/* <HeaderCSearch /> */}
             <LogoCenter />
             {
-                userType === 'manufacturer' || userType === 'customer' ?
+                userType === 'manufacturer' || userType === 'customer' || address.toUpperCase()==='0x215617803F8d8a4F46f8F59382972257135766A2'.toUpperCase()  ?
                     <></> :
                     <Box my={25}>
                         <Text fontSize='xl' as='b' ml={600}>

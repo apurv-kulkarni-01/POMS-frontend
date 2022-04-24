@@ -16,12 +16,13 @@ const CustomerModal = (props) => {
     const address = props.address
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    axios.post("http://localhost:5000/api/customer/createCustomer", {
+    const createCustomerHandler = ()=> {axios.post("http://localhost:5000/api/customer/createCustomer", {
         customerAddress: address,
     })
     .then(function(res){
+       console.log("inside customer modal handler");
         console.log(res);
-    })
+    })}
 
     return (
         <Box p={4} >
@@ -49,6 +50,7 @@ const CustomerModal = (props) => {
                                 colorScheme='green'
                                 // isLoading={props.isSubmitting}
                                 type='submit'
+                                onClick={createCustomerHandler}
                             >
                                 Apply
                             </Button>

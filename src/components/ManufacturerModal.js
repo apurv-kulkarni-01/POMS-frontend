@@ -17,12 +17,15 @@ const ManufacturerModal = (props) => {
     const address = props.address
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    axios.post("http://localhost:5000/api/manufacturer/createManufacturer", {
-        manufacturerAddress: address,
-    })
-    .then(function(res){
-        console.log(res);
-    })
+    const createManufacturer = () => {
+        axios.post("http://localhost:5000/api/manufacturer/createManufacturer", {
+            manufacturerAddress: address,
+        })
+        .then(function (res) {
+            console.log('inside manfactuer modal');
+            console.log(res);
+        }).catch((e)=>console.log(e))
+    }
 
     return (
         <Box p={4} >
@@ -50,6 +53,7 @@ const ManufacturerModal = (props) => {
                                 colorScheme='green'
                                 // isLoading={props.isSubmitting}
                                 type='submit'
+                                onClick={createManufacturer}
                             >
                                 Apply
                             </Button>

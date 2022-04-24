@@ -29,24 +29,24 @@ function App() {
       });
       
 const [userType, setUser] = useState("");
-const getUser = () => {
-    axios.get("http://localhost:5000/api/customer/signIn/ff")
-    .then((res) => {
-        console.log(res.data.message);
-        setUser(res.data.message);
-    });
-};
+// const getUser = () => {
+//     axios.get("http://localhost:5000/api/customer/signIn/manufac")
+//     .then((res) => {
+//         console.log(res.data.message);
+//         setUser(res.data.message);
+//     });
+// };
 
-useEffect(()=> getUser(),[])
+// useEffect(()=> getUser(),[])
 
 
     return (
         <>
             <Router>
-            <Header _setdata={setUserdata} _data={userdata} _userType={userType}/>  
+            <Header _setdata={setUserdata} _data={userdata} _usertype={userType} _setuser={setUser}/>  
                 <Routes>
                     <Route path='/' element={userdata.address? <Navigate to='/home' /> : <Landing />} />
-                    <Route path='/home' element={userdata.address? <Home _userType={userType} _data={userdata.address} /> : <Landing />} />
+                    <Route path='/home' element={userdata.address? <Home  _usertype={userType} _data={userdata.address} /> : <Landing />} />
                     <Route path='/customer' element={<UserDashboard />} />
                     <Route path='/manufacturer' element={<ManufacturerDashboard />} />
                     <Route path='/settings' element={<UserSettings />} />
