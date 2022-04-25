@@ -10,7 +10,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import axios from 'axios';
 import { useState, useEffect } from "react";
 
-const Home = () => {
+const Home = (props) => {
   const [requestDataCopy, setMovieCopy] = useState([{ _id: "625978ba7a4ebaaac35d59c0", walletAddress: "8e9bdf54-0b5a-4157-9cae-1cfffaf8849c", productId: "-1" }]);
 
   useEffect(
@@ -20,9 +20,9 @@ const Home = () => {
 
     
   const getManufacDetails = () => {
-    axios.get(`http://localhost:5000/api/customer/signIn/manufac`)
+    axios.get(`http://localhost:5000/api/customer/signIn/`+props._address)
       .then(res => {
-        // console.log("res.data.data.incomingRequest ->", res.data.data.incomingRequest)
+        console.log("res.data.data.incomingRequest ->", res.data)
         setMovieCopy(res.data.data.incomingRequest);
       }).catch((e) => {
         console.log(e);

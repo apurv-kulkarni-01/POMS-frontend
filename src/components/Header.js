@@ -19,12 +19,12 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import axios from "axios";
 
 const NavBar = (props) => {
-
+  console.log('header loaded');
   let dashboardLink = props._usertype.toLowerCase()
   let dashboardText = props._usertype.toUpperCase();
   const userType = props._usertype
   const data = props._data
-  const setdata = props._setdata
+  // const _setdata = props._setdata
   const ethereum = window.ethereum
   const pmContract = props._pmContract
   const setPMContract = props._setPMContract
@@ -42,12 +42,12 @@ const NavBar = (props) => {
           method: "eth_getBalance",
           params: [address, "latest"]
         })
-        .then((balance) => {
-          setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
-          
-          
-          // setPMContract(new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum")));
-          // console.log('this is contarac: '+pmContract);
+          .then((balance) => {
+            props._setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+
+
+            // setPMContract(new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum")));
+            // console.log('this is contarac: '+pmContract);
           }).catch((e) => console.log(e.message))
         // console.log(data);
       }).catch((e) => {
@@ -60,27 +60,32 @@ const NavBar = (props) => {
 
   useEffect(
     () => {
-      axios.get('http://localhost:5000/api/customer/signIn/'+data.address)
-      .then((res) => {
-          // console.log(res.data.message);
-          console.log("updated: ", data);
-          setUser(res.data.message);
-      });
+      getUserDetailsfromDb();
     },
     [data]
   )
 
-  ethereum.on("accountsChanged", (res) => {
-    const address = res[0];
-    ethereum
-      .request({
-        method: "eth_getBalance",
-        params: [address, "latest"]
-      })
-      .then((balance) => {
-        setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
 
-      })
+  const getUserDetailsfromDb = () => {
+    axios.get('http://localhost:5000/api/customer/signIn/' + data.address)
+      .then((res) => {
+        // console.log(res.data.message);
+        console.log("updated: ", data);
+        setUser(res.data.message);
+      });
+  }
+  ethereum.on("accountsChanged", (res) => {
+    btnhandler();
+    // const _address = res[0];
+    // ethereum
+    //   .request({
+    //     method: "eth_getBalance",
+    //     params: [_address, "latest"]
+    //   })
+    //   .then((balance) => {
+    //     setdata({ address: res[0], Balance: ethers.utils.formatEther(balance) });
+
+    //   }).catch((e)=>console.log('error'))
     // console.log(data);
   });
 

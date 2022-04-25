@@ -9,8 +9,13 @@ import { Button, ButtonGroup, ChakraProvider, Text } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
 import theme from "../theme";
-
+import MM from '../contracts/ManufacturerManager.json'
+import axios from "axios";
+import { ethers } from "ethers";
 export default function RequestTable(props) {
+
+  const [requestDataCopy, setMovieCopy] = useState(props._data);
+
   const columns = [
     {
       name: props.columnHeader[0],
@@ -29,7 +34,7 @@ export default function RequestTable(props) {
       button: true,
       cell: (row) => (
         <ButtonGroup variant='outline' spacing='3'>
-          <Button fontSize='16px' fontWeight="semibold" colorScheme='accept' variant="solid">Accept</Button>
+          <Button fontSize='16px' fontWeight="semibold" colorScheme='accept' variant="solid" onClick={() => acceptManufacturer(row)}>Accept</Button>
           <Button fontSize='16px' fontWeight="semibold" colorScheme="red" variant='outline' onClick={() => rejectRequest(row)}>Reject</Button>
         </ButtonGroup>
       ),
@@ -83,7 +88,54 @@ export default function RequestTable(props) {
     setMovieCopy(result);
   }
 
-  const [requestDataCopy, setMovieCopy] = useState(requestData);
+  // const [requestDataCopy, setMovieCopy] = useState(requestData);
+  // "_id": "62663f99b48b5b56b42f0e87",
+  // "walletAddress": "bkfjhfkd",
+  // "productId": "1111"
+
+  const manufacVerified =  (row) => {
+    // await registerOnBlockchain();
+    axios.post("http://localhost:5000/api/manufacturer/verifyManufacturer", {
+      manufacturerAddress: row.walletAddress,
+      companyCode: row.productId
+    })
+      .then(function (res) {
+        console.log("manufacturer verified");
+        console.log(res);
+        // onClose();
+      }).catch(e => console.log(e))
+  }
+
+
+  const acceptManufacturer = async (row) => {
+    try {
+      console.log('start manufac register', row);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const feeData = await provider.getFeeData();
+      const PMcontract = new ethers.Contract(MM.address, MM.abi, signer);
+      const tx = await PMcontract.enrollManufacturer(
+        row.walletAddress,
+        parseInt(row.productId),    //companycode
+        row._id,
+        1,
+        {
+          maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
+          maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei')
+        }
+      );
+      // tx.wait();
+      console.log(tx.hash);
+      manufacVerified(row);
+      const result = requestDataCopy.filter((movie) => {
+        return movie._id !== row._id;
+      });
+      setMovieCopy(result);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <ChakraProvider theme={theme}>
