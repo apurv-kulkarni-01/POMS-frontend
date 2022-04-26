@@ -1,5 +1,5 @@
 {
-    "address":"0x6b1C783Ffc95033151Aa0D95A0d8b096eC58eab9",
+    "address":"0x436730fEc30e955bBFD44C84fECDb92f3C78Ee8A",
     "abi": [
         {
             "inputs": [
@@ -121,14 +121,14 @@
                             "type": "string"
                         },
                         {
-                            "internalType": "uint32[]",
-                            "name": "productsOwned",
-                            "type": "uint32[]"
-                        },
-                        {
                             "internalType": "bool",
                             "name": "isCustomer",
                             "type": "bool"
+                        },
+                        {
+                            "internalType": "uint32[]",
+                            "name": "productsOwned",
+                            "type": "uint32[]"
                         }
                     ],
                     "internalType": "struct ProductManager.customerInfo",

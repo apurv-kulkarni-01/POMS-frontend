@@ -7,7 +7,7 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    FormControl, FormLabel, Input, Text
+    FormControl, FormLabel, Input, Text 
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
@@ -22,7 +22,6 @@ const CustomerModal = (props) => {
     const [Phone, setPhone] = useState("")
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     const createCustomerHandler = async () => {
         await registerOnBlockchain();
         axios.post("http://localhost:5000/api/customer/createCustomer", {
@@ -32,18 +31,21 @@ const CustomerModal = (props) => {
                 console.log("inside customer modal handler");
                 console.log(res);
                 onClose();
-            }).catch(e => console.log(e))
+            }).catch(e => {
+                console.log('inside toast', e);
+            })
     }
 
     const registerOnBlockchain = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const feeData = await provider.getFeeData();
+        // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
         const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
         const tx = await PMcontract.createCustomer(Name, Phone,
             {
-                maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
-                maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei')
+                maxFeePerGas: feeData.maxFeePerGas,
+                maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
             }
         );
         console.log(tx.hash);

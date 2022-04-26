@@ -28,8 +28,8 @@ contract ProductManager {
     struct customerInfo {
         string name;
         string phone;
-        uint32[] productsOwned;
         bool isCustomer;
+        uint32[] productsOwned;
     }
     mapping(address => customerInfo) CustomerOwnedItems;
 
@@ -141,6 +141,14 @@ contract ProductManager {
         onlyRecipient(EPC)
         onlyStatusIs(EPC, ProductStatus.Shipped)
     {
+        address prev = getCurrentOwner(EPC);
+        CustomerOwnedItems[prev];
+        for(uint i=0; i<CustomerOwnedItems[prev].productsOwned.length; i++){
+            if (CustomerOwnedItems[prev].productsOwned[i] == EPC){
+                delete CustomerOwnedItems[prev].productsOwned[i];
+                break;
+            }
+        }
         emit Transfer(products[EPC].owner, msg.sender, EPC);
         products[EPC].owner = msg.sender;
         products[EPC].status = ProductStatus.Owned;

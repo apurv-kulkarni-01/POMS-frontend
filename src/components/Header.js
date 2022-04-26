@@ -7,7 +7,7 @@ import {
   Stack,
   Spacer,
   ChakraProvider, Menu,
-  MenuButton, MenuList, Box, Avatar, AvatarBadge, HStack, useToast
+  MenuButton, MenuList, Box, Avatar, AvatarBadge, HStack
 } from "@chakra-ui/react";
 import SearchTop from "./SearchTop"
 import { Link as RouterLink } from "react-router-dom";
@@ -30,8 +30,6 @@ const NavBar = (props) => {
   const setPMContract = props._setPMContract
   const setUser = props._setuser
 
-
-  // const toast = useToast();
   const btnhandler = async () => {
     // Asking if metamask is already present or not
     if (ethereum) {
