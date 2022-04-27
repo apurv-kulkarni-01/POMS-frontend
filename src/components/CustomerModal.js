@@ -20,6 +20,9 @@ const CustomerModal = (props) => {
     // const address ='adsadsa'
     const [Name, setName] = useState("")
     const [Phone, setPhone] = useState("")
+    const [nameErr, setNameErr] = useState(false);
+    const [phoneErr, setPhoneErr] = useState(false);
+
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const createCustomerHandler = async () => {
@@ -51,6 +54,35 @@ const CustomerModal = (props) => {
         console.log(tx.hash);
     }
 
+    function customerNameHandler(event){
+        let custName = event.currentTarget.value;
+        if(custName===""){
+            console.log("customer name is not invalid");
+            setNameErr(true);
+        } else {
+            setNameErr(false);
+            setName(custName);
+        }
+
+        
+    }
+
+    function customerPhoneHandler(event){
+        let custPhone = event.currentTarget.value;
+        if(custPhone==="" || custPhone.length<10){
+            console.log("Customer phone number is not invalid");
+            setPhoneErr(true);
+        } else{
+            setPhoneErr(false);
+            setPhone(custPhone);
+        }
+
+    }
+    
+
+
+
+
     return (
         <Box p={4} >
             <Box as='button' onClick={onOpen} border='1px solid #2D3748' py={51} px={26} textAlign="left" w='255px' >
@@ -69,9 +101,11 @@ const CustomerModal = (props) => {
                     <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
                         <FormLabel htmlFor='company-name' fontWeight='medium'
                         >Name</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='John Doe' onChange={e => setName(e.currentTarget.value)} />
+                        <Input bg="white" border='1px solid #E2E8F0' id='customer-name' placeholder='John Doe' /*onChange={e => setName(e.currentTarget.value)}*/ onChange={customerNameHandler}/>
+                        {nameErr?<Text color="red">Please enter a valid name</Text>: ""}
                         <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Phone</FormLabel>
-                        <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='93223 92322' onChange={e => setPhone(e.currentTarget.value)} />
+                        <Input type="text" pattern="[0-9]*" bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='93223 92322' /*onChange={e => setPhone(e.currentTarget.value)}*/ onChange={customerPhoneHandler} maxLength="10" />
+                        {phoneErr?<Text color="red">Please enter a valid phone number</Text>: ""}
                         <ButtonGroup>
                             <Button
                                 mt={10}

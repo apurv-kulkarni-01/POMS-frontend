@@ -15,8 +15,10 @@ import React,{useState} from "react";
 
 const ManufacturerModal = (props) => {
     const address = props.address
-const [Name, setName] = useState('')
-const [Code, setCode] = useState('')
+const [Name, setName] = useState('');
+const [Code, setCode] = useState('');
+const [nameErr, setNameErr] = useState(false);
+const [prefixErr, setPrefixErr] = useState(false);
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -32,6 +34,32 @@ const [Code, setCode] = useState('')
                 onClose();
             }).catch((e) => console.log(e))
     }
+
+    function companyNameHandler(event){
+        let cName = event.currentTarget.value;
+        if(cName===""){
+            console.log("company name is not invalid");
+            setNameErr(true);
+        } else {
+            setNameErr(false);
+            setName(cName);
+        }
+
+        
+    }
+
+    function companyPrefixHandler(event){
+        let cPrefix = event.currentTarget.value;
+        if(cPrefix===""){
+            console.log("company prefix is not invalid");
+            setPrefixErr(true);
+        } else{
+            setPrefixErr(false);
+            setCode(cPrefix);
+        }
+
+    }
+    
 
     return (
         <Box p={4} >
@@ -54,9 +82,11 @@ const [Code, setCode] = useState('')
                                 htmlFor='company-name'
                                 fontWeight='medium'
                                >Company name</FormLabel>
-                            <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='Rolex Inc.'  onChange={event => setName(event.currentTarget.value)}/>
-                            <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium'  >Company prefix</FormLabel>
-                            <Input bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='546' onChange={event => setCode(event.currentTarget.value)}/>
+                            <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='Rolex Inc.'  /*onChange={event => setName(event.currentTarget.value)}*/ onChange={companyNameHandler}/>
+                            {nameErr?<Text color="red">Please enter a valid name</Text>: ""}
+                            <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Company prefix</FormLabel>
+                            <Input type="text" pattern="[0-9]*" bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='546' /*onChange={event => setCode(event.currentTarget.value)}*/ maxLength="3" onChange={companyPrefixHandler} />
+                            {prefixErr?<Text color="red">Please enter a valid prefix</Text>: ""}
                             <ButtonGroup>
                                 <Button
                                     mt={10}
