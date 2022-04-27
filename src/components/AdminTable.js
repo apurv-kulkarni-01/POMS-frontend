@@ -11,7 +11,7 @@ import { useState } from "react";
 import theme from "../theme";
 import MM from '../contracts/ManufacturerManager.json'
 import axios from "axios";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 export default function RequestTable(props) {
 
   const [requestDataCopy, setMovieCopy] = useState(props._data);
@@ -82,10 +82,17 @@ export default function RequestTable(props) {
 
   function rejectRequest(row) {
     //   console.log("delete " + row._id);
-    const result = requestDataCopy.filter((movie) => {
-      return movie._id !== row._id;
-    });
-    setMovieCopy(result);
+    axios.post('http://localhost:5000/api/manufacturer/declineManufacturer', {
+      manufacturerAddress: row.walletAddress,
+      companyCode: row.productId,
+    }).then((res) => {
+      console.log(res.message);
+      const result = requestDataCopy.filter((movie) => {
+        return movie._id !== row._id;
+      });
+      setMovieCopy(result);
+    }).catch((e) => { console.log('rejecting manufacturer error', e) })
+   
   }
 
   // const [requestDataCopy, setMovieCopy] = useState(requestData);
@@ -93,8 +100,9 @@ export default function RequestTable(props) {
   // "walletAddress": "bkfjhfkd",
   // "productId": "1111"
 
-  const manufacVerified =  (row) => {
+  const manufacVerified = (row) => {
     // await registerOnBlockchain();
+    // console.log(row);
     axios.post("http://localhost:5000/api/manufacturer/verifyManufacturer", {
       manufacturerAddress: row.walletAddress,
       companyCode: row.productId
@@ -109,24 +117,32 @@ export default function RequestTable(props) {
 
   const acceptManufacturer = async (row) => {
     try {
-      console.log('start manufac register', row);
+      // console.log('start manufac register', row);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const feeData = await provider.getFeeData();
       const PMcontract = new ethers.Contract(MM.address, MM.abi, signer);
+      // console.log('logging feeddata',feeData.maxFeePerGas, 'parseunits',ethers.utils.parseUnits('40','gwei') );
+      console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,"gwei"));
+      console.log(ethers.utils.formatUnits(feeData.maxFeePerGas));
       const tx = await PMcontract.enrollManufacturer(
         row.walletAddress,
         parseInt(row.productId),    //companycode
         row._id,
         1,
         {
-          maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
-          maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei')
+          // maxFeePerGas: feeData.maxFeePerGas.add(BigNumber.from('100'))._hex,
+          // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas.add(BigNumber.from('100'))._hex,
+          // maxFeePerGas: ethers.utils.parseUnits('50','gwei'),
+          // maxPriorityFeePerGas: ethers.utils.parseUnits('40','gwei'),
+          // maxFeePerGas: feeData.maxFeePerGas,
+          // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         }
       );
       // tx.wait();
       console.log(tx.hash);
       manufacVerified(row);
+      // remove the entry from frontend
       const result = requestDataCopy.filter((movie) => {
         return movie._id !== row._id;
       });

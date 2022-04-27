@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import "./index.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,9 +7,10 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { makeStyles } from '@material-ui/core/styles';
 import { styled } from '@mui/material/styles';
-
-
+import { ethers } from 'ethers';
 import Stack from '@mui/material/Stack';
+import PM from '../contracts/ProductManager.json'
+
 const Input = styled('input')({
   display: 'none',
 });
@@ -21,9 +22,10 @@ const useStyles = makeStyles({
 });
 
 
-export default function ProductCard() {
+export default function ProductCard(props) {
   const classes = useStyles();
   const [data, setData] = useState([1, 2]);
+
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
   // const [activeCharacter, setActiveCharacter] = useState();
 
@@ -33,86 +35,102 @@ export default function ProductCard() {
   //   setIsDialogOpen(true);
   //   setActiveCharacter(character);
   // };
-  return (
-    <>
+useEffect(
+  ()=>{
+    async function getCurrentOwnerChain(){
+      try {
+        const productId = props._productID;
+        const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+        const tx = await PMContract.getCurrentOwner(parseInt(productId))
+        console.log('current owner', tx);
+      }
+      catch (e){console.log(e)}
+  }
+  getCurrentOwnerChain();
+  },
+  []
+)
 
-      <Card className={classes.card} sx={{
-        marginLeft: "971px", maxWidth: 265, height: "265px", borderRadius: 15
-      }}>
-        <CardMedia
-          component="img"
-          height="265px"
-          maxWidth="100"
-          image={require("./static/images/cards/aba.jpg")}
-          alt="green iguana"
+return (
+  <>
 
-        />
-      </Card>
+    <Card className={classes.card} sx={{
+      marginLeft: "971px", maxWidth: 265, height: "265px", borderRadius: 15
+    }}>
+      <CardMedia
+        component="img"
+        height="265px"
+        maxWidth="100"
+        image={require("./static/images/cards/aba.jpg")}
+        alt="green iguana"
 
-      <Card elevation={0} sx={{
-        marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top: "487px"
-      }} >
-        <CardActionArea>
+      />
+    </Card>
 
-          <CardContent>
-            <Typography
-              fontSize="17px"
-              // fontFamily="Cursive"
-              variant="body2"
-              color="text.secondary"
-            >
-              Company Name: {"\u00A0"}
-            </Typography>
-            <Typography
-              // fontFamily="Cursive"
-              display="inline"
-              fontSize="20px"
-              gutterBottom
-              variant="h6"
-              component="div"
-              fontWeight="bold"
-            >
-              ROLEX
-            </Typography>
+    <Card elevation={0} sx={{
+      marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top: "487px"
+    }} >
+      <CardActionArea>
 
-            <Typography
-              mt="5px"
-              fontSize="17px"
-              // fontFamily="Cursive"
-              variant="body2"
-              color="text.secondary"
-            >
-              Current Owner:{"\u00A0"}
-            </Typography>
-            <Typography
-              // fontFamily="Cursive"
-              display="inline"
-              fontSize="20px"
-              gutterBottom
-              variant="h6"
-              component="div"
-              fontWeight="semibold"
-            >
-              Abhishek Jha
-            </Typography>
+        <CardContent>
+          <Typography
+            fontSize="17px"
+            // fontFamily="Cursive"
+            variant="body2"
+            color="text.secondary"
+          >
+            Company Name: {"\u00A0"}
+          </Typography>
+          <Typography
+            // fontFamily="Cursive"
+            display="inline"
+            fontSize="20px"
+            gutterBottom
+            variant="h6"
+            component="div"
+            fontWeight="bold"
+          >
+            ROLEX
+          </Typography>
 
-          </CardContent>
-        </CardActionArea>
-        <CardActions marginLeft="2px" display="flex">
-          <Stack direction="row" spacing={0} m={1} mt={1}>
+          <Typography
+            mt="5px"
+            fontSize="17px"
+            // fontFamily="Cursive"
+            variant="body2"
+            color="text.secondary"
+          >
+            Current Owner:{"\u00A0"}
+          </Typography>
+          <Typography
+            // fontFamily="Cursive"
+            display="inline"
+            fontSize="20px"
+            gutterBottom
+            variant="h6"
+            component="div"
+            fontWeight="semibold"
+          >
+            Abhishek Jha
+          </Typography>
 
-            {/* <label htmlFor="contained-button-file" > */}
-              {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
-              <Button color="success" variant="contained" component="span">
-                Request Product
-              </Button>
-            {/* </label> */}
+        </CardContent>
+      </CardActionArea>
+      <CardActions marginLeft="2px" display="flex">
+        <Stack direction="row" spacing={0} m={1} mt={1}>
 
-          </Stack>        </CardActions>
-      </Card>
+          {/* <label htmlFor="contained-button-file" > */}
+          {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
+          <Button color="success" variant="contained" component="span">
+            Request Product
+          </Button>
+          {/* </label> */}
 
-    </>
-  );
+        </Stack>        </CardActions>
+    </Card>
+
+  </>
+);
 
 
 }

@@ -20,7 +20,7 @@ const ProductHistoryNC = () => {
       {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
       {/* <ConfirmTable /> */}
       {/* <h1>{productID}</h1> */}
-      <ProductCard />
+      <ProductCard _productID={productID} />
       <HistoryTable _productID={productID}/>
     </>
   );

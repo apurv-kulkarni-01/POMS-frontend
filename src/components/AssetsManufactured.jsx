@@ -10,7 +10,7 @@ import {
   Text,
   Flex
 } from "@chakra-ui/react";
-import {Link as RouterLink} from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   useDisclosure, Button, ButtonGroup,
   Modal,
@@ -22,18 +22,41 @@ import {
   ModalCloseButton,
   FormControl, FormLabel, Input
 } from "@chakra-ui/react";
+import {ethers} from 'ethers'
+import PM from '../contracts/ProductManager.json'
 
 import theme from '../theme/index'
 
 export default function Cardelem(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data, setData] = useState([]);
-
+  const [productCode, setProductCode] = useState(-1)
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts/")
       .then((res) => res.json())
       .then((res) => setData(res));
   }, []);
+
+  const addProductHandler = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const feeData = await provider.getFeeData();
+    // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
+    const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
+    console.log('transaction started');
+    const tx = await PMcontract.enrollProduct(
+      productCode, 
+      Number(String(productCode).slice(0, 4)),
+      {
+        maxFeePerGas: ethers.utils.parseUnits('5','gwei'),
+        maxPriorityFeePerGas: ethers.utils.parseUnits('4','gwei'),
+        // maxFeePerGas: feeData.maxFeePerGas,
+        // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+      }
+    );
+    console.log(tx.hash);
+  }
+
   if (props.name == "0") {
     return (
       <ChakraProvider theme={theme}>
@@ -81,22 +104,23 @@ export default function Cardelem(props) {
             <ModalOverlay bg='blackAlpha.600' />
             <ModalContent bg="#E1E3E5" py={100}>
               {/* <ModalHeader textAlign="center" fontSize={12} fontWeight='thin' >Oops you are not a manufacturer</ModalHeader> */}
-              <ModalHeader textAlign="center" fontWeight='bold' >Apply to be a Manufacturer</ModalHeader>
+              <ModalHeader textAlign="center" fontWeight='bold' >Register new product</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
 
               </ModalBody>
               <FormControl w='50%' m='auto' isRequired lineHeight={1.5} color="#2D3748">
                 <FormLabel htmlFor='company-name' fontWeight='medium' >Product Code</FormLabel>
-                <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='9867081348' />
+                <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='9867081348' onChange={e => setProductCode(e.currentTarget.value)} />
                 <ButtonGroup>
                   <Button
                     mt={10}
                     colorScheme='green'
                     // isLoading={props.isSubmitting}
                     type='submit'
+                    onClick={addProductHandler}
                   >
-                    Apply
+                    Submit
                   </Button>
                   <Button
                     mt={10}
@@ -181,8 +205,8 @@ export default function Cardelem(props) {
 
           <Flex justifyContent="space-between" alignContent='center' mt='20px' >
             <Link
-            as={RouterLink}
-            to='/history'
+              as={RouterLink}
+              to='/history'
               ml="140px"
               // textAlign='right'
               // align='right'

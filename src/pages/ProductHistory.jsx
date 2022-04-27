@@ -15,7 +15,7 @@ const ProductHistory = () => {
         </ChakraProvider> */}
       {/* <h1>{productID}</h1> */}
       <HistoryTable _productID={productID}></HistoryTable>
-      <ProductCard></ProductCard>
+      <ProductCard _productID={productID}></ProductCard>
     </div>
   )
 }
