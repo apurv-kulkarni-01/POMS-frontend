@@ -9,7 +9,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import axios from 'axios';
 import { useState, useEffect } from "react";
 
-const Home = () => {
+const Home = (props) => {
   const [requestDataCopy, setMovieCopy] = useState([{  _id: "625978ba7a4ebaaac35d59c0",walletAddress: "8e9bdf54-0b5a-4157-9cae-1cfffaf8849c",productId: "-1"}]);
   const [confirmationDataCopy, setConfirmCopy] = useState([{  _id: "625978ba7a4ebaaac35d59c0",productId: "-1"}]);
 
@@ -19,7 +19,7 @@ const Home = () => {
     }, [])
 
   const getCustomerDetails = ()=>{
-    axios.get(`http://localhost:5000/api/customer/signIn/x`)
+    axios.get(`http://localhost:5000/api/customer/signIn/`+props._address)
     .then(res => {
       // console.log("res.data.data.incomingRequest ->", res.data.data.incomingRequest)
       setMovieCopy(res.data.data.incomingRequest);
@@ -39,8 +39,8 @@ const Home = () => {
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}
     <AssetsOwnedCarousal/>
-    <RequestTable _data={requestDataCopy} columnHeader={['Username','Product Code','Action']}/>
-    <ConfirmTable _data={confirmationDataCopy} />
+    <RequestTable _address={props._address} _usertype={props._usertype} _data={requestDataCopy} columnHeader={['Username','Product Code','Action']}/>
+    <ConfirmTable _address={props._address} _data={confirmationDataCopy} />
     
       </>  
   );

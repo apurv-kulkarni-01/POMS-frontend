@@ -8,6 +8,7 @@ import { Button, ChakraProvider, Heading } from '@chakra-ui/react'
 import "../index.css";
 import { useState } from "react";
 import theme from "../theme/index";
+import axios from 'axios';
 
 export default function ConfirmTable(props) {
   const columns = [
@@ -58,6 +59,21 @@ export default function ConfirmTable(props) {
   };
 
   function acceptProduct(row) {
+    
+    
+    console.log("user type is", props)
+     
+    // await registerOnBlockchain();
+    axios.post("http://localhost:5000/api/customer/confirmProduct/"+props._address, {
+    productId:row.productId
+    })
+      .then(function (res) {
+        console.log("request accepeted");
+        console.log(res);
+        // onClose();
+      }).catch(e => console.log(e))
+     
+
     console.log("confirm " + row._id);
     const result = requestDataCopy.filter((movie) => {
       return movie._id !== row._id;
