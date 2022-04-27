@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import { ethers } from 'ethers';
 import Stack from '@mui/material/Stack';
 import PM from '../contracts/ProductManager.json'
+import axios from "axios";
 
 const Input = styled('input')({
   display: 'none',
@@ -42,7 +43,17 @@ useEffect(
         const productId = props._productID;
         const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
         const tx = await PMContract.getCurrentOwner(parseInt(productId))
-        console.log('current owner', tx);
+        console.log('current owner', tx.toLowerCase());
+        axios.post("http://localhost:5000/api/customer/addRequest/"+tx.toLowerCase(), {
+        walletAddress: props._address,
+        productId:productId,
+        })
+          .then(function (res) {
+            console.log("request accepeted");
+            console.log(res);
+            // onClose();
+          }).catch(e => console.log(e))
+          
       }
       catch (e){console.log(e)}
   }
@@ -121,9 +132,11 @@ return (
 
           {/* <label htmlFor="contained-button-file" > */}
           {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
+          {props._address?
           <Button color="success" variant="contained" component="span">
             Request Product
-          </Button>
+          </Button>:" "
+          }
           {/* </label> */}
 
         </Stack>        </CardActions>
