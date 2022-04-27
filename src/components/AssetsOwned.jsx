@@ -17,7 +17,7 @@ import {
 
 import theme from '../theme/index'
 
-export default function Cardelem() {
+export default function Cardelem(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data, setData] = useState([]);
 
@@ -64,7 +64,7 @@ export default function Cardelem() {
               display="inline"
               mb={2}
             >
-              {capsFirst("9867081348")}
+              {props.productId}
             </Heading>
           </Heading>
 
@@ -83,7 +83,7 @@ export default function Cardelem() {
               // textAlign="center"
               w="full"
             >
-              {"9867081348"}
+              {props.productId}
             </Text>
           </Text>
         </VStack>

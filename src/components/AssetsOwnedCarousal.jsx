@@ -18,7 +18,7 @@ export default function Carousal(props) {
     console.log('getting users products');
     const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
     let ownedAssets = await PMContract.getCustomerDetails(props._address);
-    console.log(ownedAssets[3]);
+    console.log(ownedAssets);
     ownedAssets = ownedAssets[3]
     setData(ownedAssets);
   }

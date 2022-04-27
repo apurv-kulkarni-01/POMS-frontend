@@ -14,7 +14,7 @@ import React, { useState } from "react";
 
 
 const ManufacturerModal = (props) => {
-    const address = props.address.toLoweCase()
+    const address = props.address.toLowerCase()
     const [Name, setName] = useState('');
     const [Code, setCode] = useState('');
     const [nameErr, setNameErr] = useState(false);
