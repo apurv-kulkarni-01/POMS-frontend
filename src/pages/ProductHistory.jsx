@@ -3,7 +3,7 @@ import HistoryTable from '../components/HistoryTable'
 import ProductCard from '../components/Product_Card'
 import { useParams } from 'react-router-dom';
 
-const ProductHistory = () => {
+const ProductHistory = (props) => {
 
   const { productID } = useParams();
 
@@ -15,7 +15,7 @@ const ProductHistory = () => {
         </ChakraProvider> */}
       {/* <h1>{productID}</h1> */}
       <HistoryTable _productID={productID}></HistoryTable>
-      <ProductCard></ProductCard>
+      <ProductCard _address={props._address} _productID={productID}></ProductCard>
     </div>
   )
 }

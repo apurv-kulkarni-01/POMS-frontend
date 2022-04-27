@@ -16,7 +16,7 @@ import { ethers } from 'ethers';
 
 const CustomerModal = (props) => {
     const address = props.address
-    var provider, signer;
+  
     // const address ='adsadsa'
     const [Name, setName] = useState("")
     const [Phone, setPhone] = useState("")

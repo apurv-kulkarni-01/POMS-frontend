@@ -8,7 +8,7 @@ import ProductCard from '../components/Product_Card'
 import { useParams } from 'react-router-dom';
 
 
-const ProductHistoryNC = () => {
+const ProductHistoryNC = (props) => {
   let { productID } = useParams();
 
 
@@ -20,7 +20,7 @@ const ProductHistoryNC = () => {
       {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
       {/* <ConfirmTable /> */}
       {/* <h1>{productID}</h1> */}
-      <ProductCard />
+      <ProductCard _address={props._address} _productID={productID} />
       <HistoryTable _productID={productID}/>
     </>
   );
