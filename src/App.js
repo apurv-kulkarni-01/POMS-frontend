@@ -48,7 +48,7 @@ const [userType, setUser] = useState("");
                     <Route path='/' element={userdata.address? <Navigate to='/home' /> : <Landing />} />
                     <Route path='/home' element={userdata.address? <Home  _usertype={userType} _data={userdata.address} /> : <Landing />} />
                     <Route path='/customer' element={<UserDashboard />} />
-                    <Route path='/manufacturer' element={<ManufacturerDashboard _address={userdata.address}/>} />
+                    <Route path='/manufacturer' element={<ManufacturerDashboard _usertype={userType} _address={userdata.address}/>} />
                     <Route path='/settings' element={<UserSettings />} />
                     <Route path='/admin' element={<AdminDashboard _setdata={setUserdata} _data={userdata} />} />
                     <Route path='/history' element={userdata.address? <ProductHistory/> : <ProductHistoryNC />} />

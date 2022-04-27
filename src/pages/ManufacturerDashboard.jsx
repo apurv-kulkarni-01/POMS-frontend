@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 
 const Home = (props) => {
   const [requestDataCopy, setMovieCopy] = useState([{ _id: "625978ba7a4ebaaac35d59c0", walletAddress: "8e9bdf54-0b5a-4157-9cae-1cfffaf8849c", productId: "-1" }]);
-
+  console.log("props is", props)
   useEffect(
     () => {
       getManufacDetails()
@@ -39,7 +39,7 @@ const Home = (props) => {
         {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
         {/* <ConfirmTable /> */}
         <AssetsManufacturedCarousal />
-        <RequestTable _data={requestDataCopy} columnHeader={['Username', 'Product Code', 'Action']} />
+        <RequestTable _address={props._address} _usertype={props._usertype} _data={requestDataCopy} columnHeader={['Username', 'Product Code', 'Action']} />
 
       </>
     );
