@@ -22,7 +22,7 @@ import {
   ModalCloseButton,
   FormControl, FormLabel, Input
 } from "@chakra-ui/react";
-import {ethers} from 'ethers'
+import { ethers } from 'ethers'
 import PM from '../contracts/ProductManager.json'
 
 import theme from '../theme/index'
@@ -38,23 +38,29 @@ export default function Cardelem(props) {
   }, []);
 
   const addProductHandler = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const feeData = await provider.getFeeData();
-    // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
-    const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
-    console.log('transaction started');
-    const tx = await PMcontract.enrollProduct(
-      productCode, 
-      Number(String(productCode).slice(0, 4)),
-      {
-        maxFeePerGas: ethers.utils.parseUnits('5','gwei'),
-        maxPriorityFeePerGas: ethers.utils.parseUnits('4','gwei'),
-        // maxFeePerGas: feeData.maxFeePerGas,
-        // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-      }
-    );
-    console.log(tx.hash);
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const feeData = await provider.getFeeData();
+      // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
+      const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
+      console.log('transaction started');
+      const tx = await PMcontract.enrollProduct(
+        productCode,
+        parseInt(String(productCode).slice(0, 3)),
+        {
+          maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
+          maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei'),
+          // maxFeePerGas: feeData.maxFeePerGas,
+          // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+        }
+      );
+      console.log(tx.hash);
+      onClose();
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   if (props.name == "0") {
@@ -118,7 +124,7 @@ export default function Cardelem(props) {
                     colorScheme='green'
                     // isLoading={props.isSubmitting}
                     type='submit'
-                    onClick={addProductHandler}
+                    onClick={() => addProductHandler()}
                   >
                     Submit
                   </Button>

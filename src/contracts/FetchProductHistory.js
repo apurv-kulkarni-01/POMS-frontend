@@ -1,5 +1,5 @@
-// import PM from './ProductManager.json';
-import PM from './TestPM.json';
+import PM from './ProductManager.json';
+// import PM from './TestPM.json';
 import { ethers } from 'ethers'
 import React from 'react'
 

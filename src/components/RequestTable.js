@@ -9,59 +9,84 @@ import "../index.css";
 import { useState, useEffect } from "react";
 import theme from "../theme";
 import axios from 'axios';
+import PM from '../contracts/ProductManager.json'
+import { ethers } from 'ethers';
+
 
 export default function RequestTable(props) {
   // console.log("promise: ", requestData())
   const [requestDataCopy, setMovieCopy] = useState(props._data);
   var customer;
   var manufacturer;
-  const reuestAccepted =  (row) => {
 
-    console.log("user type is", props)
-    if (props._usertype == "manufacturer"){
-      customer = "false"
-      manufacturer = "true"
-    }else{
-      customer = "true"
-      manufacturer = "false"
+  const reuestAccepted = async (row) => {
+    try {
+      console.log("user type is", props._usertype)
+      if (props._usertype == "manufacturer") {
+        customer = "false"
+        manufacturer = "true"
+      } else {
+        customer = "true"
+        manufacturer = "false"
+      }
+      await shipProductOnChain(row);
+      axios.post("http://localhost:5000/api/customer/acceptProductRequest/" + row.walletAddress, {
+        walletAddress: props._address,
+        productId: row.productId,
+        isCustomer: customer,
+        isManufacturer: manufacturer
+
+      })
+        .then(function (res) {
+          console.log("request accepeted");
+          console.log(res);
+          // onClose();
+          const result = requestDataCopy.filter((movie) => {
+            return movie._id !== row._id;
+          });
+          setMovieCopy(result);
+        }).catch(e => console.log(e))
     }
-    // await registerOnBlockchain();
-    axios.post("http://localhost:5000/api/customer/acceptProductRequest/"+row.walletAddress, {
-    walletAddress: props._address,
-    productId:row.productId,
-    isCustomer:customer,
-    isManufacturer:manufacturer
-
-    })
-      .then(function (res) {
-        console.log("request accepeted");
-        console.log(res);
-        // onClose();
-      }).catch(e => console.log(e))
-      const result = requestDataCopy.filter((movie) => {
-        return movie._id !== row._id;
-      });
-      setMovieCopy(result);
+    catch (e) {
+      console.log(e);
+    }
   }
+  const shipProductOnChain = async (row) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const feeData = await provider.getFeeData();
+    // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
+    const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
+    const tx = await PMcontract.shipProduct(row.walletAddress, row.productId,
+      {
+        maxFeePerGas: feeData.maxFeePerGas,
+        maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+      }
+    );
+    const receipt =await tx.wait();
 
-    const declineRequest =  (row) => {
+    console.log('product has been shipped to: ', row.walletAddress, '\ntx hash', tx.hash);
+  }
+  const declineRequest = (row) => {
     // await registerOnBlockchain();
-    axios.post("http://localhost:5000/api/customer/declineProductRequest/"+row.walletAddress, {
-    walletAddress: props._address,
-    productId:row.productId,
-    isCustomer:customer,
-    isManufacturer:manufacturer
+    axios.post("http://localhost:5000/api/customer/declineProductRequest/" + row.walletAddress, {
+      walletAddress: props._address,
+      productId: row.productId,
+      isCustomer: customer,
+      isManufacturer: manufacturer
 
     })
       .then(function (res) {
         console.log("request accepeted");
         console.log(res);
         // onClose();
+        const result = requestDataCopy.filter((movie) => {
+          return movie._id !== row._id;
+        });
+        setMovieCopy(result);
+        console.log('product declined ');
       }).catch(e => console.log(e))
-      const result = requestDataCopy.filter((movie) => {
-        return movie._id !== row._id;
-      });
-      setMovieCopy(result);
+
   }
 
   // console.log("ok", requestDataCopy)

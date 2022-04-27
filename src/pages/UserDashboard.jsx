@@ -38,7 +38,7 @@ const Home = (props) => {
     {/* <Carousal/> */}
     {/* <RequestTable columnHeader={['Company Name','Company Prefix','Action']}/> */}
     {/* <ConfirmTable /> */}
-    <AssetsOwnedCarousal/>
+    <AssetsOwnedCarousal _address={props._address} />
     <RequestTable _address={props._address} _usertype={props._usertype} _data={requestDataCopy} columnHeader={['Username','Product Code','Action']}/>
     <ConfirmTable _address={props._address} _data={confirmationDataCopy} />
     

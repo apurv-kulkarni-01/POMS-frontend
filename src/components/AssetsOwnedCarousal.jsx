@@ -7,16 +7,25 @@ import {
   Container,
   Heading
 } from "@chakra-ui/react";
-
+import PM from '../contracts/ProductManager.json'
+import { ethers } from 'ethers';
 import ChakraCarousel from "./ChakraCarousel";
 
-export default function Carousal() {
+export default function Carousal(props) {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts/")
-      .then((res) => res.json())
-      .then((res) => setData(res));
+  useEffect(() => {async function getOwnedItems(){
+    console.log('getting users products');
+    const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+    let ownedAssets = await PMContract.getCustomerDetails(props._address);
+    console.log(ownedAssets[3]);
+    ownedAssets = ownedAssets[3]
+    setData(ownedAssets);
+  }
+  getOwnedItems();
+    // fetch("https://jsonplaceholder.typicode.com/posts/")
+      // .then((res) => res.json())
+      // .then((res) => setData(res));
   }, []);
 
   return (
@@ -49,8 +58,8 @@ export default function Carousal() {
         w='90%'
       >
         <ChakraCarousel Width={200} sliderWidth={5} gap={40} >
-          {data.slice(5, 15).map((post, index) => (
-            <AssetsOwned />
+          {data.map((productId, index) => (
+            <AssetsOwned productId={productId} />
           ))}
         </ChakraCarousel>
       </Container>

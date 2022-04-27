@@ -36,6 +36,7 @@ const NavBar = (props) => {
       // res[0] for fetching a first wallet
       ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         const address = res[0];
+        console.log('direct from metmask ',address);
         ethereum.request({
           method: "eth_getBalance",
           params: [address, "latest"]
@@ -119,7 +120,7 @@ const NavBar = (props) => {
         {
           data.address ?
             <MenuLinks2 userAddress={data.address} /> :
-            <MenuLinks1 onClick={btnhandler} />
+            <MenuLinks1 onClick={()=>btnhandler()} />
 
         }
       </NavBarContainer>

@@ -9,6 +9,9 @@ import "../index.css";
 import { useState } from "react";
 import theme from "../theme/index";
 import axios from 'axios';
+import PM from '../contracts/ProductManager.json'
+import { ethers } from 'ethers';
+
 
 export default function ConfirmTable(props) {
   const columns = [
@@ -58,29 +61,50 @@ export default function ConfirmTable(props) {
     },
   };
 
-  function acceptProduct(row) {
-    
-    
+  async function acceptProduct(row) {
+
+
     console.log("user type is", props)
-     
+    await confirmProductlLockchain(row);
     // await registerOnBlockchain();
-    axios.post("http://localhost:5000/api/customer/confirmProduct/"+props._address, {
-    productId:row.productId
+    axios.post("http://localhost:5000/api/customer/confirmProduct/" + props._address, {
+      productId: row.productId
     })
       .then(function (res) {
         console.log("request accepeted");
         console.log(res);
+        console.log("confirm " + row._id);
+        const result = requestDataCopy.filter((movie) => {
+          return movie._id !== row._id;
+        });
+        setMovieCopy(result);
         // onClose();
       }).catch(e => console.log(e))
-     
 
-    console.log("confirm " + row._id);
-    const result = requestDataCopy.filter((movie) => {
-      return movie._id !== row._id;
-    });
-    setMovieCopy(result);
   }
 
+  const confirmProductlLockchain = async (row) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const feeData = await provider.getFeeData();
+      // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
+      const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
+      const tx = await PMcontract.receiveProduct(
+        row.productId,
+        {
+          maxFeePerGas: feeData.maxFeePerGas,
+          maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+        }
+      );
+      const receipt = await tx.wait();
+      console.log('receipt is: ', receipt);
+      console.log('product received: tx hash= ', tx.hash);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
   const [requestDataCopy, setMovieCopy] = useState(props._data);
 
   return (
