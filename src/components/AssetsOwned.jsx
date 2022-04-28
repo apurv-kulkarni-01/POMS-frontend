@@ -83,7 +83,7 @@ export default function Cardelem(props) {
               // textAlign="center"
               w="full"
             >
-              {props.productId}
+              {String(props.productId).slice(0,3)}
             </Text>
           </Text>
         </VStack>
@@ -91,7 +91,7 @@ export default function Cardelem(props) {
         <Flex justifyContent="space-between" alignContent='center' mt='20px' >
           <Link
            as={RouterLink}
-           to='/history'
+           to={'/history/' + props.productId}
             ml="140px"
             // textAlign='right'
             // align='right'

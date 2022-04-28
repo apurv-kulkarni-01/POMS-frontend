@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import UserDashboard from "./pages/UserDashboard";
 // import NavBar from "./components/Header";
 import Landing from "./pages/Landing"
+import Profile from "./pages/profile"
+
 import UserSettings from "./pages/UserSettings"
 import ProductHistory from "./pages/ProductHistory"
 import ProductHistoryNC from "./pages/ProductHistoryNC"
@@ -53,7 +55,7 @@ const [userType, setUser] = useState("");
                     <Route path='/admin' element={<AdminDashboard _setdata={setUserdata} _data={userdata} />} />
                     {/* <Route path='/history' element={userdata.address? <ProductHistory _address={userdata.address}/> : <ProductHistoryNC _address={userdata.address}/>} /> */}
                     <Route path='/history/:productID' element={userdata.address? <ProductHistory _address={userdata.address}/> : <ProductHistoryNC _address={userdata.address}/>} />
-
+                    <Route path='/Profile/:address' element={userdata.address? <ProductHistory _address={userdata.address}/> : <Profile _address={userdata.address}/>} />
                     {/* <Route path='/' element={<Landing />} /> */}
 
                     {/* <Home/> */}
