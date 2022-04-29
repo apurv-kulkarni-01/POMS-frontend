@@ -11,6 +11,7 @@ import "../data/historyData";
 // import historyData from "../data/historyData";
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import ProductHistoryBC from '../contracts/FetchProductHistory'
+import { Tooltip } from '@chakra-ui/react'
 
 export default function HistoryTable({_productID}) {
 
@@ -40,7 +41,9 @@ const [history, setHistory] = useState([]);
           // isExternal
 
         >
-          {truncate(row.args.from)}<ExternalLinkIcon mx='2px' />
+        <Tooltip label='View User Profile'>
+          {truncate(row.args.from)}
+          </Tooltip>
         </Link>
       </>
       )
@@ -58,7 +61,9 @@ const [history, setHistory] = useState([]);
           // isExternal
 
         >
-          {truncate(row.args.to)}<ExternalLinkIcon mx='2px' />
+        <Tooltip label='View User Profile'>
+          {truncate(row.args.to)}
+          </Tooltip>
         </Link>
       </>
       )
@@ -74,7 +79,9 @@ const [history, setHistory] = useState([]);
             isExternal
 
           >
-            {truncate(row.transactionHash)}<ExternalLinkIcon mx='2px' />
+          <Tooltip label='View Transaction on Polygonscan'>
+            {truncate(row.transactionHash)}
+            </Tooltip>
           </Link>
         </>
       ),
