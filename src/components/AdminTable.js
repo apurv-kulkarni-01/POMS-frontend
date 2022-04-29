@@ -120,12 +120,12 @@ export default function RequestTable(props) {
       // console.log('start manufac register', row);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const feeData = await provider.getFeeData();
+      // const feeData = await provider.getFeeData();
       let walletAddress = row.walletAddress.toLowerCase();
       const PMcontract = new ethers.Contract(MM.address, MM.abi, signer);
       // console.log('logging feeddata',feeData.maxFeePerGas, 'parseunits',ethers.utils.parseUnits('40','gwei') );
-      console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,"gwei"));
-      console.log(ethers.utils.formatUnits(feeData.maxFeePerGas));
+      // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,"gwei"));
+      // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas));
       const tx = await PMcontract.enrollManufacturer(
         walletAddress,
         parseInt(row.productId),    //companycode

@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 // import { Box, Icon, Flex } from "@chakra-ui/react";
-import { GrReactjs } from "react-icons/gr";
+// import { GrReactjs } from "react-icons/gr";
+import { FaBoxes as GrReactjs } from "react-icons/fa";
 import {
   Box,
   Button,

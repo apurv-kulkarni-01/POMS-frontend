@@ -3,6 +3,7 @@
 //pagination is disabled
 import {useState, useEffect} from 'react'
 import theme from "../theme";
+import { Link as RouterLink } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import "../index.css";
 import { Link, ChakraProvider, Text } from "@chakra-ui/react";
@@ -29,12 +30,38 @@ const [history, setHistory] = useState([]);
   const columns = [
     {
       name: "From",
-      selector: (row) => truncate(row.args.from)
+      // selector: (row) => truncate(row.args.from),
+      cell: (row)=>(
+        <>
+        <Link
+         as={RouterLink}
+          // href={"https://mumbai.polygonscan.com/tx/" + row.transactionHash}
+          to={'/profile/'+row.args.from}
+          // isExternal
+
+        >
+          {truncate(row.args.from)}<ExternalLinkIcon mx='2px' />
+        </Link>
+      </>
+      )
       // sortable: true
     },
     {
       name: "To",
-      selector: (row) => truncate(row.args.to)
+      // selector: (row) => truncate(row.args.to)
+      cell: (row)=>(
+        <>
+        <Link
+         as={RouterLink}
+          // href={"https://mumbai.polygonscan.com/tx/" + row.transactionHash}
+          to={'/profile/'+row.args.to}
+          // isExternal
+
+        >
+          {truncate(row.args.to)}<ExternalLinkIcon mx='2px' />
+        </Link>
+      </>
+      )
       // sortable: true
     },
     {

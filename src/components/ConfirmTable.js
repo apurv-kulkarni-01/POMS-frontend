@@ -87,19 +87,19 @@ export default function ConfirmTable(props) {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const feeData = await provider.getFeeData();
+      // const feeData = await provider.getFeeData();
       // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
       const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
       const tx = await PMcontract.receiveProduct(
         row.productId,
-        {
-          maxFeePerGas: feeData.maxFeePerGas,
-          maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-        }
+        // {
+        //   maxFeePerGas: feeData.maxFeePerGas,
+        //   maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+        // }
       );
       const receipt = await tx.wait();
-      console.log('receipt is: ', receipt);
-      console.log('product received: tx hash= ', tx.hash);
+      // console.log('receipt is: ', receipt);
+      console.log('product received: tx hash= ', receipt.transactionHash);
     }
     catch (e) {
       console.log(e);

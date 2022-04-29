@@ -36,7 +36,7 @@ export default function ProductCard(props) {
   //   setIsDialogOpen(true);
   //   setActiveCharacter(character);
   // };
-  let blockchainOwner='';
+  let blockchainOwner = '';
 
 
   useEffect(
@@ -47,7 +47,7 @@ export default function ProductCard(props) {
           const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
           blockchainOwner = await PMContract.getCurrentOwner(parseInt(productId))
           blockchainOwner = blockchainOwner.toLowerCase();
-          console.log('current owner', blockchainOwner, 'props', props._address);
+          console.log('current owner', blockchainOwner, 'props',);
           // metamaskAdd = 
         } catch (e) { console.log(e) }
       }
@@ -123,6 +123,7 @@ export default function ProductCard(props) {
             </Typography>
             <Typography
               // fontFamily="Cursive"
+              
               display="inline"
               fontSize="20px"
               gutterBottom
@@ -130,6 +131,7 @@ export default function ProductCard(props) {
               component="div"
               fontWeight="semibold"
             >
+              {/* {blockchainOwner} */}
               Abhishek Jha
             </Typography>
 
@@ -141,8 +143,8 @@ export default function ProductCard(props) {
             {/* <label htmlFor="contained-button-file" > */}
             {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
             {/* && (blockchainOwner.toString() != props._address.toString()) */}
-            {(props._address ) ?
-              <Button color="success" variant="contained" component="span" onClick={()=>requestBtnHandler()}>
+            {(props._address) ?
+              <Button color="success" variant="contained" component="span" onClick={() => requestBtnHandler()}>
                 Request Product
               </Button> : " "
             }

@@ -42,7 +42,7 @@ if(data.length > 0){
         <>
         <Container width="1200px" mx="auto">
         <ChakraProvider theme={theme} width="1200px">
-        <Avatar left="535px" size="2xl" name='Ryan Florence' src='https://bit.ly/ryan-florence' />
+        <Avatar left="535px" size="2xl" />
           <Heading
        fontSize="20px"
        fontWeight='normal'
@@ -58,16 +58,19 @@ if(data.length > 0){
        fontWeight='normal'
        textAlign="center"
        // fontFamily="Cursive"
-       w="full"
+       w="100px"
        color="text.secondary"
        mt="5px"
+       mx='auto'
+       isTruncated
      > {add}
      </Heading>
 
-        <Divider mt="20px" borderWidth="2px" borderColor="black"/>
+        <Divider mt="20px" borderWidth="1px" borderColor="black"/>
         </ChakraProvider>
         <SimpleGrid columns={4}  mt="20px" spacing='40px'>
            {data.map((productId, index) => (
+             productId==0?<></>:
               <AssetsOwned productId={productId} />
             ))}
        

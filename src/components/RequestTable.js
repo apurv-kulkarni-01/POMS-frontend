@@ -54,18 +54,18 @@ export default function RequestTable(props) {
   const shipProductOnChain = async (row) => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const feeData = await provider.getFeeData();
+    // const feeData = await provider.getFeeData();
     // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
     const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
     const tx = await PMcontract.shipProduct(row.walletAddress, row.productId,
-      {
-        maxFeePerGas: feeData.maxFeePerGas,
-        maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-      }
+      // {
+      //   maxFeePerGas: feeData.maxFeePerGas,
+      //   maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+      // }
     );
     const receipt =await tx.wait();
 
-    console.log('product has been shipped to: ', row.walletAddress, '\ntx hash', tx.hash);
+    console.log('product has been shipped to: ', row.walletAddress, '\ntx hash', receipt.transactionHash);
   }
   const declineRequest = (row) => {
     // await registerOnBlockchain();

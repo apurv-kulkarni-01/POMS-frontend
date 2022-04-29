@@ -44,12 +44,13 @@ const CustomerModal = (props) => {
         const signer = provider.getSigner();
         const feeData = await provider.getFeeData();
         // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
+        // console.log(feeData);
         const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
         const tx = await PMcontract.createCustomer(Name, Phone,
-            {
-                maxFeePerGas: feeData.maxFeePerGas,
-                maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-            }
+            // {
+            //     maxFeePerGas: feeData.maxFeePerGas,
+            //     maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+            // }
         );
         console.log(tx.hash);
     }

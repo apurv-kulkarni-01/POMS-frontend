@@ -13,21 +13,28 @@ import ChakraCarousel from "./ChakraCarousel";
 
 export default function Carousal(props) {
   const [data, setData] = useState([]);
-
-  useEffect(() => {async function getOwnedItems(){
-    console.log('getting users products');
-    const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
-    let ownedAssets = await PMContract.getCustomerDetails(props._address);
-    console.log(ownedAssets);
-    ownedAssets = ownedAssets[3]
-    setData(ownedAssets);
-  }
-  getOwnedItems();
+  let resultData=[-1];
+  useEffect(() => {
+    async function getOwnedItems() {
+      console.log('getting users products');
+      const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+      let ownedAssets = await PMContract.getCustomerDetails(props._address);
+      // console.log(ownedAssets);
+      ownedAssets = ownedAssets[3]
+      // setData(ownedAssets);
+      resultData = ownedAssets.filter((val) => {
+        return val != 0;
+      })
+      setData(resultData);
+      console.log('filter val', resultData);
+    }
+    getOwnedItems();
     // fetch("https://jsonplaceholder.typicode.com/posts/")
-      // .then((res) => res.json())
-      // .then((res) => setData(res));
+    // .then((res) => res.json())
+    // .then((res) => setData(res));
   }, []);
 
+// if((resultData.length==0) || (resultData.length > 0 && resultData[1] != -1)){
   return (
     <ChakraProvider theme={theme}>
       <Heading
@@ -65,4 +72,5 @@ export default function Carousal(props) {
       </Container>
     </ChakraProvider>
   );
+          // }
 }

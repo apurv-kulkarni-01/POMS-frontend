@@ -31,29 +31,30 @@ export default function Cardelem(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data, setData] = useState([]);
   const [productCode, setProductCode] = useState(-1)
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts/")
-      .then((res) => res.json())
-      .then((res) => setData(res));
-  }, []);
+  console.log('propdata', props.prodData);
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/posts/")
+  //     .then((res) => res.json())
+  //     .then((res) => setData(res));
+  // }, []);
 
   const addProductHandler = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const feeData = await provider.getFeeData();
+      // const feeData = await provider.getFeeData();
       // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
       const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
       console.log('transaction started');
       const tx = await PMcontract.enrollProduct(
         productCode,
         parseInt(String(productCode).slice(0, 3)),
-        {
-          maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
-          maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei'),
-          // maxFeePerGas: feeData.maxFeePerGas,
-          // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-        }
+        // {
+        // maxFeePerGas: ethers.utils.parseUnits('50', 'gwei'),
+        // maxPriorityFeePerGas: ethers.utils.parseUnits('40', 'gwei'),
+        // maxFeePerGas: feeData.maxFeePerGas,
+        // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+        // }
       );
       console.log(tx.hash);
       onClose();
@@ -176,6 +177,7 @@ export default function Cardelem(props) {
               display="inline"
               color="text.secondary"
             >
+
               {capsFirst("Product Code: ")}
               <Heading
                 fontSize="16px"
@@ -185,7 +187,7 @@ export default function Cardelem(props) {
                 display="inline"
                 mb={2}
               >
-                {capsFirst("9867081348")}
+                {props.prodData}
               </Heading>
             </Heading>
 
@@ -195,7 +197,7 @@ export default function Cardelem(props) {
               // textAlign="center"
               w="full"
             >
-              {"Current Owner: "}
+              {"Company Code: "}
               <Text
                 fontSize="13px"
                 display="inline"
@@ -204,7 +206,7 @@ export default function Cardelem(props) {
                 // textAlign="center"
                 w="full"
               >
-                {"Abhhishek Jha "}
+                {String(props.prodData).slice(0, 3)}
               </Text>
             </Text>
           </VStack>
@@ -212,7 +214,7 @@ export default function Cardelem(props) {
           <Flex justifyContent="space-between" alignContent='center' mt='20px' >
             <Link
               as={RouterLink}
-              to='/history'
+              to={'/history/'+props.prodData}
               ml="140px"
               // textAlign='right'
               // align='right'

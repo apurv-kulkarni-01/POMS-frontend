@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Text, Icon, Flex } from "@chakra-ui/react";
 import { GrReactjs } from 'react-icons/gr';
 
+
 export default function Logo(props) {
   return (
     <Box {...props}>
