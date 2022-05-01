@@ -65,7 +65,7 @@ export default function RequestTable(props) {
     );
     const receipt =await tx.wait();
 
-    console.log('product has been shipped to: ', row.walletAddress, '\ntx hash', receipt.transactionHash);
+    console.log('product has been shipped to: ', row.walletAddress, '\nTxHash => ', receipt.transactionHash);
   }
   const declineRequest = (row) => {
     // await registerOnBlockchain();
@@ -77,14 +77,14 @@ export default function RequestTable(props) {
 
     })
       .then(function (res) {
-        console.log("request accepeted");
         console.log(res);
         // onClose();
         const result = requestDataCopy.filter((movie) => {
           return movie._id !== row._id;
         });
         setMovieCopy(result);
-        console.log('product declined ');
+        console.log("Product Request declined.");
+        // console.log('product declined ');
       }).catch(e => console.log(e))
 
   }

@@ -16,7 +16,7 @@ export default function Carousal(props) {
   useEffect(() => {
     async function getOwnedItems() {
       try {
-        console.log('getting maufacturer products');
+        // console.log('getting maufacturer products');
         const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
         // let ownedAssets = await PMContract.getCustomerDetails(props._address);
         let productHistory = await PMContract.queryFilter(
@@ -24,7 +24,7 @@ export default function Carousal(props) {
           'earliest',
           'latest'
         )
-        console.log(productHistory[0].args[2]);
+        // console.log(productHistory[0].args[2]);
         productHistory.push(productHistory[0])
         setData(productHistory)
       }

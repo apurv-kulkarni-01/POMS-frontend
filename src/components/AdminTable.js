@@ -86,7 +86,8 @@ export default function RequestTable(props) {
       manufacturerAddress: row.walletAddress,
       companyCode: row.productId,
     }).then((res) => {
-      console.log(res.message);
+      // console.log(res.message);
+      console.log('Manufacturer request rejected.');
       const result = requestDataCopy.filter((movie) => {
         return movie._id !== row._id;
       });
@@ -108,8 +109,8 @@ export default function RequestTable(props) {
       companyCode: row.productId
     })
       .then(function (res) {
-        console.log("manufacturer verified");
-        console.log(res);
+        // console.log(res);
+        console.log("Manufacturer Verified");
         // onClose();
       }).catch(e => console.log(e))
   }
@@ -140,8 +141,8 @@ export default function RequestTable(props) {
           // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         }
       );
-      // tx.wait();
-      console.log(tx.hash);
+      let receipt = tx.wait();
+      console.log("Created new manufacturer: TxHash => "+receipt.transactionHash);
       manufacVerified(row);
       // remove the entry from frontend
       const result = requestDataCopy.filter((movie) => {

@@ -20,16 +20,16 @@ import theme from "../theme";
 
 const Profile = (props) => {
   let add = useParams().address;
-  console.log("address is: ", add)
+  // console.log("address is: ", add)
   const [data, setData] = useState([]);
   useEffect(() => {async function getOwnedItems(){
       try{
-      console.log('getting users products', add);
+      // console.log('getting users products', add);
       const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
-      console.log("continue");
+      // console.log("continue");
       let ownedAssets = await PMContract.getCustomerDetails(add);
-      console.log("continuing");
-      console.log("prods", ownedAssets);
+      // console.log("continuing");
+      // console.log("prods", ownedAssets);
       ownedAssets = ownedAssets[3]
       setData(ownedAssets);
     }

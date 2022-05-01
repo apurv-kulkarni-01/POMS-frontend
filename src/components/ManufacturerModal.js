@@ -29,8 +29,8 @@ const ManufacturerModal = (props) => {
             companyCode: Code.toString()
         })
             .then(function (res) {
-                console.log('inside manfactuer modal');
-                console.log(res);
+                console.log('Request sent to admin for verification.');
+                // console.log(res);
                 onClose();
             }).catch((e) => console.log(e))
     }
@@ -38,7 +38,7 @@ const ManufacturerModal = (props) => {
     function companyNameHandler(event) {
         let cName = event.currentTarget.value;
         if (cName === "") {
-            console.log("company name is not invalid");
+            // console.log("company name is not invalid");
             setNameErr(true);
         } else {
             setNameErr(false);
@@ -51,7 +51,7 @@ const ManufacturerModal = (props) => {
     function companyPrefixHandler(event) {
         let cPrefix = event.currentTarget.value;
         if (cPrefix === "") {
-            console.log("company prefix is not invalid");
+            // console.log("company prefix is not invalid");
             setPrefixErr(true);
         } else {
             setPrefixErr(false);

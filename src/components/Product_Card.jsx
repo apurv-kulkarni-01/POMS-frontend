@@ -47,7 +47,7 @@ export default function ProductCard(props) {
           const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
           blockchainOwner = await PMContract.getCurrentOwner(parseInt(productId))
           blockchainOwner = blockchainOwner.toLowerCase();
-          console.log('current owner', blockchainOwner, 'props',);
+          // console.log('current owner', blockchainOwner, 'props',);
           // metamaskAdd = 
         } catch (e) { console.log(e) }
       }
@@ -62,7 +62,7 @@ export default function ProductCard(props) {
       productId: props._productID,
     })
       .then(function (res) {
-        console.log("request accepeted");
+        console.log("Request Sent to Owner =>",blockchainOwner);
         console.log(res);
         // onClose();
       }).catch(e => console.log(e))

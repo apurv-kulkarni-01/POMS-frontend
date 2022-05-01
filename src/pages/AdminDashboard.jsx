@@ -24,7 +24,7 @@ const AdminDashboard = (props) => {
 
 
                         // setPMContract(new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum")));
-                        console.log('this is admindashboard: ');
+                        // console.log('this is admindashboard: ');
                     }).catch((e) => console.log(e.message))
                 // console.log(data);
             }).catch((e) => {

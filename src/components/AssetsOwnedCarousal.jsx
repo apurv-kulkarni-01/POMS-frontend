@@ -16,7 +16,7 @@ export default function Carousal(props) {
   let resultData=[-1];
   useEffect(() => {
     async function getOwnedItems() {
-      console.log('getting users products');
+      // console.log('getting users products');
       const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
       let ownedAssets = await PMContract.getCustomerDetails(props._address);
       // console.log(ownedAssets);
@@ -26,7 +26,7 @@ export default function Carousal(props) {
         return val != 0;
       })
       setData(resultData);
-      console.log('filter val', resultData);
+      // console.log('filter val', resultData);
     }
     getOwnedItems();
     // fetch("https://jsonplaceholder.typicode.com/posts/")

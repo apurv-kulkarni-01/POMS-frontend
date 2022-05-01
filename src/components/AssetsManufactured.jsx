@@ -31,7 +31,7 @@ export default function Cardelem(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data, setData] = useState([]);
   const [productCode, setProductCode] = useState(-1)
-  console.log('propdata', props.prodData);
+  // console.log('propdata', props.prodData);
   // useEffect(() => {
   //   fetch("https://jsonplaceholder.typicode.com/posts/")
   //     .then((res) => res.json())
@@ -45,7 +45,7 @@ export default function Cardelem(props) {
       // const feeData = await provider.getFeeData();
       // console.log(ethers.utils.formatUnits(feeData.maxFeePerGas,'gwei'));
       const PMcontract = new ethers.Contract(PM.address, PM.abi, signer);
-      console.log('transaction started');
+      // console.log('transaction started');
       const tx = await PMcontract.enrollProduct(
         productCode,
         parseInt(String(productCode).slice(0, 3)),
@@ -56,7 +56,8 @@ export default function Cardelem(props) {
         // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         // }
       );
-      console.log(tx.hash);
+      let receipt = tx.wait();
+      console.log('New Product added. TxHash => ',receipt.transactionHash);
       onClose();
     }
     catch (e) {

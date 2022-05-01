@@ -19,7 +19,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import axios from "axios";
 
 const NavBar = (props) => {
-  console.log('header loaded');
+  // console.log('header loaded');
   let dashboardLink = props._usertype.toLowerCase()
   let dashboardText = props._usertype.toUpperCase();
   const userType = props._usertype
@@ -36,7 +36,7 @@ const NavBar = (props) => {
       // res[0] for fetching a first wallet
       ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         const address = res[0];
-        console.log('direct from metmask ',address);
+        // console.log('direct from metmask ',address);
         ethereum.request({
           method: "eth_getBalance",
           params: [address, "latest"]
@@ -69,7 +69,7 @@ const NavBar = (props) => {
     axios.get('http://localhost:5000/api/customer/signIn/' + data.address)
       .then((res) => {
         // console.log(res.data.message);
-        console.log("updated: ", data);
+        // console.log("updated: ", data);
         setUser(res.data.message);
       });
   }
@@ -93,7 +93,7 @@ const NavBar = (props) => {
     dashboardLink = 'admin'
   }
   else if (dashboardText != 'CUSTOMER' && dashboardText != 'MANUFACTURER') {
-    console.log(dashboardText);
+    // console.log(dashboardText);
     dashboardText = ''
     dashboardLink = ''
   }

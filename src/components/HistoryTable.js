@@ -20,7 +20,7 @@ const [history, setHistory] = useState([]);
   useEffect(
     () => {
       ProductHistoryBC(_productID).then((result)=>{
-        console.log(result)
+        // console.log(result)
         setHistory(result);
         setPending(false)
       }).catch((e)=>console.log(e))

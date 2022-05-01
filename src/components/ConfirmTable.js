@@ -64,16 +64,16 @@ export default function ConfirmTable(props) {
   async function acceptProduct(row) {
 
 
-    console.log("user type is", props)
+    // console.log("user type is", props)
     await confirmProductlLockchain(row);
     // await registerOnBlockchain();
     axios.post("http://localhost:5000/api/customer/confirmProduct/" + props._address, {
       productId: row.productId
     })
       .then(function (res) {
-        console.log("request accepeted");
-        console.log(res);
-        console.log("confirm " + row._id);
+        console.log("Product request accepeted");
+        // console.log(res);
+        // console.log("confirm " + row._id);
         const result = requestDataCopy.filter((movie) => {
           return movie._id !== row._id;
         });
@@ -99,7 +99,7 @@ export default function ConfirmTable(props) {
       );
       const receipt = await tx.wait();
       // console.log('receipt is: ', receipt);
-      console.log('product received: tx hash= ', receipt.transactionHash);
+      console.log('Product received: TxHash => ', receipt.transactionHash);
     }
     catch (e) {
       console.log(e);

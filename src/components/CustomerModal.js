@@ -22,20 +22,20 @@ const CustomerModal = (props) => {
     const [Phone, setPhone] = useState("")
     const [nameErr, setNameErr] = useState(false);
     const [phoneErr, setPhoneErr] = useState(false);
-
-
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+
     const createCustomerHandler = async () => {
         await registerOnBlockchain();
         axios.post("http://localhost:5000/api/customer/createCustomer", {
             customerAddress: address,
         })
             .then(function (res) {
-                console.log("inside customer modal handler");
-                console.log(res);
+                // console.log("inside customer modal handler");
+                // console.log(res);
                 onClose();
             }).catch(e => {
-                console.log('inside toast', e);
+                console.log('Customer registration error', e);
             })
     }
 
@@ -52,13 +52,14 @@ const CustomerModal = (props) => {
             //     maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
             // }
         );
-        console.log(tx.hash);
+        let receipt = tx.wait()
+        console.log('Customer registered successfully. TxHash => ',receipt.transactionHash);
     }
 
     function customerNameHandler(event){
         let custName = event.currentTarget.value;
         if(custName===""){
-            console.log("customer name is not invalid");
+            // console.log("customer name is not invalid");
             setNameErr(true);
         } else {
             setNameErr(false);
@@ -71,7 +72,7 @@ const CustomerModal = (props) => {
     function customerPhoneHandler(event){
         let custPhone = event.currentTarget.value;
         if(custPhone==="" || custPhone.length<10){
-            console.log("Customer phone number is not invalid");
+            // console.log("Customer phone number is not invalid");
             setPhoneErr(true);
         } else{
             setPhoneErr(false);
