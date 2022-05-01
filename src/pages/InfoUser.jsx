@@ -1,21 +1,31 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/provider";
-import { Box, Button, Flex, Image, Input, Stack,Text,HStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Input, Stack,Text,HStack, Spacer } from "@chakra-ui/react";
 import track from "../Images/track.png"
 import metamask from "../Images/Metamask.png"
 import request from "../Images/request.png"
 import wait from "../Images/wait.png"
 import confirm from "../Images/confirm.png"
 import cong from "../Images/cong.png"
+import logo from "../Images/logo_poms_white.png"
 import { BiSearch } from "react-icons/bi";
+import Header from "../components/Header"
 
 
 const InfoUser =() =>{
     return(
         <ChakraProvider>
-            <Box>
-                <HStack></HStack>
-            </Box>
+            <HStack p="2" bg="gray.700" >
+                <a href="#" ><Image src={logo} boxSize="50px"/></a>
+                <Spacer />
+                <Stack direction="row" spacing="10">
+                    <a href="#knowmore" ><Text color="white" as="b">Know more</Text></a>
+                    <a href="#abtus" ><Text color="white" as="b">About us</Text></a>
+                </Stack>
+                <Spacer />
+                <Button bg="green.400" color="white" alignContent="center">Get started</Button>
+            </HStack>
+
             <Box>
 
             {/* section -  1 */}
@@ -48,7 +58,8 @@ const InfoUser =() =>{
                         </Box>
                         <Box width="50%"  padding="100" textAlign="right">
                             <Text fontFamily="Montserrat" fontSize='6xl' noOfLines={2} mt={100} color="white">One click login with metamask</Text>
-                            <Button image={metamask} mt={55}>Login with Metamask</Button>
+                            <Button mt={55} mx={30} bg="green.400" color="white">Get started</Button>
+                            <Button mt={55} onClick="#knowmore" ><a href="#knowmore">Know more</a></Button>
                         </Box>
                     </Stack>
                 </Box>
@@ -57,7 +68,7 @@ const InfoUser =() =>{
                 {/* section  -  3 */}
 
 
-                <Box w="100%" h="100vh" bg="gray.50">
+                <Box w="100%" h="100vh" bg="gray.50" id="knowmore">
                     <Stack direction="row" height="100vh" >
                         <Box width="50%"  padding="100" textAlign="left">
                             <Text fontFamily="Montserrat" fontSize='6xl' noOfLines={2} mt={100}>Request product</Text>
@@ -113,6 +124,44 @@ const InfoUser =() =>{
                         </Box>
                     </Stack>
                 </Box>
+
+
+                <Box w="100%" h="300px" bg="gray.50" textAlign="center">
+                    <Text fontFamily="Montserrat" fontSize='6xl' paddingTop={90} id="abtus">About us</Text>
+                </Box>
+
+                <Box w="100%" bg="gray.700">
+                <Text fontFamily="Montserrat" fontSize='6xl' color="white" textAlign="center" pt={90}>Team members</Text>
+                    <HStack p={125} spacing={20}>
+                        <Image src="https://media-exp1.licdn.com/dms/image/C4D03AQEDmA5FMNecLA/profile-displayphoto-shrink_400_400/0/1632377872259?e=1657152000&v=beta&t=1zS5d6WV4Je2rhX7LM9IxuWA5RmH8jnwcHULoung7t0" borderRadius='full' boxSize='300px' />
+                        <Box>
+                            <Text fontFamily="Montserrat" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
+                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Montserrat" fontSize='md'   color="white">LinkedIn</Text></a>
+                        </Box>
+                    </HStack>
+                    <HStack p={125} spacing={20}>
+                        <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
+                        <Box>
+                            <Text fontFamily="Montserrat" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
+                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Montserrat" fontSize='md'   color="white">LinkedIn</Text></a>
+                        </Box>
+                    </HStack>
+                    <HStack p={125} spacing={20}>
+                        <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
+                        <Box>
+                            <Text fontFamily="Montserrat" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
+                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Montserrat" fontSize='md'   color="white">LinkedIn</Text></a>
+                        </Box>
+                    </HStack>
+                    <HStack p={125} spacing={20}>
+                        <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
+                        <Box>
+                            <Text fontFamily="Montserrat" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
+                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Montserrat" fontSize='md'   color="white">LinkedIn</Text></a>
+                        </Box>
+                    </HStack>
+                </Box>
+
 
             </Box>
         </ChakraProvider>

@@ -5,7 +5,7 @@
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { Flex, VStack, Heading, Switch } from "@chakra-ui/react";
 
-import { Modal } from "@chakra-ui/react";
+import { ChakraProvider, Modal } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import UserDashboard from "./pages/UserDashboard";
@@ -21,6 +21,7 @@ import HomeWalletC from "./pages/HomeWalletC"
 import AdminDashboard from "./pages/AdminDashboard";
 import ManufacturerDashboard from "./pages/ManufacturerDashboard";
 import Header from "./components/Header";
+import InfoUser from "./pages/InfoUser";
 import axios from "axios";
 
 function App() {
@@ -43,6 +44,13 @@ const [userType, setUser] = useState("");
 
 
     return (
+        
+        // <ChakraProvider>
+        //     <InfoUser />
+        // </ChakraProvider>
+        
+        
+
         <>
             <Router>
             <Header _setdata={setUserdata} _data={userdata} _usertype={userType} _setuser={setUser}/>  
@@ -67,7 +75,8 @@ const [userType, setUser] = useState("");
                     {/* <ProductHistoryNC/> */}
                     {/* <UserSettings /> */}
                 </Routes>
-            </Router></>
+            </Router>
+            </>
     )
 }
 

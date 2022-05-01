@@ -58,7 +58,7 @@ const Profile = (props) => {
        // fontFamily="Cursive"
        w="full"
        mt="50px"
-       fontWeight="bold"
+      //  fontWeight="bold"
      > Abhishek Jha
      </Heading>
      <Tooltip label='View on Polygonscan'>
