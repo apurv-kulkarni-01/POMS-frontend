@@ -81,8 +81,7 @@ export default function ProductCard(props) {
             height="265px"
             maxWidth="100"
             image={require("./static/images/cards/aba.jpg")}
-            alt="green iguana"
-
+            
           />
         </Card>
 
@@ -123,13 +122,13 @@ export default function ProductCard(props) {
               </Typography>
               <Typography
                 // fontFamily="Cursive"
-
-                display="inline"
-                fontSize="20px"
+                noWrap
+                // display="inline"
+                // fontSize="20px"
                 gutterBottom
                 variant="h6"
-                component="div"
-                fontWeight="semibold"
+                // component="div"
+                // fontWeight="semibold"
               >
                 {blockchainOwner}
                 {/* Abhishek Jha */}
