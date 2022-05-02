@@ -36,7 +36,7 @@ export default function ProductCard(props) {
   //   setIsDialogOpen(true);
   //   setActiveCharacter(character);
   // };
-  let blockchainOwner = '';
+  const [blockchainOwner, setOwner] = useState('');
 
 
   useEffect(
@@ -45,8 +45,8 @@ export default function ProductCard(props) {
         try {
           const productId = props._productID;
           const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
-          blockchainOwner = await PMContract.getCurrentOwner(parseInt(productId))
-          blockchainOwner = blockchainOwner.toLowerCase();
+          let owner = await PMContract.getCurrentOwner(parseInt(productId))
+          setOwner(owner.toLowerCase());
           // console.log('current owner', blockchainOwner, 'props',);
           // metamaskAdd = 
         } catch (e) { console.log(e) }
@@ -62,7 +62,7 @@ export default function ProductCard(props) {
       productId: props._productID,
     })
       .then(function (res) {
-        console.log("Request Sent to Owner =>",blockchainOwner);
+        console.log("Request Sent to Owner =>", blockchainOwner);
         console.log(res);
         // onClose();
       }).catch(e => console.log(e))
@@ -70,91 +70,91 @@ export default function ProductCard(props) {
   }
 
 
-  return (
-    <>
+    return (
+      <>
 
-      <Card className={classes.card} sx={{
-        marginLeft: "971px", maxWidth: 265, height: "265px", borderRadius: 15
-      }}>
-        <CardMedia
-          component="img"
-          height="265px"
-          maxWidth="100"
-          image={require("./static/images/cards/aba.jpg")}
-          alt="green iguana"
+        <Card className={classes.card} sx={{
+          marginLeft: "971px", maxWidth: 265, height: "265px", borderRadius: 15
+        }}>
+          <CardMedia
+            component="img"
+            height="265px"
+            maxWidth="100"
+            image={require("./static/images/cards/aba.jpg")}
+            alt="green iguana"
 
-        />
-      </Card>
+          />
+        </Card>
 
-      <Card elevation={0} sx={{
-        marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top: "487px"
-      }} >
-        <CardActionArea>
+        <Card elevation={0} sx={{
+          marginLeft: "971px", maxWidth: 280, height: "220px", position: "absolute", top: "487px"
+        }} >
+          <CardActionArea>
 
-          <CardContent>
-            <Typography
-              fontSize="17px"
-              // fontFamily="Cursive"
-              variant="body2"
-              color="text.secondary"
-            >
-              Company Name: {"\u00A0"}
-            </Typography>
-            <Typography
-              // fontFamily="Cursive"
-              display="inline"
-              fontSize="20px"
-              gutterBottom
-              variant="h6"
-              component="div"
-              fontWeight="bold"
-            >
-              ROLEX
-            </Typography>
+            <CardContent>
+              <Typography
+                fontSize="17px"
+                // fontFamily="Cursive"
+                variant="body2"
+                color="text.secondary"
+              >
+                Company Prefix: {"\u00A0"}
+              </Typography>
+              <Typography
+                // fontFamily="Cursive"
+                display="inline"
+                fontSize="20px"
+                gutterBottom
+                variant="h6"
+                component="div"
+                fontWeight="bold"
+              >
+                {String(props._productID).slice(0,3)}
+              </Typography>
 
-            <Typography
-              mt="5px"
-              fontSize="17px"
-              // fontFamily="Cursive"
-              variant="body2"
-              color="text.secondary"
-            >
-              Current Owner:{"\u00A0"}
-            </Typography>
-            <Typography
-              // fontFamily="Cursive"
-              
-              display="inline"
-              fontSize="20px"
-              gutterBottom
-              variant="h6"
-              component="div"
-              fontWeight="semibold"
-            >
-              {/* {blockchainOwner} */}
-              Abhishek Jha
-            </Typography>
+              <Typography
+                mt="5px"
+                fontSize="17px"
+                // fontFamily="Cursive"
+                variant="body2"
+                color="text.secondary"
+              >
+                Current Owner:{"\u00A0"}
+              </Typography>
+              <Typography
+                // fontFamily="Cursive"
 
-          </CardContent>
-        </CardActionArea>
-        <CardActions marginLeft="2px" display="flex">
-          <Stack direction="row" spacing={0} m={1} mt={1}>
+                display="inline"
+                fontSize="20px"
+                gutterBottom
+                variant="h6"
+                component="div"
+                fontWeight="semibold"
+              >
+                {blockchainOwner}
+                {/* Abhishek Jha */}
+              </Typography>
 
-            {/* <label htmlFor="contained-button-file" > */}
-            {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
-            {/* && (blockchainOwner.toString() != props._address.toString()) */}
-            {(props._address) ?
-              <Button color="success" variant="contained" component="span" onClick={() => requestBtnHandler()}>
-                Request Product
-              </Button> : " "
-            }
-            {/* </label> */}
+            </CardContent>
+          </CardActionArea>
+          <CardActions marginLeft="2px" display="flex">
+            <Stack direction="row" spacing={0} m={1} mt={1}>
 
-          </Stack>        </CardActions>
-      </Card>
+              {/* <label htmlFor="contained-button-file" > */}
+              {/* <Input accept="image/*" id="contained-button-file" multiple type="file" /> */}
+              {/* && (blockchainOwner.toString() != props._address.toString()) */}
+              {(props._address) ?
+                <Button color="success" variant="contained" component="span" onClick={() => requestBtnHandler()}>
+                  Request Product
+                </Button> : " "
+              }
+              {/* </label> */}
 
-    </>
-  );
+            </Stack>        </CardActions>
+        </Card>
+
+      </>
+    );
 
 
 }

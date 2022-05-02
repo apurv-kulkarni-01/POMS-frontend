@@ -46,7 +46,7 @@ const [userType, setUser] = useState("");
     return (
         
         // <ChakraProvider>
-        //     <InfoUser />
+            // <InfoUser />
         // </ChakraProvider>
         
         
