@@ -9,8 +9,10 @@ import confirm from "../Images/confirm.png"
 import cong from "../Images/cong.png"
 import logo from "../Images/logo_poms_white.png"
 import { BiSearch } from "react-icons/bi";
+import {BsGithub} from "react-icons/bs";
 import Header from "../components/Header"
 import theme from '../theme/index'
+import {FaLinkedinIn} from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
 
 const InfoUser =() =>{
@@ -137,32 +139,61 @@ const InfoUser =() =>{
                 <Text fontFamily="Inter" fontSize='6xl' color="white" textAlign="center" pt={90}>Team members</Text>
                     <HStack p={125} spacing={20}>
                         <Image src="https://media-exp1.licdn.com/dms/image/C4D03AQEDmA5FMNecLA/profile-displayphoto-shrink_400_400/0/1632377872259?e=1657152000&v=beta&t=1zS5d6WV4Je2rhX7LM9IxuWA5RmH8jnwcHULoung7t0" borderRadius='full' boxSize='300px' />
-                        <Box>
-                            <Text fontFamily="Inter" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
-                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
+                        <Box h={250} px={10}>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Apurv Kulkarni</Text>
+                            <HStack py={75} px={50} spacing={10}>
+                                <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
+                                
+                                <a href="https://github.com/apurv-d"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
+                            </HStack>
                         </Box>
                     </HStack>
-                    <HStack p={125} spacing={20}>
+
+
+                    {/* <HStack p={125} spacing={20}>
                         <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
                         <Box>
                             <Text fontFamily="Inter" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
                             <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
                         </Box>
-                    </HStack>
+                    </HStack> */}
+                    
                     <HStack p={125} spacing={20}>
                         <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
-                        <Box>
-                            <Text fontFamily="Inter" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
-                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
+                        <Box h={250} px={10}>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Apurv Kulkarni</Text>
+                            <HStack py={75} px={50} spacing={10}>
+                                <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
+                                
+                                <a href="https://github.com/apurv-d"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
+                            </HStack>
                         </Box>
                     </HStack>
+
                     <HStack p={125} spacing={20}>
                         <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
-                        <Box>
-                            <Text fontFamily="Inter" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
-                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
+                        <Box h={250} px={10}>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Apurv Kulkarni</Text>
+                            <HStack py={75} px={50} spacing={10}>
+                                <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
+                                
+                                <a href="https://github.com/apurv-d"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
+                            </HStack>
                         </Box>
                     </HStack>
+
+                    <HStack p={125} spacing={20}>
+                        <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
+                        <Box h={250} px={10}>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Apurv Kulkarni</Text>
+                            <HStack py={75} px={50} spacing={10}>
+                                <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
+                                
+                                <a href="https://github.com/apurv-d"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
+                            </HStack>
+                        </Box>
+                    </HStack>
+
                 </Box>
 
 
