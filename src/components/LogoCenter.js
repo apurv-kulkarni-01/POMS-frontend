@@ -2,6 +2,7 @@ import React,{useState} from "react";
 // import { Box, Icon, Flex } from "@chakra-ui/react";
 // import { GrReactjs } from "react-icons/gr";
 import { FaBoxes as GrReactjs } from "react-icons/fa";
+import logo from "../Images/logo_poms.png";
 import {
   Box,
   Button,
@@ -10,6 +11,7 @@ import {
   Flex,
   Input,
   NumberInputField,
+  Image,
   // FormControl,
   // Input
 } from "@chakra-ui/react";
@@ -23,7 +25,8 @@ export default function LogoCenter(props) {
   return (
     <VStack align="stretch">
       <Box maxW="960px" mx="auto" h={80}>
-        <Icon as={GrReactjs} w={250} h={250} />
+        {/* <Icon as={GrReactjs} w={250} h={250} /> */}
+        <Image src={logo} boxSize='250px'/>
       </Box>
       <Box >
         <Flex ml={450} mr={450}>
