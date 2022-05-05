@@ -1,7 +1,6 @@
 
-import { Box, ChakraProvider, Flex, HStack, Text } from "@chakra-ui/react";
+import { Box, ChakraProvider, HStack, Text } from "@chakra-ui/react";
 import React from "react";
-import HeaderCSearch from "../components/HeaderCSearch"
 import LogoCenter from "../components/LogoCenter";
 import ManufacturerModal from "../components/ManufacturerModal";
 import CustomerModal from "../components/CustomerModal";

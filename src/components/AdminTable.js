@@ -141,7 +141,7 @@ export default function RequestTable(props) {
           // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         }
       );
-      let receipt = tx.wait();
+      let receipt = await tx.wait();
       console.log("Created new manufacturer: TxHash => "+receipt.transactionHash);
       manufacVerified(row);
       // remove the entry from frontend

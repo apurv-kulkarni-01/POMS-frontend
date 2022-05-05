@@ -36,7 +36,16 @@ const InfoUser =() =>{
             {/* section -  1 */}
 
 
-                <Box w="100%" h="100vh" bg="gray.50">
+                <Box w="100%" h="100vh" bg="gray.50"
+                 style={{
+                    // background: 'rgb(19,98,7)',
+                    // background: 'linear-gradient(106deg, rgba(19,98,7,1) 0%, rgba(57,117,210,1) 44%, rgba(208,22,210,1) 100%)',
+                    // backgroundImage: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
+                    backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+                    // backgroundImage: 'linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% )',
+
+                }}
+                >
                     <Stack direction="row" height="100vh" >
                         <Box width="50%"  padding="100" textAlign="left">
                             <Text fontFamily="Inter" fontSize='6xl' noOfLines={2} mt={100} as="b">Track ownership of the product</Text>

@@ -52,7 +52,7 @@ const CustomerModal = (props) => {
             //     maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
             // }
         );
-        let receipt = tx.wait()
+        let receipt = await tx.wait()
         console.log('Customer registered successfully. TxHash => ',receipt.transactionHash);
     }
 

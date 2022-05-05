@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import HeaderCSearch from '../components/HeaderCSearch'
 import AdminTable from '../components/AdminTable'
-import { ChakraProvider } from '@chakra-ui/react'
 import axios from 'axios';
 import {ethers} from 'ethers'
 

@@ -56,7 +56,7 @@ export default function Cardelem(props) {
         // maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         // }
       );
-      let receipt = tx.wait();
+      let receipt = await tx.wait();
       console.log('New Product added. TxHash => ',receipt.transactionHash);
       onClose();
     }
