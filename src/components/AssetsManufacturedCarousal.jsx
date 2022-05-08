@@ -11,8 +11,7 @@ import { ethers } from 'ethers'
 
 
 export default function Carousal(props) {
-  const [data, setData] = useState([]);
-
+  const [data, setData] = useState([{ args: [1, 2, "625978ba7a4ebaaac35d59c0"], walletAddress: "8e9bdf54-0b5a-4157-9cae-1cfffaf8849c", productId: "-1" }]);
   useEffect(() => {
     async function getOwnedItems() {
       try {
@@ -24,9 +23,16 @@ export default function Carousal(props) {
           'earliest',
           'latest'
         )
+        if (productHistory[0]){
+        console.log("...", productHistory)
         // console.log(productHistory[0].args[2]);
         productHistory.push(productHistory[0])
         setData(productHistory)
+        console.log(productHistory)
+        }else{
+          
+        }
+        
       }
 
       catch (e) {
@@ -78,7 +84,7 @@ export default function Carousal(props) {
       >
         <ChakraCarousel Width={200} sliderWidth={5} gap={40} >
           {data.map((post, index) => (
-         
+            
             <AssetsManufactured prodData={post.args[2]} name={index} />
           ))}
         </ChakraCarousel>

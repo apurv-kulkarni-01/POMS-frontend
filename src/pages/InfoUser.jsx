@@ -162,8 +162,8 @@ const InfoUser =() =>{
                     {/* <HStack p={125} spacing={20}>
                         <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
                         <Box>
-                            <Text fontFamily="Inter" fontSize='6xl'  color="white">Apurv Kulkarni</Text>
-                            <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white">Abhishek Jha</Text>
+                            <a href="https://www.linkedin.com/in/abhishek-jha-1535a520a/"><Text fontFamily="Inter" fontSize='md'   color="white">LinkedIn</Text></a>
                         </Box>
                     </HStack> */}
                     
@@ -182,11 +182,11 @@ const InfoUser =() =>{
                     <HStack p={125} spacing={20}>
                         <Image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" borderRadius='full' boxSize='300px' />
                         <Box h={250} px={10}>
-                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Apurv Kulkarni</Text>
+                            <Text fontFamily="Inter" fontSize='6xl'  color="white" >Abhishek Jha</Text>
                             <HStack py={75} px={50} spacing={10}>
-                                <a href="https://www.linkedin.com/in/apurv-kulkarni/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
+                                <a href="https://www.linkedin.com/in/abhishek-jha-1535a520a/"><Text fontFamily="Inter" fontSize='md'   color="white"><Button leftIcon={<FaLinkedinIn />} colorScheme="linkedin">LinkedIn</Button></Text></a>
                                 
-                                <a href="https://github.com/apurv-d"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
+                                <a href="https://github.com/abhishek-jha-24/"><Button leftIcon={<BsGithub />} >GitHub</Button></a>
                             </HStack>
                         </Box>
                     </HStack>

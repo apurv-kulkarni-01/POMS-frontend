@@ -95,7 +95,7 @@ const Profile = (props) => {
           </SimpleGrid>) :
           (
             <ChakraProvider theme={theme} width="1200px">
-              <Spinner mt="100px" speed='0.75s' size='xl' ml="600px" />
+              <Spinner mt="100px" speed='0.75s' size='xl' ml="570px" />
             </ChakraProvider>)}
       </Container>
     </>
