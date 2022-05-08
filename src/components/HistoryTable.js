@@ -38,7 +38,7 @@ const [history, setHistory] = useState([]);
          as={RouterLink}
           // href={"https://mumbai.polygonscan.com/tx/" + row.transactionHash}
           to={'/profile/'+row.args.from}
-          // isExternal
+          isExternal
 
         >
         <Tooltip label='View User Profile'>
@@ -58,7 +58,7 @@ const [history, setHistory] = useState([]);
          as={RouterLink}
           // href={"https://mumbai.polygonscan.com/tx/" + row.transactionHash}
           to={'/profile/'+row.args.to}
-          // isExternal
+          isExternal
 
         >
         <Tooltip label='View User Profile'>
@@ -80,7 +80,7 @@ const [history, setHistory] = useState([]);
 
           >
           <Tooltip label='View Transaction on Polygonscan'>
-            {truncate(row.transactionHash)}
+            <span>{truncate(row.transactionHash)} <ExternalLinkIcon/> </span>
             </Tooltip>
           </Link>
         </>

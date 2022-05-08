@@ -7,11 +7,12 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    FormControl, FormLabel, Input, Text, HStack
+    FormControl, FormLabel, Input, Text, HStack, Tooltip
 } from "@chakra-ui/react";
+import { InfoOutlineIcon } from '@chakra-ui/icons'
 import axios from "axios";
 import React, { useState } from "react";
-import {AiOutlineInfoCircle} from "react-icons/ai"
+import { AiOutlineInfoCircle } from "react-icons/ai"
 
 
 const ManufacturerModal = (props) => {
@@ -85,11 +86,16 @@ const ManufacturerModal = (props) => {
                         >Company name</FormLabel>
                         <Input bg="white" border='1px solid #E2E8F0' id='company-name' placeholder='Rolex Inc.'  /*onChange={event => setName(event.currentTarget.value)}*/ onChange={companyNameHandler} />
                         {nameErr ? <Text color="red">Please enter a valid name</Text> : ""}
-                        <HStack spacing={0}>
-                        <FormLabel mt={4} htmlFor='company-prefix' fontWeight='medium' >Company prefix</FormLabel>
-                        <Box as='button' borderRadius='3xl' title="Enter prefix the company is enrolled with."  h={8}>
-                            <AiOutlineInfoCircle  />
-                        </Box>
+                        <HStack spacing={0} alignItems='baseline'>
+                            <FormLabel mr={1} mt={4} htmlFor='company-prefix' fontWeight='medium' >Company prefix</FormLabel>
+                            <Tooltip label='3 digit number that identifies your company'
+                                fontSize='small'
+                                bg='gray.300'
+                                color='black'
+                                placement='top-start'
+                            >
+                                <InfoOutlineIcon w={3} h={3} color='gray.600' />
+                            </Tooltip>
                         </HStack>
                         <Input type="text" pattern="[0-9]*" bg="white" border='1px solid #E2E8F0' id='company-prefix' placeholder='546' /*onChange={event => setCode(event.currentTarget.value)}*/ maxLength="3" onChange={companyPrefixHandler} />
                         {prefixErr ? <Text color="red">Please enter a valid prefix</Text> : ""}
