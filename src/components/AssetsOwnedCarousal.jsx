@@ -17,7 +17,7 @@ export default function Carousal(props) {
   useEffect(() => {
     async function getOwnedItems() {
       // console.log('getting users products');
-      const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+      const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum","HUm8In7JypE26QEZWGyXcUw9-3jM-IRm"));
       let ownedAssets = await PMContract.getCustomerDetails(props._address);
       // console.log(ownedAssets);
       ownedAssets = ownedAssets[3]

@@ -6,7 +6,7 @@ import React from 'react'
 async function ProductHistory(productID) {
     const address = PM.address;
     const abi = PM.abi;
-    const PMContract = new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum"));
+    const PMContract = new ethers.Contract(address, abi, new ethers.providers.AlchemyProvider("maticmum", "HUm8In7JypE26QEZWGyXcUw9-3jM-IRm"));
     productID = ethers.BigNumber.from(productID.toString()).toHexString()
     // console.log('inside product history', productID);
     let productHistory = await PMContract.queryFilter(

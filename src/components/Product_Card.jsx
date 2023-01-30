@@ -44,7 +44,7 @@ export default function ProductCard(props) {
       async function getCurrentOwnerChain() {
         try {
           const productId = props._productID;
-          const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+          const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum","HUm8In7JypE26QEZWGyXcUw9-3jM-IRm"));
           let owner = await PMContract.getCurrentOwner(parseInt(productId))
           setOwner(owner.toLowerCase());
           // console.log('current owner', blockchainOwner, 'props',);

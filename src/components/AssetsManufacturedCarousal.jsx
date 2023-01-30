@@ -16,12 +16,12 @@ export default function Carousal(props) {
     async function getOwnedItems() {
       try {
         // console.log('getting maufacturer products');
-        const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+        const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.InfuraProvider("maticmum"));
         // let ownedAssets = await PMContract.getCustomerDetails(props._address);
         let productHistory = await PMContract.queryFilter(
           PMContract.filters.Transfer(null, props._address, null),
-          'earliest',
-          'latest'
+          // 'earliest',
+          // 'latest'
         )
         if (productHistory[0]){
         console.log("...", productHistory)

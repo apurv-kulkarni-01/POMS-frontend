@@ -28,7 +28,7 @@ const Profile = (props) => {
     async function getOwnedItems() {
       try {
         // console.log('getting users products', add);
-        const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum"));
+        const PMContract = new ethers.Contract(PM.address, PM.abi, new ethers.providers.AlchemyProvider("maticmum","HUm8In7JypE26QEZWGyXcUw9-3jM-IRm"));
         // console.log("continue");
         let ownedAssets = await PMContract.getCustomerDetails(add);
         setName(ownedAssets[0]);
